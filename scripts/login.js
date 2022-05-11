@@ -2,14 +2,11 @@
 //Url
 var host = "https://api.okei.online/entrar";
 
-var a;
 
- 
-
- //O evento é disparado quando a pagina HTML é carregada 
+//O evento é disparado quando a pagina HTML é carregada 
 $(document).ready(function(){
 
-  //evento click atribuido ao botao com id enviar
+    //evento click atribuido ao botao com id enviar
     $("#enviar").click(function(e){
 
     //evita a ação padrão do evento
@@ -26,59 +23,61 @@ $(document).ready(function(){
             type: 'POST',
             url: host,
             data: '{"identificador": "' + $("#inputEmailAddress").val() + '","senha": "' + $("#inputChoosePassword").val() + '"}',
-
-          a : '{"identificador": "' + $("#inputEmailAddress").val() + '","senha": "' + $("#inputChoosePassword").val() + '"}',
-            success: function (dados) {
+      
+          success: function (dados) {
 
               //converterá os dados em uma string antes de analisá-los
               dados = JSON.stringify(dados);
 
               dados = JSON.parse(dados);
               // console.log(dados.roles);
-             // console.log(dados.roles);
+            
              var array = dados.roles;
 
-
+              //percorre o array
                Object.keys(array).forEach(function(key){
+
               // console.log(array[key].nome);
 
-              // if(array[key].nome === "administrador"){
-
-              //   //console.log(dados.nome+" é um "+array[key].nome);
-               
-              //   top.location.href = 'perfil-administrador.html';
-
-              // }else if(array[key].nome === "captador"){
-              //   top.location.href = '';
-
-              // }
-
-              switch(array[key].nome){
+              switch(array[key].nome) {
 
               
                 case "administrador":
-                
-                 // alert('funcionou o case');
-                // $("#teste").html($(array[key].nome));
-               
-                  top.location.href =   'perfil-administrador.html';
-                  break;
+                  
+                  // console.log(dados);
+              
+                  nome = dados.nome;
+                  //dois parametos o separador e limite de divisões
+                  nome = nome.split(" ",2);
 
-                case "captador":
-                  top.location.href = '';
-                  break;
-                
-                case "treinando":
-                  top.location.href = '';
+                  //converte para string
+                  nomeNew = nome.toString();
 
+                  //procura por regex virgula, substitui pelo espaço
+                  nomeNew = nomeNew.replace(/,/g," ");
+
+                  //console.log(nomeNew);
+                  
+                  //chave e o valor a ser setado
+                  localStorage.setItem("tipoUser",array[key].nome);
+                  localStorage.setItem("nomePerfil",nomeNew);
+                  localStorage.setItem("nome", dados.nome);
+                  localStorage.setItem("email", dados.email);
+                  localStorage.setItem("nascimento", dados.data_nascimento);
+                  localStorage.setItem("nif", dados.nif);
+                  localStorage.setItem("pais", dados.pais);
+                
+                
+                  top.location.href =  "perfil-administrador.html";
+
+                  break;
 
               }
             
           });
 
-
                 },
-
+                //chamada após a requisição terminar
                 complete: function(){
                   //esconde o loading
                   $("#loading").hide();
@@ -92,23 +91,21 @@ $(document).ready(function(){
 
         }).fail(function (jqXHR, errorThrown) {
 
+                //armazena o valor do erro
                 $erro = jqXHR.status;
 
                 if ($erro === 401) {
-
+                  
+                  //exibe o erro de sennha ou email
                  $("#alerta").fadeIn("slow");
-                
-
-                 
-                 // $("#spinner").show();
-
-                // $("#btn2").click(function () {
-               // swal("Ops!", "Email ou Senha incorretos");
-                // });
-
+              
                 } else if($erro === 404){
 
                   top.location.href = 'pagina404.html';
+
+                }else if($erro === 500){
+
+                  top.location.href = 'pagina500.html';
 
                 }
 
@@ -120,67 +117,5 @@ $(document).ready(function(){
 
 });
 
-
-// registerForm.addEventListener("submit",function(e){
-//   e.preventDefault();
-
-//   console.log(this.elements);
-
- 
-
-
-
-  
-
-
-// });
-
-
-
-
-
-  // function login() {
-
-      // $.ajax({
-
-      //   type: 'POST',
-      //   url: host,
-      //   data: '{"identificador": "' + $("#inputEmailAddress").val() + '","senha": "' + $("#inputChoosePassword").val() + '"}',
-
-      //   success: function (msg) {
-
-      //     // alert('BEM VINDO' + msg.nome);
-      //     // swal(":)","Bem Vindo");
-      //     // top.location.href = 'painel.html';
-
-
-      //     swal({
-      //       title: "Bem Vindo! :)",
-      //       icon: "success",
-      //       text: "",
-        
-      //     }).then((value) =>{
-      //       top.location.href = 'perfil.html';
-      //     });   
-      //   },
-
-      //   contentType: "application/json",
-      //   dataType: 'json',
-
-      // }).fail(function (jqXHR, errorThrown) {
-
-      //   $erro = jqXHR.status;
-
-      //   if ($erro === 401) {
-
-      //    // $("#btn2").click(function () {
-      //       swal("Ops!", "Email ou Senha incorretos");
-      //    // });
-
-      //   }
-
-      // });
-
-//   }
 
 
