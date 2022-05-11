@@ -66,6 +66,8 @@ $(document).ready(function(){
                   localStorage.setItem("nascimento", dados.data_nascimento);
                   localStorage.setItem("nif", dados.nif);
                   localStorage.setItem("pais", dados.pais);
+                  localStorage.setItem("sexo",dados.sexo);
+                
                 
                 
                   top.location.href =  "perfil-administrador.html";

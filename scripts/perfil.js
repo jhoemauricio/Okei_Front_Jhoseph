@@ -10,6 +10,17 @@ $(document).ready(function () {
   document.getElementById("nif").value = localStorage.getItem("nif");
   document.getElementById("pais").value = localStorage.getItem("pais");
 
+  //percorre o select
+  $("#selecioneSexo option").each(function(){
+    // compara o valor do option com o que é retornado do localStorage
+    if(this.value == localStorage.getItem("sexo")){
+      $(this).attr('selected',true);
+
+    }
+
+
+  });
+
 });
 
 
