@@ -31,7 +31,7 @@ $(document).ready(function(){
 
               dados = JSON.parse(dados);
               // console.log(dados.roles);
-            
+        
              var array = dados.roles;
 
               //percorre o array
@@ -67,8 +67,7 @@ $(document).ready(function(){
                   localStorage.setItem("nif", dados.nif);
                   localStorage.setItem("pais", dados.pais);
                   localStorage.setItem("sexo",dados.sexo);
-                
-                
+                 
                 
                   top.location.href =  "perfil-administrador.html";
 
