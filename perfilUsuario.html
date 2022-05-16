@@ -34,13 +34,11 @@
 
   <!--SCRIPT FUNÇÕES-->
 
+
+  <script src="scripts/logOut.js"></script>
   <script src="scripts/perfil.js"></script>
   <script src="scripts/logged.js"></script>
-  <!-- <script src="scripts/login.js"></script> -->
   
-
- 
-
 
   <title>Perfil usuário</title>
 </head>
@@ -103,14 +101,19 @@
                 <li>
                   <hr class="dropdown-divider">
                 </li>
+
+                <!-- Inicio Sair -->
                 <li>
-                  <a class="dropdown-item" >
+                  <a class="dropdown-item" onclick="logOut()" href="#">
                     <div class="d-flex align-items-center">
                       <div class=""><i class="bi bi-lock-fill"></i></div>
-                      <div class="ms-3"><button id="sair"><span>Sair</span></button></div>
+                      <div class="ms-3"><span>Sair</span></div>
+
                     </div>
                   </a>
                 </li>
+                <!--Fim Sair-->
+
               </ul>
             </li>
 
@@ -324,7 +327,7 @@
     </aside>
     <!--end sidebar -->
 
-    <!--start content-->
+    <!--PAGINA CONTEÚDO-->
     <main class="page-content">
 
       <div class="row">
@@ -338,7 +341,9 @@
                   <h6 class="mb-0">Meus Dados</h6>
                 </div>
                 <div class="card-body">
-                  <form class="row g-3">
+
+                  <!-- Inicio Formulario -->
+                  <form class="row g-3" id="formulario-dados">
                     <div class="col-6">
                       <label class="form-label">Nome</label>
                       <input id="nomeUsuario" type="text" class="form-control" disabled>
@@ -372,6 +377,8 @@
                       <input id="pais" type="text" class="form-control" disabled>
                     </div>
                   </form>
+                  <!-- Fim Formulario -->
+
                 </div>
               </div>
 
@@ -383,9 +390,9 @@
         </div>
       </div>
       <!--end row-->
-
+    
     </main>
-    <!--end page main-->
+    <!--FIM CONTEÚDO-->
 
 
     <!--start overlay-->
@@ -471,6 +478,10 @@
 
 
 
+
+
+</body>
+
   <!-- Bootstrap bundle JS -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <!--plugins-->
@@ -482,7 +493,7 @@
   <!--app-->
   <script src="assets/js/app.js"></script>
 
-</body>
+
 
 
 
