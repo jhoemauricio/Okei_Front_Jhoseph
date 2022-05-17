@@ -16,13 +16,13 @@ function logOut(){
     
              success: function (){
              
-             
+              $("#formulario-dados")[0].reset();
                // console.log('logoff');
                top.location.href =  'login.html';
              
     
              },
-    
+            
         }).fail(function(jqXHR, errorThrown){
     
             console.log(jqXHR.status);

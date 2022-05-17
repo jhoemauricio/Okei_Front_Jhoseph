@@ -65,14 +65,17 @@
                         <div class="col-12">
                           <label for="inputEmailAddress" class="form-label">Email ou Telefone</label>
                           <div class="ms-auto position-relative">
-                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i
-                                class="bi bi-envelope-fill"></i></div>
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3">
+                              
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="12" height="18" rx="2" ry="2"></rect><line x1="10" y1="16" x2="10.01" y2="16"></line></svg>
+                              </div>
                             <input type="email" class="form-control radius-30 ps-5" id="inputEmailAddress" value="administrador_gustavo@gmail.com"
                               placeholder="Email ou Telemóvel" required>
                           </div>
                         </div>
 
                         <!--Senha-->
+                        <div id="senha" style="display: none">
                         <div class="col-12">
                           <label for="inputChoosePassword" class="form-label">Digite sua senha</label>
                           <div class="ms-auto position-relative">
@@ -82,6 +85,8 @@
                               placeholder="Digite sua senha" required>
                           </div>
                         </div>
+                        </div>
+                        <!-- Fim Senha -->
 
                         <div class="col-6">
                           <div class="form-check form-switch">

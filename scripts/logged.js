@@ -30,6 +30,7 @@ $(document).ready(function(){
 
         if ($erro === 401) {
              //console.log($erro);
+             $("#formulario-dados")[0].reset();
             top.location.href = 'login.html';
       
         }

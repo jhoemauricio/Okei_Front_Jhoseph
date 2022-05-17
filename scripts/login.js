@@ -110,6 +110,8 @@ $(document).ready(function(){
                   
                   //exibe o erro de sennha ou email
                  $("#alerta").fadeIn("slow");
+
+              const msg = setTimeout("#alerta",1000);
               
                 } else if($erro === 404){
 
