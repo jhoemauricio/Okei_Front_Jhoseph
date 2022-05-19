@@ -69,23 +69,40 @@
                               
                               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="12" height="18" rx="2" ry="2"></rect><line x1="10" y1="16" x2="10.01" y2="16"></line></svg>
                               </div>
-                            <input type="email" class="form-control radius-30 ps-5" id="inputEmailAddress" value="administrador_gustavo@gmail.com"
-                              placeholder="Email ou Telemóvel" required>
+                            <input type="" class="form-control radius-30 ps-5" id="inputEmailAddress" value=""
+                              placeholder="(DDD+celular) ou E-mail" required>
                           </div>
                         </div>
+                        <!-- Fim Email ou telefone -->
+
+                          <!--codigo-->
+                            <div class="col-12" id="codigo" style="display: none;">
+                              <label for="inputChoosePassword" class="form-label">Insira seu codigo de acesso</label>
+                              <div class="ms-auto position-relative">
+                                <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i
+                                    class="bi bi-lock-fill"></i></div>
+                                <input type="" class="form-control radius-30 ps-5" id="codigo_acesso"
+                                  placeholder="Insira seu código" size="4" maxlength="4" required>
+                                 
+                              </div>
+                            </div>
+                            <!-- Fim codigo -->
 
                         <!--Senha-->
+                      
                         <div id="senha" style="display: none">
                         <div class="col-12">
                           <label for="inputChoosePassword" class="form-label">Digite sua senha</label>
                           <div class="ms-auto position-relative">
                             <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i
                                 class="bi bi-lock-fill"></i></div>
-                            <input type="password" value="Abcd123#" class="form-control radius-30 ps-5" id="inputChoosePassword"
-                              placeholder="Digite sua senha" required>
+                               <input type="password" value="" class="form-control radius-30 ps-5" id="inputChoosePassword" class="form-control is-valid"
+                              placeholder="Digite sua senha"  size="8" maxlength="8" required>
+                            
                           </div>
                         </div>
                         </div>
+                      
                         <!-- Fim Senha -->
 
                         <div class="col-6">
@@ -99,24 +116,46 @@
                         </div>
 
 
-
+                        <!-- Mensagem de senha incorreta -->
                         <div id="alerta" style="display:none;">
                           <div
                             class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
                             <div class="text-danger">Email ou senha incorretos!</div>
                           </div>
                         </div>
+                        <!-- Fim mensagem incorreta -->
+
+                        <!-- Mensagem de Codigo -->
+                        <div id="msgEnv" style="display:none;">
+                          <div class="alert border-0 bg-light-success alert-dismissible fade show">
+                            <div class="text-success">Enviamos seu codigo!</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                        </div>
+                        <!-- Fim mensagem codigo -->
 
 
-
-
-
-
+                        <!-- Botao entrar -->
+                        <div id="btn-entrar">
                         <div class="col-12">
                           <div class="d-grid">
                             <button id="enviar" class="btn btn-primary radius-30"> Entrar</button>
                           </div>
                         </div>
+                        </div>
+                        <!-- Fim botao entrar -->
+
+                        <!-- Botao confirmar codigo -->
+                        <div id="btn-confirmar" style="display:none">
+                        <div class="col-12">
+                          <div class="d-grid">
+                            <button id="confirmar" class="btn btn-primary radius-30"> Confirmar</button>
+                          </div>
+                        </div>
+                        </div>
+                        <!-- Fim bota confirmar codigo -->
+
+
                         <div class="col-12">
                           <p class="mb-0">Não tem conta? <a href="authentication-signup.html"> Cadastre-se agora</a></p>
                         </div>
@@ -129,7 +168,7 @@
             </div>
             <!-- Fim Painel de Login -->
 
-
+                      
 
           </div>
         </div>
