@@ -27,7 +27,10 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 
+
   <!--SCRIPT FUNÇÕES-->
+  <script src="scripts/exibeDados.js"></script>
+  <script src="scripts/validacao.js"></script>
   <script src="scripts/login.js"></script>
 
   <title>OKEI Institute - Portal</title>
@@ -58,24 +61,34 @@
                     <h5 class="card-title">Acesso ao portal</h5>
                     <p class="card-text mb-5">Acesse utilizando suas credenciais de acesso.</p>
 
-                    <form class="form-body">
+                    <form class="form-body"  class="was-validated">
                       <div class="row g-3">
 
                         <!--Email ou Telefone-->
                         <div class="col-12">
-                          <label for="inputEmailAddress" class="form-label">Email ou Telefone</label>
+                          <label for="" class="form-label">Email ou Telefone</label>
                           <div class="ms-auto position-relative">
                             <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                               
                               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="12" height="18" rx="2" ry="2"></rect><line x1="10" y1="16" x2="10.01" y2="16"></line></svg>
                               </div>
-                            <input type="" class="form-control radius-30 ps-5" id="inputEmailAddress" value=""
+                            <input type="" class="form-control radius-30 ps-5" id="inputEmailAddress" 
                               placeholder="(DDD+celular) ou E-mail" required>
+                              
                           </div>
                         </div>
                         <!-- Fim Email ou telefone -->
 
-                          <!--codigo-->
+                        <!--País DDI-->
+                        <div class="col-12" id="pais" style="display:none;">
+                          <select class="form-select" aria-label="Default select example" id="lista" >
+                            <option>Escolha seu País</option> 
+                          </select>
+                      </div>
+                      <!-- Fim DDI País -->
+
+
+                          <!--Codigo de Acesso-->
                             <div class="col-12" id="codigo" style="display: none;">
                               <label for="inputChoosePassword" class="form-label">Insira seu codigo de acesso</label>
                               <div class="ms-auto position-relative">
@@ -86,10 +99,9 @@
                                  
                               </div>
                             </div>
-                            <!-- Fim codigo -->
+                            <!-- Fim codigo de Acesso-->
 
                         <!--Senha-->
-                      
                         <div id="senha" style="display: none">
                         <div class="col-12">
                           <label for="inputChoosePassword" class="form-label">Digite sua senha</label>
@@ -97,12 +109,11 @@
                             <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i
                                 class="bi bi-lock-fill"></i></div>
                                <input type="password" value="" class="form-control radius-30 ps-5" id="inputChoosePassword" class="form-control is-valid"
-                              placeholder="Digite sua senha"  size="8" maxlength="8" required>
+                              placeholder="Digite sua senha"   minlength="8" required>
                             
                           </div>
                         </div>
                         </div>
-                      
                         <!-- Fim Senha -->
 
                         <div class="col-6">
@@ -125,35 +136,106 @@
                         </div>
                         <!-- Fim mensagem incorreta -->
 
-                        <!-- Mensagem de Codigo -->
-                        <div id="msgEnv" style="display:none;">
-                          <div class="alert border-0 bg-light-success alert-dismissible fade show">
-                            <div class="text-success">Enviamos seu codigo!</div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <!-- Mensagem de senha imcompleta-->
+                        <div id="alerta2" style="display:none;">
+                          <div
+                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                              <div class="text-danger">"A senha deve ter pelo menos 8 caracteres e incluir uma letra maiúscula,
+                                uma letra minúscula, um número e um caractere especial</div>
                           </div>
                         </div>
-                        <!-- Fim mensagem codigo -->
+                        <!-- Fim mensagem senha imcompleta -->
 
 
-                        <!-- Botao entrar -->
-                        <div id="btn-entrar">
-                        <div class="col-12">
-                          <div class="d-grid">
-                            <button id="enviar" class="btn btn-primary radius-30"> Entrar</button>
+                          <!-- Mensagem de Email ou Telefone imcompleto -->
+                          <div id="alerta_email_tel" style="display:none;">
+                            <div
+                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                              <div class="text-danger">Email ou Telefone obrigatório!</div>
+                            </div>
                           </div>
-                        </div>
-                        </div>
-                        <!-- Fim botao entrar -->
+                          <!-- Fim mensagem incorreta Email ou Telefone-->
 
-                        <!-- Botao confirmar codigo -->
-                        <div id="btn-confirmar" style="display:none">
-                        <div class="col-12">
-                          <div class="d-grid">
-                            <button id="confirmar" class="btn btn-primary radius-30"> Confirmar</button>
+                          <!-- Mensagem de campo em branco senha -->
+                          <div id="senha_validate" style="display:none;">
+                            <div
+                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                              <div class="text-danger">Senha obrigatória!</div>
+                            </div>
                           </div>
-                        </div>
-                        </div>
-                        <!-- Fim bota confirmar codigo -->
+                          <!-- Fim mensagem campo em branco senha -->
+
+                          <!-- Mensagem de Numero ou Email Invalidos-->
+                          <div id="numero_email" style="display:none;">
+                            <div
+                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                              <div class="text-danger">Precisa ser um número de telefone ou email</div>
+                            </div>
+                          </div>
+                            <!-- Fim de Numero ou Email Invalidos -->
+
+                            <!-- Mensagem de Codigo Invalidos-->
+                            <div id="codigo_invalido" style="display:none;">
+                              <div
+                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                              <div class="text-danger">Código inválido</div>
+                              </div>
+                            </div>
+                            <!-- Fim Mensagem de Codigo Invalidos -->
+
+
+                            <!-- Mensagem de Codigo -->
+                            <div id="msgEnv" style="display:none;">
+                              <div class="alert border-0 bg-light-success alert-dismissible fade show">
+                                  <div class="text-success">Enviamos seu código de acesso!</div>
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                              </div>
+                            </div>
+                            <!-- Fim mensagem codigo -->
+
+
+                            <!-- Botao de Entrar inicial -->
+                            <div id="entrar">
+                              <div class="col-12">
+                                <div class="d-grid">
+                                  <button id="enviar" class="btn btn-primary radius-30"> Entrar</button>
+                                </div>
+                              </div>
+                              </div>
+                            <!-- Fim botao Entrar -->
+
+
+
+                            <!-- Botao que permite o Acesso ao sistema -->
+                            <div id="acessar-div" style="display: none;">
+                              <div class="col-12">
+                                <div class="d-grid">
+                                  <button id="acessar" class="btn btn-primary radius-30"> Entrar</button>
+                                </div>
+                              </div>
+                              </div>
+                              <!-- Fim botao Acessar -->
+
+                             <!-- Botao que envia o DDI Escolhido -->
+                              <div id="ddi-div" style="display: none;">
+                              <div class="col-12">
+                                <div class="d-grid">
+                                  <button id="entrar_ddi" class="btn btn-primary radius-30"> Entrar</button>
+                                </div>
+                              </div>
+                              </div>
+                              <!-- Fim botao DDI-->
+
+
+                              <!-- Botao confirmar codigo -->
+                              <div id="btn-confirmar" style="display:none">
+                              <div class="col-12">
+                                <div class="d-grid">
+                                  <button id="confirmar" class="btn btn-primary radius-30"> Confirmar</button>
+                                </div>
+                              </div>
+                              </div>
+                              <!-- Fim bota confirmar codigo -->
 
 
                         <div class="col-12">
@@ -174,20 +256,13 @@
         </div>
       </div>
 
-    
-
-      <div style="width: 200px; margin-top: -500px; margin-left: 900px;">
-        <div class="spinner-border text-primary" role="status" id="loading"
-          style="display:none; width: 12rem; height: 12rem;"></div>
-      </div>
-
+   
   
 
     </main>
 
 
-
-    <!--end page main-->
+  <!--end page main-->
 
   </div>
   <!--end wrapper-->
@@ -197,6 +272,10 @@
   <!--plugins-->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/pace.min.js"></script>
+
+
+
+
 
 
 </body>

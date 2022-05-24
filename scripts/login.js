@@ -2,75 +2,48 @@
 //URL
 var host = "https://api.okei.online/entrar";
 
-
-
 //O evento é disparado quando a pagina HTML é carregada 
 $(document).ready(function(){
 
-
-            //Retorna os dados do usuário
-            function mostrarDados(dados) {
-
-                    //converterá os dados em uma string antes de analisá-los
-                    dados = JSON.stringify(dados);
-
-                    dados = JSON.parse(dados);
-                    // console.log(dados.roles);
-
-                    var array = dados.roles;
-
-                    //percorre o array
-                    Object.keys(array).forEach(function(key){
-
-                    // console.log(array[key].nome);
-
-                    // switch(array[key].nome) {
-
-                    
-                    //  case "administrador":
-                        
-                        // console.log(dados);
-                    
-                        nome = dados.nome;
-                        //dois parametos o separador e limite de divisões
-                        nome = nome.split(" ",2);
-
-                        //converte para string
-                        nomeNew = nome.toString();
-
-                        //procura por regex virgula, substitui pelo espaço
-                        nomeNew = nomeNew.replace(/,/g," ");
-
-                        //console.log(nomeNew);
-                        
-                        //chave e o valor a ser setado
-                        localStorage.setItem("tipoUser",array[key].nome);
-                        localStorage.setItem("nomePerfil",nomeNew);
-                        localStorage.setItem("nome", dados.nome);
-                        localStorage.setItem("email", dados.email);
-                        localStorage.setItem("nascimento", dados.data_nascimento);
-                        localStorage.setItem("nif", dados.nif);
-                        localStorage.setItem("pais", dados.pais);
-                        localStorage.setItem("sexo",dados.sexo);
-
-                        top.location.href = 'perfilUsuario.html';
-                                          
-                      // break;
-
-                    //}
-
-                  });  
+          //carrega arquivo json
+          fetch("scripts/CountryCodes.json").then(function(response){
 
 
+                return response.json();
 
-            }
-                             
-        
-            //evento click do botao com id "enviar"
-            $("#enviar").click(function(e){
 
+          }).then(function(data){
+            
+            Object.keys(data).forEach(function(key){
+          
+             // console.log(data[key].dial_code);
+            //  console.log("Cod: "+data[key].code);
+
+              var select = document.getElementById("lista");
+              //cria elemento
+              var option = document.createElement("option");
+              //adiciona a option
+              option.innerText = data[key].dial_code;
+          
+              select.add(option);
+         
+
+
+            });
+
+          });
+         
+           
+            //evento click do botao com id "entrar"
+            $("#entrar").click(function(e){
+
+           
                     //evita a ação padrão do evento
                     e.preventDefault();
+                   
+                    
+                    //esconde o botao entrar
+                    $("#entrar").hide();
             
                     //opacidade do painel de login
                     //  $("#painel-login").css('opacity','0.6');
@@ -79,82 +52,191 @@ $(document).ready(function(){
               
                     email_tel = $("#inputEmailAddress").val();
                     senha = $("#inputChoosePassword").val();
-            
-                  
-                    str = email_tel.toString();
 
-                    //regex
-                    $simbolo = /@/;
-                  
-                    email = str.match($simbolo);
-                  
-                    //se tiver @
+          
+                  //verifica se campo email_tel esta vazio
+                    if(email_tel === ''){
+                            //exibe o alert
+                            $("#alerta_email_tel").fadeIn();
+
+                                  //define o tempo de exibicao do alert
+                                  setTimeout(function(){
+                                    
+                                  $("#alerta_email_tel").fadeOut('slow');
+
+                                  },1500);
+
+                            //exibe o botao entrar        
+                            $("#entrar").show();
+
+                    }
+
+                    //converete para string
+                    str = email_tel.toString();
+                    //regex para validar email
+                    simbolo = /^[\w._-]+@[\w_.-]+\.[\w]+/;
+                    //regex para validar numero de telefone
+                    numero = /^[0-9]+$/;
+
+                    //procura pelo @
+                    email = str.match(simbolo);
+                    //procura por digitos
+                    numero = str.match(numero);
+
+                                     
+                    //se tiver no formato de e-mail
                     if(email){
-                    
+
+                      //após ser preenchido o campo email este desabilita
+                      document.getElementById('inputEmailAddress').disabled  = true;
+
+                      //mostra a div acessar com o Novo Botao Entrar se for Email o modo de entrada
+                      $("#acessar-div").show();
+                      //exibe o campo senha
                       $("#senha").fadeIn("slow");
 
+                      $("#acessar").click(function(e){
+
+                        e.preventDefault();
+
+
+                        senha = $("#inputChoosePassword").val();
+
+                        //Regex Verifica senha
+                        verificaSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w]).\S{7,}$/;
+
+                        senhaVerificada = senha.match(verificaSenha);
+
+                        //valida senha                    
+                        if(senha === ''){
+
+                          $("#senha_validate").fadeIn();
+                       
+                          setTimeout(function(){
+
+                            $("#senha_validate").fadeOut('slow');
+
+                          },1500);
+
+                        }else if((senha.length < 8) || (!senhaVerificada)){
+
+                          $("#alerta2").fadeIn();
+
+                          setTimeout(function(){
+
+                            $("#alerta2").fadeOut('slow');
+
+                          },1500);
+
+                        } 
+                        
                       //string de dados
                       dados_user = '{"identificador": "' + email_tel + '","senha": "' + senha + '"}';
 
-                          $.ajax({
+                      $.ajax({
 
-                              type: 'POST',
-                              url: host,
+                          type: 'POST',
+                          url: host,
 
-                              xhrFields: {
-                                withCredentials: true
-                              },
+                          xhrFields: {
+                            withCredentials: true
+                          },
 
-                              data : dados_user,
+                          data : dados_user,
 
-                              success: function (dados) {
-                                
-                                //retorna os dados do usuario
-                                mostrarDados(dados);
-                                
-                                },
-
-                                  //chamada após a requisição terminar
-                                  complete: function(){
-
-                                    //esconde o loading
-                                    $("#loading").hide();
-
-                                    //torna visivel o painel de login
-                                    $("#painel-login").css('opacity','1.0');
-
-                                  },
-                                
-                                  contentType: "application/json",
-                                  dataType: 'json',
-
-                          }).fail(function (jqXHR, errorThrown) {
-
-                          //armazena o valor do erro
-                          $erro = jqXHR.status;
-
-                          if ($erro === 401) {
+                          success: function (dados) {
                             
-                          //exibe o erro de sennha ou email
-                          $("#alerta").fadeIn("slow");
+                            //retorna os dados do usuario
+                            mostrarDados(dados);
+                            
+                            },
 
-                          } else if($erro === 404){
+                              //chamada após a requisição terminar
+                              complete: function(){
 
-                            top.location.href = 'pagina404.html';
+                                //esconde o loading
+                                $("#loading").hide();
 
-                          }else if($erro === 500){
+                                //torna visivel o painel de login
+                                $("#painel-login").css('opacity','1.0');
 
-                            top.location.href = 'pagina500.html';
+                              },
+                            
+                              contentType: "application/json",
+                              dataType: 'json',
 
-                          }
+                      }).fail(function (jqXHR, errorThrown) {
 
-                          });   
+                      //armazena o valor do erro
+                      $erro = jqXHR.status;
+
+                      if ($erro === 401) {
+
+                        //exibe o erro de senha ou email
+                        $("#alerta").fadeIn("slow");
+
+                        setTimeout(function (){
+
+                          $("#alerta").fadeOut('slow');
+          
+
+                        },1500);
+              
+
+                      } else if($erro === 404){
+
+                        top.location.href = 'pagina404.html';
+
+                      }else if($erro === 500){
+
+                        top.location.href = 'pagina500.html';
+
+                      }
+
+                      });  
+
+
+                      });
                   
                     }
                     
+                    //se for dígito
+                    if(numero) {
+                      //mostra DDI de países
+                      $("#pais").fadeIn('slow');
 
-                    if(!email) {
+                          //quando clica em uma opcao
+                          $("#lista").click(function(){
+                            
+                            e.preventDefault();
 
+                            //mostra div ddi com o botao de enviar
+                            $("#ddi-div").show();
+                        
+                            var ddiPais = $("#lista").val();
+
+                            if(ddiPais != 'Escolha seu País'){
+
+                              
+                                ddi = ddiPais;
+                         
+                            
+                            }
+                            
+                          });
+                     
+
+                    document.getElementById('inputEmailAddress').disabled = true;
+
+                    
+                    //ao clicar no botao entrar ddi 
+                    $("#entrar_ddi").click(function(e){
+         
+                      e.preventDefault();
+                      
+                      $("#lista").fadeOut('slow');
+
+                      email_tel = ddi+email_tel;
 
                       dados_user = '{"identificador": "'+ email_tel + '"}';
 
@@ -194,6 +276,14 @@ $(document).ready(function(){
                                 //mensagem de envio de codigo
                                 $("#msgEnv").fadeIn('slow');
 
+                                setTimeout(function(){
+
+                                  $("#msgEnv").fadeOut('slow');
+
+                                },1500);
+
+                                  $("#entrar_ddi").hide();
+
                                   //esconde o botao entrar
                                     $("#btn-entrar").hide();
 
@@ -209,6 +299,7 @@ $(document).ready(function(){
                                       e.preventDefault();
 
                                       email_tel = $("#inputEmailAddress").val(); 
+                                      email_tel = ddi+email_tel;
 
                                       //Numero de telefone + codigo de acesso  
                                       dados_user_cod = '{"identificador": "' + email_tel + '","codigo": "' + $("#codigo_acesso").val() + '"}';
@@ -230,6 +321,17 @@ $(document).ready(function(){
                                           }
 
 
+                                      }).fail(function(jqXHR,errorThrown){
+                                        
+                                        //exibe mensagem de codigo invalido
+                                        $("#codigo_invalido").fadeIn('slow');
+
+                                        setTimeout(function(){
+                                          //esconde mensagem de codigo invalido
+                                          $("#codigo_invalido").fadeOut('slow');
+
+                                        },1500);
+
                                       });
 
                                     });      
@@ -243,54 +345,36 @@ $(document).ready(function(){
                       
                   }).fail(function(jqXHR, errorThrown){
 
-                    // // console.log(jqXHR.status);
-                    // var host2 = "https://api.okei.online/enviar_codigo_v2";
-
-                    // $.ajax({
-                    //   type: 'POST',
-                    //   url : host2,
-                    //   xhrFields :{
-                    //     withCredentials: true
-                    //   },
-
-                    //   data: dados_user,
-
-                    //   success: function (dados){
-
-                    //     console.log("Codigo Enviado com Sucesso");
-
-                    //   }
-
-                    // });
 
                   });
 
 
 
-                  // var host = "https://api.okei.online//enviar_codigo_v2";
+                });
 
-                  // $.ajax({
-                  //   type :  'POST',
-                  //   url : host ,
-                  //   xhrFields : {
-                  //     withCredentials : true
-                  //   },
-                  //   data: dados_user,
-
-                  //   success: function(){
-                  //     console.log('enviado com sucesso');
-                  //   }
-
-                  // }).fail(function (jqXHR, errorThrown){
-
-                  //     console.log(jqXHR.status);
-                  // });
               
-                }
+              } 
                 
+            
+                if((!numero) && (!email) && (email_tel !='' ) ){
 
+                 
+                  $("#numero_email").fadeIn('slow');
+
+                  setTimeout(function(){
+
+                    $("#numero_email").fadeOut('slow');
+
+                  },1500);
+
+                  $("#entrar").show();
+
+
+
+              }
           
        });
+
 
 });
 
