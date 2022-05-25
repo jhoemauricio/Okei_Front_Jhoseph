@@ -1,7 +1,8 @@
 
 $(document).ready(function () {
     
-  
+    // -------------------Meus dados usuário------------------
+
     document.getElementById("tipoUser").innerText = localStorage.getItem("tipoUser");
     //innerText obtem o conteudo da localStorage e Atribui no getElementById
     document.getElementById("nomePerfil").innerText = localStorage.getItem("nomePerfil");
@@ -11,6 +12,12 @@ $(document).ready(function () {
     document.getElementById("nascimento").value = localStorage.getItem("nascimento");
     document.getElementById("nif").value = localStorage.getItem("nif");
     document.getElementById("pais").value = localStorage.getItem("pais");
+
+    // ---------------------------- Endereco------------------------
+    
+    document.getElementById("cep").value = localStorage.getItem("cdg_postal");
+    document.getElementById("endereco").value = localStorage.getItem("endereco");
+    document.getElementById("numero").value = localStorage.getItem("numero");
 
     //percorre o select
     $("#selecioneSexo option").each(function () {
@@ -23,6 +30,9 @@ $(document).ready(function () {
 
 
     });
+
+
+
 
 });
 

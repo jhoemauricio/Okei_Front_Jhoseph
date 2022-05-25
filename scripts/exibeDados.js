@@ -5,21 +5,23 @@
     dados = JSON.stringify(dados);
 
     dados = JSON.parse(dados);
-    // console.log(dados.roles);
+    // console.log(dados.endereco);
 
     var array = dados.roles;
 
+    var end = dados.endereco;
+ 
     //percorre o array
     Object.keys(array).forEach(function(key){
 
-    // console.log(array[key].nome);
+    //console.log(array[key].nome);
 
-    // switch(array[key].nome) {
+    //switch(array[key].nome) {
 
     
-    //  case "administrador":
+    //case "administrador":
         
-        // console.log(dados);
+    //console.log(dados);
     
         nome = dados.nome;
         //dois parametos o separador e limite de divisões
@@ -32,8 +34,10 @@
         nomeNew = nomeNew.replace(/,/g," ");
 
         //console.log(nomeNew);
+
+        //-------Meus Dados--------------
         
-        //chave e o valor a ser setado
+       //chave e o valor a ser setado
         localStorage.setItem("tipoUser",array[key].nome);
         localStorage.setItem("nomePerfil",nomeNew);
         localStorage.setItem("nome", dados.nome);
@@ -43,12 +47,27 @@
         localStorage.setItem("pais", dados.pais);
         localStorage.setItem("sexo",dados.sexo);
 
-        top.location.href = 'perfilUsuario.html';
                           
       // break;
 
     //}
 
   });  
+
+  //-------------Endereco-----------
+
+  Object.keys(end).forEach(function(){
+
+        localStorage.setItem("cdg_postal", end.cdg_postal);
+        localStorage.setItem("numero", end.numero_porta);
+        localStorage.setItem("endereco", end.morada);
+       
+
+    
+  });
+
+  top.location.href = 'perfilUsuario.html';
+
+
 
 }
