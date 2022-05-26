@@ -19,6 +19,8 @@ $(document).ready(function () {
     document.getElementById("endereco").value = localStorage.getItem("endereco");
     document.getElementById("numero").value = localStorage.getItem("numero");
 
+
+
     //percorre o select
     $("#selecioneSexo option").each(function () {
         
@@ -31,7 +33,49 @@ $(document).ready(function () {
 
     });
 
+    
+    //-----------Endereco com bairro e complemento
 
+    hostEnd = "https://api.okei.online/enderecos";
+        
+        //getItem de Endereco Usuario
+        pais = localStorage.getItem("pais");
+        cdg_postal = localStorage.getItem("cdg_postal");
+
+
+        enderecoUser = '{"pais":"'+pais+'","cdg_postal":"'+cdg_postal+'"}';
+
+            $.ajax({
+
+              type: 'POST',
+              url: hostEnd,
+          
+              xhrFields: {
+                withCredentials: true
+              },
+          
+              data : enderecoUser,
+          
+              success: function(dados){
+
+              Object.keys(dados).forEach(function(){
+
+                  //atribui ao getElementById de perfilUsuario
+                  document.getElementById("bairro").value = dados.Bairro;
+                  document.getElementById("cidade").value = dados.Localidade;
+                  document.getElementById("uf").value = dados.UF;
+
+              })
+
+              
+        
+              }
+          
+            }).fail(function(jqXHR, errorThrown){
+          
+              console.log(jqXHR.status);
+          
+            });
 
 
 });

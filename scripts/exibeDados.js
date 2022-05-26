@@ -1,6 +1,8 @@
   //Retorna os dados do usuário
   function mostrarDados(dados) {
 
+ 
+
     //converterá os dados em uma string antes de analisá-los
     dados = JSON.stringify(dados);
 
@@ -41,7 +43,17 @@
         localStorage.setItem("tipoUser",array[key].nome);
         localStorage.setItem("nomePerfil",nomeNew);
         localStorage.setItem("nome", dados.nome);
-        localStorage.setItem("email", dados.email);
+       
+
+        if((dados.email === '') || (dados.email === null)){
+
+          email = '';
+          localStorage.setItem("email", email);
+
+        }else{
+          localStorage.setItem("email", dados.email);
+        }
+   
         localStorage.setItem("nascimento", dados.data_nascimento);
         localStorage.setItem("nif", dados.nif);
         localStorage.setItem("pais", dados.pais);
@@ -54,7 +66,7 @@
 
   });  
 
-  //-------------Endereco-----------
+  //-------------Endereco Usuario-----------
 
   Object.keys(end).forEach(function(){
 
@@ -62,9 +74,9 @@
         localStorage.setItem("numero", end.numero_porta);
         localStorage.setItem("endereco", end.morada);
        
-
-    
+        
   });
+
 
   top.location.href = 'perfilUsuario.html';
 

@@ -17,7 +17,7 @@ $(document).ready(function(){
    
         success: function(dados){
           
-            console.log(dados);
+            // console.log(dados);
             
         },
         
