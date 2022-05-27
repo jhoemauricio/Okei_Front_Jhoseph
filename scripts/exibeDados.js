@@ -43,6 +43,7 @@
         localStorage.setItem("tipoUser",array[key].nome);
         localStorage.setItem("nomePerfil",nomeNew);
         localStorage.setItem("nome", dados.nome);
+        localStorage.setItem("img_perfil",dados.img_perfil);
        
 
         if((dados.email === '') || (dados.email === null)){
