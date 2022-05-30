@@ -33,7 +33,7 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <!--SCRIPT FUNÇÕES-->
-
+  <script src="scripts/buscaCep.js"></script>
   <script src="scripts/imagem.js"></script>
   <script src="scripts/logOut.js"></script>
   <script src="scripts/perfil.js"></script>
@@ -355,7 +355,7 @@
                   <form class="row g-3" id="formulario-dados">
                     <div class="col-6">
                       <label class="form-label">Nome</label>
-                      <input id="nomeUsuario" type="text" class="form-control" disabled>
+                      <input id="nomeUsuario" type="text" class="form-control" >
                     </div>
                     <div class="col-6">
                       <label class="form-label">Email</label>
@@ -405,7 +405,7 @@
                   <form class="row g-3" id="formulario-dados">
                     <div class="col-6">
                       <label class="form-label">CEP</label>
-                      <input id="cep" type="text" class="form-control" disabled>
+                      <input id="cep" type="text" class="form-control" maxlength="8" onkeyup="consultaCep()">
                     </div>
                     <div class="col-6">
                       <label class="form-label">Endereço</label>
@@ -414,7 +414,7 @@
 
                     <div class="col-6">
                       <label class="form-label">Numero</label>
-                      <input id="numero" type="text" class="form-control" disabled> 
+                      <input id="numero" type="text" class="form-control" > 
                     </div>
 
                     <div class="col-6">
@@ -443,7 +443,7 @@
 
 
               <div class="text-start">
-                <button type="button" class="btn btn-primary px-4">Atualizar</button>
+                <button id="atualizar" type="button" class="btn btn-primary px-4">Atualizar</button>
               </div>
             </div>
           </div>
@@ -480,7 +480,7 @@
           <hr>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="LightTheme" value="option1"
-            checked>
+            >
             <label class="form-check-label" for="LightTheme">Light</label>
           </div>
           <div class="form-check form-check-inline">
@@ -488,8 +488,8 @@
             <label class="form-check-label" for="DarkTheme">Dark</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3"
-           >
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3">
+           
             <label class="form-check-label" for="SemiDarkTheme">Semi Dark</label>
           </div>
           <hr>

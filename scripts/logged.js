@@ -16,9 +16,29 @@ $(document).ready(function(){
          },
    
         success: function(dados){
-          
-            // console.log(dados);
-            
+       
+            dados = JSON.stringify(dados);
+
+            dados = JSON.parse(dados);
+
+            Object.keys(dados).forEach(function(key){
+
+                // console.log(key +" = "+dados[key]);
+
+                if(key === 'id'){
+
+                  localStorage.setItem("user_id",dados[key]);
+                  
+                //   console.log(key +" = "+dados[key]);
+
+
+                }
+        
+
+            });
+  
+
+        
         },
         
         contentType: "application/json",
