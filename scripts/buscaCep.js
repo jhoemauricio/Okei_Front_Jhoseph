@@ -41,6 +41,8 @@ function consultaCep(){
                 document.getElementById("bairro").value = localStorage.getItem("bairro");
                 document.getElementById("cidade").value = localStorage.getItem("cidade");
                 document.getElementById("uf").value = localStorage.getItem("uf");
+
+          
              
 
              }

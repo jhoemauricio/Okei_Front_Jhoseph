@@ -33,6 +33,7 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <!--SCRIPT FUNÇÕES-->
+  <script src="scripts/editarPerfil.js"></script>
   <script src="scripts/buscaCep.js"></script>
   <script src="scripts/imagem.js"></script>
   <script src="scripts/logOut.js"></script>
@@ -359,7 +360,7 @@
                     </div>
                     <div class="col-6">
                       <label class="form-label">Email</label>
-                      <input id="email" type="email" class="form-control" disabled>
+                      <input id="email" type="email" class="form-control">
                     </div>
 
                     <div class="col-6">
@@ -443,7 +444,7 @@
 
 
               <div class="text-start">
-                <button id="atualizar" type="button" class="btn btn-primary px-4">Atualizar</button>
+                <button id="atualizar" type="button" class="btn btn-primary px-4" onclick="update()">Atualizar</button>
               </div>
             </div>
           </div>
