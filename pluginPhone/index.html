@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>phone number</title>
+
+    <!-- CSS only -->
+    
+   
+    <link rel="stylesheet" href="css/intlTelInput.css">
+
+    <style>
+        .container{
+            padding: 20px;
+        }
+      
+    </style>
+</head>
+<body>
+
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="container">
+                <input type="tel" id="phone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">País</input>
+        </div>
+        </div>
+
+    
+<button onclick="pais()">Pais</button>
+
+<script src="js/intlTelInput-jquery.min.js"></script>
+<script src="js/intlTelInput.js"></script>
+
+<script>
+
+     input = document.querySelector("#phone");
+ 
+     iti = window.intlTelInput(input,{
+        utilsScript: "js/utils.js",
+       
+        separateDialCode: true
+    });
+
+   
+    function pais(){
+
+       
+
+        console.log(iti.getNumber());
+
+    }
+
+
+</script>
+    
+</body>
+</html>

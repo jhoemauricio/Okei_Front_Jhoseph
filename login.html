@@ -14,6 +14,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+  <!--PLUGIN PHONE-->
+  <link rel="stylesheet" href="pluginPhone/css/intlTelInput.css"></script>
+ 
+ 
+ 
+
   <!----SWITCH ALERT-->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -26,7 +32,7 @@
 
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
-
+ 
 
   <!--SCRIPT FUNÇÕES-->
   <script src="scripts/exibeDados.js"></script>
@@ -68,7 +74,6 @@
                           <label for="" class="form-label">Email ou Telefone</label>
                           <div class="ms-auto position-relative">
                             <div class="position-absolute top-50 translate-middle-y search-icon px-3">
-                              
                               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="12" height="18" rx="2" ry="2"></rect><line x1="10" y1="16" x2="10.01" y2="16"></line></svg>
                               </div>
                             <input type="" class="form-control radius-30 ps-5" id="inputEmailAddress" 
@@ -83,10 +88,19 @@
                           <select class="form-select" aria-label="Default select example" id="lista" >
                             <option>Escolha seu País</option> 
                           </select>
-                      </div>
+                        </div>
                       <!-- Fim DDI País -->
+<!-- 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
+                    
 
+                        <input type="tel" id="phone">
+
+                     
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
                           <!--Codigo de Acesso-->
                             <div class="col-12" id="codigo" style="display: none;">
                               <label for="inputChoosePassword" class="form-label">Insira seu codigo de acesso</label>
@@ -128,8 +142,7 @@
 
                         <!-- Mensagem de senha incorreta -->
                         <div id="alerta" style="display:none;">
-                          <div
-                            class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                        
                             <div class="text-danger">Email ou senha incorretos!</div>
                           </div>
                         </div>
@@ -273,10 +286,42 @@
   <script src="assets/js/pace.min.js"></script>
 
 
+<!-- ////////////////////////////////////////////////////////////////////////////////////////-->
 
+
+<!---////////////////////////////////////////////////////////////////////////////////////// -->
 
 
 
 </body>
+   
+
+
+<button onclick="numero()">Click</button>
+
+<script src="pluginPhone/js/intlTelInput.js"></script>
+<script src="pluginPhone/js/intlTelInput-jquery.min.js"></script>
+
+
+<script>
+
+      var input = document.querySelector("#phone");
+      
+      var iti = window.intlTelInput(input,{
+          utilsScript: 'pluginPhone/js/utils.js',
+          separateDialCode: true
+      });
+     
+    function numero(){
+      
+          var num = iti.getNumber();
+
+          console.log(num);
+
+    }
+
+</script>
+
+
 
 </html>
