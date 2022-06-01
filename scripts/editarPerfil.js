@@ -5,8 +5,8 @@ function update(){
 
   var user_id = localStorage.getItem("user_id");
 
-  
-  var endereco = {
+
+  var dados = {
 
                 endereco:{
 
@@ -18,7 +18,7 @@ function update(){
      
    }
 
-  var dados = JSON.stringify(endereco);
+  var dados_update = JSON.stringify(dados);
 
 
 
@@ -32,7 +32,7 @@ function update(){
          },
          dataType: 'json',
 
-         data: dados,
+         data: dados_update,
 
          success: function(dados){
 
