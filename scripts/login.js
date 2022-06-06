@@ -5,43 +5,6 @@ var host = "https://api.okei.online/entrar";
 //O evento é disparado quando a pagina HTML é carregada 
 $(document).ready(function(){
 
-          // //carrega arquivo json
-          // fetch("scripts/CountryCodes.json").then(function(response){
-
-
-          //       return response.json();
-
-
-          // }).then(function(data){
-            
-          //   Object.keys(data).forEach(function(key){
-          
-          //    // console.log(data[key].dial_code);
-          //   //  console.log("Cod: "+data[key].code);
-
-          //     var select = document.getElementById("lista");
-          //     //cria elemento
-          //     var option = document.createElement("option");
-          //     //adiciona a option
-          //     option.innerText = data[key].dial_code;
-          
-          //     select.add(option);
-         
-
-
-          //   });
-
-          // });
-
-
-
-          var input = document.getElementById("phone");
- 
-          var iti = window.intlTelInput(input,{
-              utilsScript: "js/utils.js",
-              separateDialCode: true
-          });
-      
 
            
             //evento click do botao com id "entrar"
@@ -213,28 +176,74 @@ $(document).ready(function(){
                     
                     //se for dígito
                     if(numero) {
-                      //mostra DDI de países
-                      $("#pais").fadeIn('slow');
 
-                          //quando clica em uma opcao
-                          $("#lista").click(function(){
-                            
-                            e.preventDefault();
+///////////////////////////////////////-------------------//////////////////
 
-                            //mostra div ddi com o botao de enviar
-                            $("#ddi-div").show();
-                        
-                            var ddiPais = $("#lista").val();
 
-                            if(ddiPais != 'Escolha seu País'){
 
-                              
-                                ddi = ddiPais;
-                         
-                            
-                            }
-                            
-                          });
+
+$.ajax({
+        
+  url: "https://restcountries.com/v3.1/all",
+  type: 'GET',
+
+  success: function(data){
+
+      for(var i=0; i< data.length; i++){
+
+
+          // console.log(data[i]);
+          // console.log(data[i].idd.root+data[i].idd.suffixes);
+
+
+          var select = document.getElementById('select');
+
+          const option = document.createElement("option");
+
+          option.setAttribute('data-img-src',data[i].flags.png);
+
+          option.innerText = data[i].cca3+" "+data[i].idd.root+data[i].idd.suffixes;
+
+          select.appendChild(option);
+                
+      }
+  
+      $(".my-select").chosen();
+
+
+         
+     
+
+
+      $("#mostrar").click(function (e){
+        e.preventDefault();
+
+      var  val =  $("#select").val();
+      novo = val.toString();
+
+     //procura numero maiusculo e minusculo e espaco
+      n = novo.replace(/[a-zA-z]+\s+/,'');
+
+      console.log(n);
+
+      alert('sdfasdfasfdg');
+
+      
+
+    });
+
+
+  
+    }
+
+    });
+
+
+
+///////////////////////////////////////////////--------------------///////////////
+
+
+
                      
 
                     document.getElementById('inputEmailAddress').disabled = true;
