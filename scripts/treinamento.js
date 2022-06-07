@@ -20,13 +20,22 @@ function carregar(pagina){
             withCredentials: true
           },
          
-        success: function(){
+        success: function(data){
 
-            console.log('funcionouuu');
+      
+       
+          Object.keys(data).forEach(function(item){
 
+                localStorage.setItem("data",data[item]);
 
-
-          
+                localStorage.setItem("nomeTreinamento",data[item].nome);
+                localStorage.setItem("valorTreinamento",data[item].valor);
+                localStorage.setItem("descricaoTreinamento",data[item].descricao);
+                localStorage.setItem("imagemTreinamento",data[item].imagem);
+                
+                //chama a função de imagem Treinamento
+                imagemTreinamento();
+          });
 
         },
 
@@ -40,8 +49,6 @@ function carregar(pagina){
 
     });
 
-
- 
 
   }
    
