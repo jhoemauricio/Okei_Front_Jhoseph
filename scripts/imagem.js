@@ -7,7 +7,7 @@ $(document).ready(function () {
     //Verifica se localStorage esta vazio
 
     if((localStorage.getItem("img_perfil") === '')|| (localStorage.getItem("img_perfil") === null)){
-
+        
 
           const img_perfil = document.getElementById("img_perfil");
           //Atribui uma imagem de perfil Padrão ao caminho
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 
     }else{
-        
+      
         nome_img = localStorage.getItem("img_perfil");
 
         //id de img perfil do html

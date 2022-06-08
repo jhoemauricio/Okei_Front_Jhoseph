@@ -44,8 +44,10 @@
         localStorage.setItem("nomePerfil",nomeNew);
         localStorage.setItem("nome", dados.nome);
 
+        // verfica se dados.img_perfil esta vazio
         if((dados.img_perfil === '') || (dados.img_perfil === null)){
-
+        
+          //atribui valor vazio
           imgPerfil = '';
           localStorage.setItem("img_perfil",imgPerfil);
 
@@ -53,7 +55,7 @@
           localStorage.setItem("img_perfil",dados.img_perfil);
         }
      
-       
+       //verifica se email esta vazio
         if((dados.email === '') || (dados.email === null)){
 
           email = '';
