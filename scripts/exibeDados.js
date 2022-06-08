@@ -43,9 +43,17 @@
         localStorage.setItem("tipoUser",array[key].nome);
         localStorage.setItem("nomePerfil",nomeNew);
         localStorage.setItem("nome", dados.nome);
-        localStorage.setItem("img_perfil",dados.img_perfil);
-       
 
+        if((dados.img_perfil === '') || (dados.img_perfil === null)){
+
+          imgPerfil = '';
+          localStorage.setItem("img_perfil",imgPerfil);
+
+        }else{
+          localStorage.setItem("img_perfil",dados.img_perfil);
+        }
+     
+       
         if((dados.email === '') || (dados.email === null)){
 
           email = '';
