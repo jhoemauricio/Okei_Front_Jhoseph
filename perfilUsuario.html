@@ -33,6 +33,8 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <!--SCRIPT FUNÇÕES-->
+  <script src="scripts/bilhetes.js"></script>
+  <script src="scripts/treinamento.js"></script>
   <script src="scripts/editarPerfil.js"></script>
   <script src="scripts/buscaCep.js"></script>
   <script src="scripts/imagem.js"></script>
@@ -43,6 +45,8 @@
   
 
   <title>Perfil usuário</title>
+
+
 </head>
 
 <body>
@@ -95,7 +99,7 @@
 
                 <!-- inicio Nome do perfil -->
                 <li>
-                  <a class="dropdown-item" href="pages-user-profile.html">
+                  <a class="dropdown-item" href="perfilUsuario.html">
                     <div class="d-flex align-items-center">
                       <div class=""><i class="bi bi-person-fill"></i></div>
                       <div class="ms-3"><span id="nomePerfil"></span></div>
@@ -296,14 +300,14 @@
       <ul class="metismenu" id="menu">
         <li class="menu-label">Menu</li>
         <li>
-          <a href="pages-user-profile.html">
+          <a href="perfilUsuario.html">
             <div class="parent-icon"><i class="bi bi-person-lines-fill"></i>
             </div>
             <div class="menu-title">Meu Perfil</div>
           </a>
         </li>
         <li>
-          <a href="pages-timeline.html">
+          <a href="#" onclick="carregarBilhetes('bilhetes.html')">
 
             <div class="parent-icon"><i class="lni lni-ticket-alt"></i>
             </div>
@@ -317,14 +321,11 @@
             <div class="menu-title">Loja Okei</div>
           </a>
           <ul>
-            <li> <a href="pages-errors-404-error.html"><i class="bi bi-circle"></i>404 Error</a>
+            <li> <a onclick="carregar('listaTreinamento.html')" href="#"><i class="bi bi-circle"></i>Treinamentos</a>
             </li>
-            <li> <a href="pages-errors-500-error.html"><i class="bi bi-circle"></i>500 Error</a>
+            <li> <a onclick="" href="#"><i class="bi bi-circle"></i>aaaa</a>
             </li>
-            <li> <a href="pages-errors-coming-soon.html"><i class="bi bi-circle"></i>Coming Soon</a>
-            </li>
-            <li> <a href="pages-blank-page.html"><i class="bi bi-circle"></i>Blank Page</a>
-            </li>
+           
           </ul>
         </li>
 
@@ -336,9 +337,24 @@
     <!--PAGINA CONTEÚDO-->
     <main class="page-content">
 
+
+      <!-- Inicio Mostrar Carrossel -->
+
+      <div id="mostrar-pagina" style="display:none">
+        
+    
+      </div>
+
+      <!-- Fim Mostrar Carrossel -->
+
+
+      <div id="perfil-usuario-conteudo">
+
       <div class="row">
         <div class="col-12 col-lg-8">
           <div class="card shadow-sm border-0">
+
+
             <div class="card-body">
               <h5 class="mb-0">Meu Perfil</h5>
 
@@ -447,11 +463,17 @@
                 <button id="atualizar" type="button" class="btn btn-primary px-4" onclick="update()">Atualizar</button>
               </div>
             </div>
+
+
+
+
+
+
           </div>
         </div>
       </div>
       <!--end row-->
-    
+    </div>
     </main>
     <!--FIM CONTEÚDO-->
 
@@ -540,6 +562,9 @@
 
 
 </body>
+
+
+
 
   <!-- Bootstrap bundle JS -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
