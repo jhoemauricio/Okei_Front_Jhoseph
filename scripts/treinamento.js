@@ -2,9 +2,9 @@ function carregar(pagina){
 
     $("#perfil-usuario-conteudo").hide();
 
-      $("#mostrar-carrossel").fadeIn('slow');
+      $("#mostrar-pagina").fadeIn('slow');
 
-     $("#mostrar-carrossel").load(pagina);
+     $("#mostrar-pagina").load(pagina);
 
 
     var n = 1;

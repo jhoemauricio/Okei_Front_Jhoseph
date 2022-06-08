@@ -33,7 +33,7 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <!--SCRIPT FUNÇÕES-->
- 
+  <script src="scripts/bilhetes.js"></script>
   <script src="scripts/treinamento.js"></script>
   <script src="scripts/editarPerfil.js"></script>
   <script src="scripts/buscaCep.js"></script>
@@ -99,7 +99,7 @@
 
                 <!-- inicio Nome do perfil -->
                 <li>
-                  <a class="dropdown-item" href="pages-user-profile.html">
+                  <a class="dropdown-item" href="perfilUsuario.html">
                     <div class="d-flex align-items-center">
                       <div class=""><i class="bi bi-person-fill"></i></div>
                       <div class="ms-3"><span id="nomePerfil"></span></div>
@@ -307,7 +307,7 @@
           </a>
         </li>
         <li>
-          <a href="pages-timeline.html">
+          <a href="#" onclick="carregarBilhetes('bilhetes.html')">
 
             <div class="parent-icon"><i class="lni lni-ticket-alt"></i>
             </div>
@@ -323,11 +323,9 @@
           <ul>
             <li> <a onclick="carregar('listaTreinamento.html')" href="#"><i class="bi bi-circle"></i>Treinamentos</a>
             </li>
-            <li> <a href="pages-errors-500-error.html"><i class="bi bi-circle"></i>500 Error</a>
-            </li>
-            <li> <a href="pages-errors-coming-soon.html"><i class="bi bi-circle"></i>Coming Soon</a>
-            </li>
-            <li> <a href="pages-blank-page.html"><i class="bi bi-circle"></i>Blank Page</a>
+          </ul>
+          <ul>
+            <li> <a onclick="carregar('listaTreinamento.html')" href="#"><i class="bi bi-circle"></i>Produtos</a>
             </li>
           </ul>
         </li>
@@ -343,7 +341,7 @@
 
       <!-- Inicio Mostrar Carrossel -->
 
-      <div id="mostrar-carrossel" style="display:none">
+      <div id="mostrar-pagina" style="display:none">
         
     
       </div>
