@@ -31,9 +31,7 @@ $(document).ready(function(){
                   
                 //   console.log(key +" = "+dados[key]);
 
-
                 }
-        
 
             });
   

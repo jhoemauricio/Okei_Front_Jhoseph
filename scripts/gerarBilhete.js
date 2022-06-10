@@ -78,8 +78,6 @@ function gerarBilhete(){
 
     divCardBody.appendChild(hr);
 
-
-
     smallInicio = document.createElement('small');
     smallInicio.classList.add('mb-0');
     smallInicio.classList.add('text-white');

@@ -42,7 +42,7 @@
   <script src="scripts/perfil.js"></script>
   <script src="scripts/logged.js"></script>
 
-  
+
 
   <title>Perfil usuário</title>
 
@@ -67,8 +67,8 @@
               <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                 <div class="user-setting d-flex align-items-center">
 
-                 <!-- Imagem perfil icone -->
-                    <img id="img_perfil" class="user-img" alt="">
+                  <!-- Imagem perfil icone -->
+                  <img id="img_perfil" class="user-img" alt="">
 
                 </div>
               </a>
@@ -77,9 +77,21 @@
                   <a class="dropdown-item" href="#">
                     <div class="d-flex align-items-center">
 
-                      <!-- imagem perfil menu -->
-                      <img id="img_perfil_menu" alt="" class="rounded-circle" width="54"
-                        height="54">
+                      <label for="tipofile">
+                        <input id="tipofile" type="file" onchange="imgPerfilBase64();">
+                        <!-- imagem perfil menu -->
+                        <img id="img_perfil_menu" alt="" class="rounded-circle" width="54" height="54">
+                      </label>
+
+                    
+
+                      <style>
+                        /* Esconde o input de file */
+                        #tipofile {
+                          display: none;
+                        }
+                      </style>
+
 
                       <!--inicio tipo de usuario -->
                       <div class="ms-3">
@@ -325,7 +337,7 @@
             </li>
             <li> <a onclick="" href="#"><i class="bi bi-circle"></i>aaaa</a>
             </li>
-           
+
           </ul>
         </li>
 
@@ -341,8 +353,8 @@
       <!-- Inicio Mostrar Carrossel -->
 
       <div id="mostrar-pagina" style="display:none">
-        
-    
+
+
       </div>
 
       <!-- Fim Mostrar Carrossel -->
@@ -350,130 +362,131 @@
 
       <div id="perfil-usuario-conteudo">
 
-      <div class="row">
-        <div class="col-12 col-lg-8">
-          <div class="card shadow-sm border-0">
+        <div class="row">
+          <div class="col-12 col-lg-8">
+            <div class="card shadow-sm border-0">
 
 
-            <div class="card-body">
-              <h5 class="mb-0">Meu Perfil</h5>
+              <div class="card-body">
+                <h5 class="mb-0">Meu Perfil</h5>
 
-              <hr>
-            
-            <!--------------- Formulário de Meus Dados ------------->
-            
-              <div class="card shadow-none border">
-                <div class="card-header">
-                  <h6 class="mb-0">Meus Dados</h6>
+                <hr>
+
+                <!--------------- Formulário de Meus Dados ------------->
+
+                <div class="card shadow-none border">
+                  <div class="card-header">
+                    <h6 class="mb-0">Meus Dados</h6>
+                  </div>
+                  <div class="card-body">
+
+                    <!-- Inicio Formulario -->
+                    <form class="row g-3" id="formulario-dados">
+                      <div class="col-6">
+                        <label class="form-label">Nome</label>
+                        <input id="nomeUsuario" type="text" class="form-control" disabled>
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label">Email</label>
+                        <input id="email" type="email" class="form-control" disabled>
+                      </div>
+
+                      <div class="col-6">
+                        <label class="form-label">Sexo</label>
+                        <!--SELECT OPCOES-->
+                        <select id="selecioneSexo" select class="form-select" disabled>
+                          <option value="f">Feminino</option>
+                          <option value="m">Masculino</option>
+                        </select>
+
+
+                      </div>
+
+                      <div class="col-6">
+                        <label class="form-label">Nascimento</label>
+                        <input id="nascimento" type="date" class="form-control" disabled>
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label">Nif</label>
+                        <input id="nif" type="text" class="form-control" disabled>
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label">País</label>
+                        <input id="pais" type="text" class="form-control" disabled>
+                      </div>
+                    </form>
+
+                    <!-------------- Fim Formulario Meus Dados ----------------->
+
+                  </div>
                 </div>
-                <div class="card-body">
 
-                  <!-- Inicio Formulario -->
-                  <form class="row g-3" id="formulario-dados">
-                    <div class="col-6">
-                      <label class="form-label">Nome</label>
-                      <input id="nomeUsuario" type="text" class="form-control" disabled>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">Email</label>
-                      <input id="email" type="email" class="form-control" disabled>
-                    </div>
 
-                    <div class="col-6">
-                      <label class="form-label">Sexo</label>
-                      <!--SELECT OPCOES-->
-                      <select id="selecioneSexo" select class="form-select" disabled>
-                        <option value="f">Feminino</option>
-                        <option value="m">Masculino</option>
-                      </select>
-                       
-                      
-                    </div>
+                <!----------------Formulario de endereco  ---------- -->
 
-                    <div class="col-6">
-                      <label class="form-label">Nascimento</label>
-                      <input id="nascimento" type="date" class="form-control" disabled>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">Nif</label>
-                      <input id="nif" type="text" class="form-control" disabled>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">País</label>
-                      <input id="pais" type="text" class="form-control" disabled>
-                    </div>
-                  </form>
+                <div class="card shadow-none border">
+                  <div class="card-header">
+                    <h6 class="mb-0">Meu Endereço</h6>
+                  </div>
+                  <div class="card-body">
 
-            <!-------------- Fim Formulario Meus Dados ----------------->
+                    <!-- Inicio Formulario -->
+                    <form class="row g-3" id="formulario-dados">
+                      <div class="col-6">
+                        <label class="form-label">CEP</label>
+                        <input id="cep" type="text" class="form-control" maxlength="8" onkeyup="consultaCep()">
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label">Endereço</label>
+                        <input id="endereco" type="text" class="form-control" disabled>
+                      </div>
 
+                      <div class="col-6">
+                        <label class="form-label">Numero</label>
+                        <input id="numero" type="text" class="form-control">
+                      </div>
+
+                      <div class="col-6">
+                        <label class="form-label">Complemento</label>
+                        <input id="complemento" type="text" class="form-control" disabled>
+                      </div>
+
+                      <div class="col-6">
+                        <label class="form-label">Bairro</label>
+                        <input id="bairro" type="text" class="form-control" disabled>
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label">Cidade</label>
+                        <input id="cidade" type="text" class="form-control" disabled>
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label">UF</label>
+                        <input id="uf" type="text" class="form-control" disabled>
+                      </div>
+                    </form>
+
+                    <!------------------ Fim Formulario Endereco ---------------->
+
+                  </div>
+                </div>
+
+
+                <div class="text-start">
+                  <button id="atualizar" type="button" class="btn btn-primary px-4"
+                    onclick="update()">Atualizar</button>
                 </div>
               </div>
 
-             
-            <!----------------Formulario de endereco  ---------- -->
-              
-              <div class="card shadow-none border">
-                <div class="card-header">
-                  <h6 class="mb-0">Meu Endereço</h6>
-                </div>
-                <div class="card-body">
-
-                  <!-- Inicio Formulario -->
-                  <form class="row g-3" id="formulario-dados">
-                    <div class="col-6">
-                      <label class="form-label">CEP</label>
-                      <input id="cep" type="text" class="form-control" maxlength="8" onkeyup="consultaCep()">
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">Endereço</label>
-                      <input id="endereco" type="text" class="form-control" disabled>
-                    </div>
-
-                    <div class="col-6">
-                      <label class="form-label">Numero</label>
-                      <input id="numero" type="text" class="form-control" > 
-                    </div>
-
-                    <div class="col-6">
-                      <label class="form-label">Complemento</label>
-                      <input id="complemento" type="text" class="form-control" disabled>
-                    </div>
-
-                    <div class="col-6">
-                      <label class="form-label">Bairro</label>
-                      <input id="bairro" type="text" class="form-control" disabled>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">Cidade</label>
-                      <input id="cidade" type="text" class="form-control" disabled>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">UF</label>
-                      <input id="uf" type="text" class="form-control" disabled>
-                    </div>
-                  </form>
-
-                <!------------------ Fim Formulario Endereco ---------------->
-
-                </div>
-              </div>
 
 
-              <div class="text-start">
-                <button id="atualizar" type="button" class="btn btn-primary px-4" onclick="update()">Atualizar</button>
-              </div>
+
+
+
             </div>
-
-
-
-
-
-
           </div>
         </div>
+        <!--end row-->
       </div>
-      <!--end row-->
-    </div>
     </main>
     <!--FIM CONTEÚDO-->
 
@@ -502,8 +515,7 @@
           <h6 class="mb-0">Escolha o seu Tema</h6>
           <hr>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="LightTheme" value="option1"
-            >
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="LightTheme" value="option1">
             <label class="form-check-label" for="LightTheme">Light</label>
           </div>
           <div class="form-check form-check-inline">
@@ -512,7 +524,7 @@
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3">
-           
+
             <label class="form-check-label" for="SemiDarkTheme">Semi Dark</label>
           </div>
           <hr>
@@ -563,19 +575,76 @@
 
 </body>
 
+  <!-- Upload de imagem -->
+  <script>   
+
+    function imgPerfilBase64(){
+
+      
+
+      //seleciona o arquivo de imagem
+      var fileSelected = document.getElementById("tipofile").files;
+      
+      //tamanho do arquivo
+      if(fileSelected.length > 0){
+
+        // ----Mostra uma prévia de como vai ficar a imagem no perfil---------
+        // seleciona o id img_perfil no HTML
+        var imagemPerfil = document.getElementById("img_perfil");
+        //atribui o objeto e caminho
+        imagemPerfil.src = URL.createObjectURL(event.target.files[0]);
+
+        //atribui o src a imagem menu
+        var imgPerfilMenu = document.getElementById("img_perfil_menu");
+        imgPerfilMenu.src = URL.createObjectURL(event.target.files[0]);
+       
+        //-------Fim prévia de imagem
+
+        //armazena o objeto
+        fileToLoad = fileSelected[0];
+        // instancia objeto fileReader
+        var fileReader = new FileReader();
+        //carrega evento onload
+        fileReader.onload = function(event){
+        //base64
+        var base64 = event.target.result;
+        //base64 para string
+        base64 = JSON.stringify(base64);
+        //procura por aspas e retira
+        format = base64.replace(/"/g,'');
+        //separa por ,
+        posicao = format.split(',');
+        //armazena a posicao 1
+        base64Formato = posicao[1];
+
+        localStorage.setItem("imgBase64",base64Formato);
+
+        // console.log(base64Formato);
+
+        }
+
+      
+      }
+      //faz a leitura do arquivo convertido de Blob para DataUrl
+      fileReader.readAsDataURL(fileToLoad);
+      
+    }
+      
+
+    </script>
 
 
 
-  <!-- Bootstrap bundle JS -->
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <!--plugins-->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-  <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-  <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-  <script src="assets/js/pace.min.js"></script>
-  <!--app-->
-  <script src="assets/js/app.js"></script>
+<!-- Bootstrap bundle JS -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<!--plugins-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
+<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="assets/js/pace.min.js"></script>
+<!--app-->
+<script src="assets/js/app.js"></script>
 
 
 
