@@ -5,13 +5,6 @@ function consultaCep(){
 
     cep =  $("#cep").val();
 
-    if(cep.length <8 || cep.length == ''){
-
-     
-      
-
-    }else{
-
         //País do user
         var pais = localStorage.getItem("pais");
 
@@ -31,6 +24,16 @@ function consultaCep(){
              data: dados_consulta_cep,
              success: function(dados){
 
+                console.log(dados);
+
+               if(dados === "O CEP informado não é válido"){
+
+                alert('NAO ENCONTRADO');
+
+               }else{
+
+               
+
                 localStorage.setItem("endereco", dados.Logradouro);
                 localStorage.setItem("bairro",dados.Bairro);
                 localStorage.setItem("cidade",dados.Localidade);
@@ -41,21 +44,18 @@ function consultaCep(){
                 document.getElementById("bairro").value = localStorage.getItem("bairro");
                 document.getElementById("cidade").value = localStorage.getItem("cidade");
                 document.getElementById("uf").value = localStorage.getItem("uf");
+               }
+               
 
-          
-             
-
-             }
-
-
-        }).fail(function(jqXHR, errorThrown){
-            console.log(jqXHR.status);
+        },
+        
+    }).fail(function(jqXHR, errorThrown){
+             console.log(jqXHR.status);
+    
             
 
         });
-    }
-            
 
-
+         
         }
         
