@@ -87,10 +87,8 @@
        
         
   });
-
-
+ 
   top.location.href = 'perfilUsuario.html';
 
-
-
 }
+

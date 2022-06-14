@@ -13,7 +13,8 @@
   <link href="assets/css/icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
+  
+ 
   <!----SWITCH ALERT-->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -21,14 +22,20 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  
+
   <!-- loader-->
   <link href="assets/css/pace.min.css" rel="stylesheet" />
+
+   <!-- Modal css loadingModal -->
+   <link rel="stylesheet" href="pluginLoading/css/jquery.loadingModal.css">
 
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 
-
   <!--SCRIPT FUNÇÕES-->
+  <script src="scripts/loadingPages.js"></script>
   <script src="scripts/exibeDados.js"></script>
   <script src="scripts/login.js"></script>
 
@@ -37,7 +44,7 @@
 
 </head>
 
-<body>
+<body id="body-login">
 
   <!--start wrapper-->
   <div class="wrapper">
@@ -255,8 +262,6 @@
         </div>
       </div>
 
-   
-  
 
     </main>
 
@@ -268,15 +273,14 @@
 
 
 
+</body>
+ 
+ 
+  
   <!--plugins-->
   <script src="assets/js/jquery.min.js"></script>
+   <!--Loading Modal-->
+   <script src="pluginLoading/js/jquery.loadingModal.js"></script>
   <script src="assets/js/pace.min.js"></script>
-
-
-
-
-
-
-</body>
 
 </html>

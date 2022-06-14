@@ -51,7 +51,7 @@ function update() {
 
             //duracao da mensagm de sucesso
             setTimeout(function() {
-
+                //funcao de atualziado com sucesso
                 updateSuccess();
                 
             }, 2500);
@@ -66,30 +66,4 @@ function update() {
 
     });
 }
-
-
-    //loading de atualizacao
-    function loadingUpdate() {
-
-        $("#body").loadingModal({ text: 'Atualizando seus dados...', animation: 'chasingDots' });
-        setTimeout(function () {
-
-            $("#body").loadingModal('destroy');
-
-        }, 2500);
-
-
-    }
-
-    //mensagem de sucesso de atualização
-    function updateSuccess(){
-        Lobibox.notify('success', {
-            pauseDelayOnHover: true,
-            size: 'mini',
-            icon: 'fadeIn animated bx bx-wink-smile',
-            continueDelayOnInactiveTab: false,
-            position: 'bottom right',
-            msg: 'Atualizado com sucesso!'
-        });
-    }
 

@@ -44,11 +44,14 @@ $(document).ready(function(){
                     
                     //esconde o botao entrar
                     $("#entrar").hide();
-            
+                    
                     //opacidade do painel de login
                     //  $("#painel-login").css('opacity','0.6');
                     //mostra o loading
                     //  $("#loading").show();
+                   
+
+                   
               
                     email_tel = $("#inputEmailAddress").val();
                     senha = $("#inputChoosePassword").val();
@@ -99,7 +102,6 @@ $(document).ready(function(){
 
                         e.preventDefault();
 
-
                         senha = $("#inputChoosePassword").val();
 
                         //Regex Verifica senha
@@ -128,7 +130,10 @@ $(document).ready(function(){
 
                           },1500);
 
-                        } 
+                        }
+                        
+                        
+                       
                         
                       //string de dados
                       dados_user = '{"identificador": "' + email_tel + '","senha": "' + senha + '"}';
@@ -145,10 +150,19 @@ $(document).ready(function(){
                           data : dados_user,
 
                           success: function (dados) {
+
+                              //loading executado quando usuario fazer login
+                              loadingLogin();
+                              //tempo para redirecionar para a pagina de perfil de usuario
+                              setTimeout(function(){
+
+                                mostrarDados(dados);
+                                
+                              }, 2500);
                             
-                            //retorna os dados do usuario
-                            mostrarDados(dados);
-                            
+                        
+                              //retorna os dados do usuario
+                          
                             
                             },
 
