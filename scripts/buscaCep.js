@@ -29,12 +29,11 @@ function consultaCep() {
             if (dados === "O CEP informado não é válido") {
 
 
-               
-
-               
                 // cepInvalido();
              
             } else {
+
+                loadingCep();
 
                 localStorage.setItem("endereco", dados.Logradouro);
                 localStorage.setItem("bairro", dados.Bairro);
@@ -74,4 +73,17 @@ function consultaCep() {
 
         });
 }
+
+
+    function loadingCep(){
+
+        $("#body").loadingModal({ text: 'Buscando Cep...', animation: 'chasingDots' });
+
+        setTimeout(function() {
+
+            $("#body").loadingModal('destroy');
+            
+        }, 2500);
+
+    }
 
