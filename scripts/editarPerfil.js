@@ -45,13 +45,19 @@ function update() {
             console.log(dados.img_perfil);
             //seta o localStarage com o novo valor de img_perfil que substituirá  o get nomeImagem no script "IMAGEM"
             localStorage.setItem("img_perfil", dados.img_perfil);
-
+            
+            //loading de atualizacao
             loadingUpdate();
+
+            //duracao da mensagm de sucesso
+            setTimeout(function() {
+
+                updateSuccess();
+                
+            }, 2500);
 
         },
         contentType: "application/json"
-
-
 
 
     }).fail(function (jqXHR, errorThrown) {
@@ -62,21 +68,28 @@ function update() {
 }
 
 
-
+    //loading de atualizacao
     function loadingUpdate() {
 
         $("#body").loadingModal({ text: 'Atualizando seus dados...', animation: 'chasingDots' });
-
-
         setTimeout(function () {
 
             $("#body").loadingModal('destroy');
 
-
-
-
         }, 2500);
 
 
+    }
+
+    //mensagem de sucesso de atualização
+    function updateSuccess(){
+        Lobibox.notify('success', {
+            pauseDelayOnHover: true,
+            size: 'mini',
+            icon: 'fadeIn animated bx bx-wink-smile',
+            continueDelayOnInactiveTab: false,
+            position: 'bottom right',
+            msg: 'Atualizado com sucesso!'
+        });
     }
 

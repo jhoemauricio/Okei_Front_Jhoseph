@@ -27,13 +27,31 @@ function consultaCep() {
             console.log(dados);
 
             if (dados === "O CEP informado não é válido") {
-
-
-                // cepInvalido();
-             
-            } else {
-
+                //funcao de loading
                 loadingCep();
+
+                setTimeout(function() {
+
+                    cepInvalido();
+
+                }, 2500);
+
+                document.getElementById("endereco").value = '';
+                document.getElementById("bairro").value = '';
+                document.getElementById("cidade").value = '';
+                document.getElementById("uf").value = '';
+
+            } else {
+                //funcao de loading
+                loadingCep();
+                //tempo para exibir a mensagem de cepValido
+                setTimeout(function() {
+
+                    cepValido();
+
+                }, 2500);
+
+              
 
                 localStorage.setItem("endereco", dados.Logradouro);
                 localStorage.setItem("bairro", dados.Bairro);
@@ -67,20 +85,33 @@ function consultaCep() {
             pauseDelayOnHover: true,
             icon: 'lni lni-map',
             continueDelayOnInactiveTab: false,
-            position: 'top right',
+            position: 'bottom right',
             size: 'mini',
-            msg: 'O Cep informado não é válido'
+            msg: 'O Cep informado não é válido...'
 
         });
-}
+    }
 
+    //mensagem de cep encontrado
+    function cepValido() {
+        Lobibox.notify('success', {
+            pauseDelayOnHover: true,
+            size: 'mini',
+            icon: 'fadeIn animated bx bx-map',
+            continueDelayOnInactiveTab: false,
+            position: 'bottom right',
+            msg: 'Cep encontrado...'
+        });
+    }
 
+    //carrega o cep
     function loadingCep(){
 
+        //texto e tipo da animação
         $("#body").loadingModal({ text: 'Buscando Cep...', animation: 'chasingDots' });
 
         setTimeout(function() {
-
+            //destroy o loading após 2500 milisegundos
             $("#body").loadingModal('destroy');
             
         }, 2500);
