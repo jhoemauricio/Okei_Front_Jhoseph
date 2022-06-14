@@ -37,7 +37,7 @@
     }
 
 
-    //loading de  cep
+    //loading de cep
     function loadingCep(){
 
             //texto e tipo da animação
@@ -77,4 +77,15 @@
         });
     }
 
+    //mensagem de obrigatorio cep do usuario
+    function cepObrigatorio() {
+        Lobibox.notify('error', {
+            pauseDelayOnHover: true,
+            size: 'mini',
+            icon: 'fadeIn animated bx bx-map-alt',
+            continueDelayOnInactiveTab: false,
+            position: 'bottom right',
+            msg: 'Cep nao pode ser vazio'
+        });
+    }
 
