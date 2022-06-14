@@ -28,7 +28,11 @@ function consultaCep() {
 
             if (dados === "O CEP informado não é válido") {
 
-                cepInvalido();
+
+               
+
+               
+                // cepInvalido();
              
             } else {
 
@@ -55,6 +59,7 @@ function consultaCep() {
 
 
 }
+
 
     //mensagem de cep inválido
     function cepInvalido() {

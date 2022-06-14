@@ -8,6 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
   <!--plugins-->
+
+  <!-- Modal css loading -->
+  <link rel="stylesheet" href="pluginLoading/css/jquery.loadingModal.css">
+
   <link rel="stylesheet" href="assets/plugins/notifications/css/lobibox.min.css" />
   <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
   <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -30,10 +34,12 @@
   <link href="assets/css/semi-dark.css" rel="stylesheet" />
   <link href="assets/css/header-colors.css" rel="stylesheet" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <!--SCRIPT FUNÇÕES-->
+  
   <script src="scripts/bilhetes.js"></script>
   <script src="scripts/treinamento.js"></script>
   <script src="scripts/editarPerfil.js"></script>
@@ -346,7 +352,7 @@
     <!--end sidebar -->
 
     <!--PAGINA CONTEÚDO-->
-    <main class="page-content">
+    <main class="page-content" id="page-content">
 
 
       <!-- Inicio Mostrar Carrossel -->
@@ -569,10 +575,11 @@
 
   </div>
   <!--end wrapper-->
-
-
-
+ 
+ 
 </body>
+
+
 
   <!-- Upload de imagem -->
   <script>   
@@ -635,6 +642,7 @@
     </script>
 
 
+<script src="pluginLoading/js/jquery.loadingModal.js"></script>
 
 <!-- Bootstrap bundle JS -->
 <script src="assets/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+ 
+
+    <link rel="stylesheet" href="css/jquery.loadingModal.css">
+
+   
+</head>
+<body>
+
+    <div id="a" style="width:400px;height:400px;">
+        <p>AAAAAAAAAAAAAAA</p>
+
+    </div>
+
+</div>
+    <button onclick="showModal();">Show loading modal</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.loadingModal.js"></script>
+<script>
+
+    // $(document).ready(function(){
+
+          function showModal() {
+            $("#a").loadingModal({text: 'Buscando cep...',animation: 'chasingDots'});
+
+            setTimeout(function() {
+            $("#a").hide('slow');
+
+    
+            }, 2500);
+
+       
+}
+
+    // })
+  
+
+</script>
+</body>
+</html>

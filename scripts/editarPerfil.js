@@ -1,6 +1,29 @@
 var hostEditar = "https://api.okei.online/users/";
 
+
+
+
+function showModal() {
+
+   
+    $('page-content').loadingModal({text: 'Buscando cep...',animation: 'chasingDots'});
+
+
+    // setTimeout(function() {
+    //     $('body').hide('slow');
+
+        
+    // }, 2500);
+
+           
+}
+
+
+
+
 function update(){
+
+   
 
   var user_id = localStorage.getItem("user_id");
 
@@ -38,9 +61,15 @@ function update(){
 
          success: function(dados){
 
+            
+
            console.log(dados.img_perfil);
             //seta o localStarage com o novo valor de img_perfil que substituirá  o get nomeImagem no script "IMAGEM"
            localStorage.setItem("img_perfil",dados.img_perfil);
+
+           showModal();
+
+       
 
 
         },
@@ -55,3 +84,5 @@ function update(){
 
     });
 }
+
+
