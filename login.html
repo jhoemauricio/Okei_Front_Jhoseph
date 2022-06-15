@@ -20,19 +20,29 @@
 
 
 
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   
 
   <!-- loader-->
-  <link href="assets/css/pace.min.css" rel="stylesheet" />
+ <link href="assets/css/pace.min.css" rel="stylesheet" />
 
    <!-- Modal css loadingModal -->
-   <link rel="stylesheet" href="pluginLoading/css/jquery.loadingModal.css">
+  <link rel="stylesheet" href="pluginLoading/css/jquery.loadingModal.css">
 
-  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+     <!-- Style Css -->
+  <link rel="stylesheet" href="pais/css/chosen.css">
+  <link rel="stylesheet" href="pais/css/ImageSelect.css">
 
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+     <!-- jQuery -->
+     <script src="pais/js/chosen.jquery.js"></script>
+     <script src="pais/js/ImageSelect.jquery.js"></script>
+
+ 
 
   <!--SCRIPT FUNÇÕES-->
   <script src="scripts/loadingPages.js"></script>
@@ -86,12 +96,46 @@
                         <!-- Fim Email ou telefone -->
 
                         <!--País DDI-->
-                        <div class="col-12" id="pais" style="display:none;">
+                        <!-- <div class="col-12" id="pais" style="display:none;">
                           <select class="form-select" aria-label="Default select example" id="lista" >
                             <option>Escolha seu País</option> 
                           </select>
-                      </div>
+                      </div> -->
                       <!-- Fim DDI País -->
+
+
+
+
+
+                      <select id="select" class="my-select" style="width: 200px;position:absolute;">
+
+                        <option data-img-src="Image-Select-master\img\rena.png" selected="selected">Rena Cugelman </option>
+            
+                        <option data-img-src="Image-Select-master\img\brian.png">Brain Cugelman</option>
+            
+                    </select>
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                           <!--Codigo de Acesso-->
@@ -274,8 +318,66 @@
 
 
 </body>
+
+<script>
+
+  $(document).ready(function(){
+    $.ajax({
+  
+  url: "https://restcountries.com/v3.1/all",
+  type: 'GET',
+
+  success: function(data){
+
+      for(var i=0; i< data.length; i++){
+
+          console.log(data[i]);
+          console.log(data[i].idd.root+data[i].idd.suffixes);
+
+
+          var select = document.getElementById("select");
+
+          const option = document.createElement("option");
+
+          option.setAttribute('data-img-src',data[i].flags.png);
+
+          option.innerText = data[i].cca3+" "+data[i].idd.root+data[i].idd.suffixes;
+
+          select.appendChild(option);
+                
+      }
+  
+       
+      $(".my-select").chosen();
+
+      // $("#mostrar").click(function (e){
+      //     e.preventDefault();
+
+      //   var  val =  $("#select").val();
+      //   novo = val.toString();
+
+      //  //procura numero maiusculo e minusculo e espaco
+      //   n = novo.replace(/[a-zA-z]+\s+/,'');
+
+      //   console.log(n);
+
+        
+
+      // });
+
+   
+
+  }
+
+});
+
+  });
+
+</script>
+
  
  
+
   
   <!--plugins-->
   <script src="assets/js/jquery.min.js"></script>

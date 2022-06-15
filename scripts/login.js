@@ -5,33 +5,33 @@ var host = "https://api.okei.online/entrar";
 //O evento é disparado quando a pagina HTML é carregada 
 $(document).ready(function(){
 
-          //carrega arquivo json
-          fetch("scripts/CountryCodes.json").then(function(response){
+          // //carrega arquivo json
+          // fetch("scripts/CountryCodes.json").then(function(response){
 
 
-                return response.json();
+          //       return response.json();
 
 
-          }).then(function(data){
+          // }).then(function(data){
             
-            Object.keys(data).forEach(function(key){
+          //   Object.keys(data).forEach(function(key){
           
-             // console.log(data[key].dial_code);
-            //  console.log("Cod: "+data[key].code);
+          //    // console.log(data[key].dial_code);
+          //   //  console.log("Cod: "+data[key].code);
 
-              var select = document.getElementById("lista");
-              //cria elemento
-              var option = document.createElement("option");
-              //adiciona a option
-              option.innerText = data[key].dial_code;
+          //     var select = document.getElementById("lista");
+          //     //cria elemento
+          //     var option = document.createElement("option");
+          //     //adiciona a option
+          //     option.innerText = data[key].dial_code;
           
-              select.add(option);
+          //     select.add(option);
          
 
 
-            });
+          //   });
 
-          });
+          // });
          
            
             //evento click do botao com id "entrar"
