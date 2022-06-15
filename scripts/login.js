@@ -44,14 +44,6 @@ $(document).ready(function(){
                     
                     //esconde o botao entrar
                     $("#entrar").hide();
-                    
-                    //opacidade do painel de login
-                    //  $("#painel-login").css('opacity','0.6');
-                    //mostra o loading
-                    //  $("#loading").show();
-                   
-
-                   
               
                     email_tel = $("#inputEmailAddress").val();
                     senha = $("#inputChoosePassword").val();
@@ -133,8 +125,6 @@ $(document).ready(function(){
                         }
                         
                         
-                       
-                        
                       //string de dados
                       dados_user = '{"identificador": "' + email_tel + '","senha": "' + senha + '"}';
 
@@ -153,29 +143,14 @@ $(document).ready(function(){
 
                               //loading executado quando usuario fazer login
                               loadingLogin();
-                              //tempo para redirecionar para a pagina de perfil de usuario
+                              //tempo para redirecionar para a pagina de perfil de usuario pela funcao mostrarDados
                               setTimeout(function(){
 
                                 mostrarDados(dados);
                                 
                               }, 2500);
                             
-                        
-                              //retorna os dados do usuario
-                          
-                            
                             },
-
-                              //chamada após a requisição terminar
-                              complete: function(){
-
-                                //esconde o loading
-                                $("#loading").hide();
-
-                                //torna visivel o painel de login
-                                $("#painel-login").css('opacity','1.0');
-
-                              },
                             
                               contentType: "application/json",
                               dataType: 'json',
@@ -218,28 +193,11 @@ $(document).ready(function(){
                     //se for dígito
                     if(numero) {
                       //mostra DDI de países
-                      $("#pais").fadeIn('slow');
-
-                          //quando clica em uma opcao
-                          $("#lista").click(function(){
-                            
-                            e.preventDefault();
+                      $("#pais-ddi").fadeIn('slow');
 
                             //mostra div ddi com o botao de enviar
                             $("#ddi-div").show();
-                        
-                            var ddiPais = $("#lista").val();
 
-                            if(ddiPais != 'Escolha seu País'){
-
-                              
-                                ddi = ddiPais;
-                         
-                            
-                            }
-                            
-                          });
-                     
 
                     document.getElementById('inputEmailAddress').disabled = true;
 
@@ -248,8 +206,16 @@ $(document).ready(function(){
                     $("#entrar_ddi").click(function(e){
          
                       e.preventDefault();
-                      
-                      $("#lista").fadeOut('slow');
+
+                      var  val =  $("#select").val();
+                      novo = val.toString();
+
+                      //procura numero maiusculo e minusculo e espaco
+                      ddi = novo.replace(/[a-zA-z]+\s+/,'');
+
+                      console.log(ddi);
+                      //esconde div #pais-ddi
+                       $("#pais-ddi").fadeOut('slow');
 
                       email_tel = ddi+email_tel;
 
@@ -330,13 +296,24 @@ $(document).ready(function(){
                                         data: dados_user_cod,
 
                                         success: function (dados){
-                                              //retorna os dados do usuario
-                                              mostrarDados(dados);
+                                          
+
+                                            //loading executado quando usuario fazer login
+                                            loadingLogin();
+
+                                            //tempo para redirecionar para a pagina de perfil de usuario
+                                            setTimeout(function(){
+
+                                            mostrarDados(dados);
+                                              
+                                            }, 2500);
 
                                           }
 
 
                                       }).fail(function(jqXHR,errorThrown){
+
+                                        console.log(jqXHR.status);
                                         
                                         //exibe mensagem de codigo invalido
                                         $("#codigo_invalido").fadeIn('slow');
@@ -362,7 +339,6 @@ $(document).ready(function(){
 
 
                   });
-
 
 
                 });

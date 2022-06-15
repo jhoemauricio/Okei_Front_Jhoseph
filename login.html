@@ -13,38 +13,36 @@
   <link href="assets/css/icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  
- 
+
+
   <!----SWITCH ALERT-->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-
+  <!-- Style Css -->
+  <link rel="stylesheet" href="pais/css/chosen.css">
+  <link rel="stylesheet" href="pais/css/ImageSelect.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  
+
 
   <!-- loader-->
- <link href="assets/css/pace.min.css" rel="stylesheet" />
+  <link href="assets/css/pace.min.css" rel="stylesheet" />
 
-   <!-- Modal css loadingModal -->
+
+  <!-- Modal css loadingModal -->
   <link rel="stylesheet" href="pluginLoading/css/jquery.loadingModal.css">
 
-     <!-- Style Css -->
-  <link rel="stylesheet" href="pais/css/chosen.css">
-  <link rel="stylesheet" href="pais/css/ImageSelect.css">
 
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-     <!-- jQuery -->
-     <script src="pais/js/chosen.jquery.js"></script>
-     <script src="pais/js/ImageSelect.jquery.js"></script>
 
- 
+
 
   <!--SCRIPT FUNÇÕES-->
+  <script src="scripts/pais.js"></script>
   <script src="scripts/loadingPages.js"></script>
   <script src="scripts/exibeDados.js"></script>
   <script src="scripts/login.js"></script>
@@ -77,7 +75,7 @@
                     <h5 class="card-title">Acesso ao portal</h5>
                     <p class="card-text mb-5">Acesse utilizando suas credenciais de acesso.</p>
 
-                    <form class="form-body"  class="was-validated">
+                    <form class="form-body" class="was-validated">
                       <div class="row g-3">
 
                         <!--Email ou Telefone-->
@@ -85,84 +83,76 @@
                           <label for="" class="form-label">Email ou Telefone</label>
                           <div class="ms-auto position-relative">
                             <div class="position-absolute top-50 translate-middle-y search-icon px-3">
-                              
-                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="12" height="18" rx="2" ry="2"></rect><line x1="10" y1="16" x2="10.01" y2="16"></line></svg>
-                              </div>
-                            <input type="" class="form-control radius-30 ps-5" id="inputEmailAddress" 
+
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-smartphone">
+                                <rect x="5" y="2" width="12" height="18" rx="2" ry="2"></rect>
+                                <line x1="10" y1="16" x2="10.01" y2="16"></line>
+                              </svg>
+                            </div>
+                            <input type="" class="form-control radius-30 ps-5" id="inputEmailAddress"
                               placeholder="(DDD+celular) ou E-mail" required>
-                              
+
                           </div>
                         </div>
                         <!-- Fim Email ou telefone -->
 
-                        <!--País DDI-->
-                        <!-- <div class="col-12" id="pais" style="display:none;">
-                          <select class="form-select" aria-label="Default select example" id="lista" >
-                            <option>Escolha seu País</option> 
-                          </select>
-                      </div> -->
-                      <!-- Fim DDI País -->
+                        <!-- DDI país -->
+                        <div class="col-12" id="pais-ddi" style="display:none;position:relative;">
+                         
+                            <select id="select">
+                            </select>
+                          
+                        </div>
+
+                        <script>
+
+                          // $("#pais-ddi").click(function(){
+                            
+                            
+                          //   var div = document.getElementById("pais-ddi");
+                          //   div.style.height = "300px";
+
+                           
+                          //  $("#select").click(function(){
+                          //   var div = document.getElementById("pais-ddi");
+                          //   div.style.height = "0px";
 
 
+                          //  });
 
+                          // });
 
-
-                      <select id="select" class="my-select" style="width: 200px;position:absolute;">
-
-                        <option data-img-src="Image-Select-master\img\rena.png" selected="selected">Rena Cugelman </option>
-            
-                        <option data-img-src="Image-Select-master\img\brian.png">Brain Cugelman</option>
-            
-                    </select>
-
-
-              
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          <!--Codigo de Acesso-->
-                            <div class="col-12" id="codigo" style="display: none;">
-                              <label for="inputChoosePassword" class="form-label">Insira seu codigo de acesso</label>
-                              <div class="ms-auto position-relative">
-                                <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i
-                                    class="bi bi-lock-fill"></i></div>
-                                <input type="" class="form-control radius-30 ps-5" id="codigo_acesso"
-                                  placeholder="Insira seu código" size="4" maxlength="4" required>
-                                 
-                              </div>
-                            </div>
-                            <!-- Fim codigo de Acesso-->
-
-                        <!--Senha-->
-                        <div id="senha" style="display: none">
-                        <div class="col-12">
-                          <label for="inputChoosePassword" class="form-label">Digite sua senha</label>
+                    
+                        </script>
+                        
+                        <!--Codigo de Acesso-->
+                        <div class="col-12" id="codigo" style="display: none;">
+                          <label for="inputChoosePassword" class="form-label">Insira seu codigo de acesso</label>
                           <div class="ms-auto position-relative">
                             <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i
                                 class="bi bi-lock-fill"></i></div>
-                               <input type="password" value="" class="form-control radius-30 ps-5" id="inputChoosePassword" class="form-control is-valid"
-                              placeholder="Digite sua senha"   minlength="8" required>
-                            
+                            <input type="" class="form-control radius-30 ps-5" id="codigo_acesso"
+                              placeholder="Insira seu código" size="4" maxlength="4" required>
+
                           </div>
                         </div>
+                        <!-- Fim codigo de Acesso-->
+
+                        <!--Senha-->
+                        <div id="senha" style="display: none">
+                          <div class="col-12">
+                            <label for="inputChoosePassword" class="form-label">Digite sua senha</label>
+                            <div class="ms-auto position-relative">
+                              <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i
+                                  class="bi bi-lock-fill"></i></div>
+                              <input type="password" value="" class="form-control radius-30 ps-5"
+                                id="inputChoosePassword" class="form-control is-valid" placeholder="Digite sua senha"
+                                minlength="8" required>
+
+                            </div>
+                          </div>
                         </div>
                         <!-- Fim Senha -->
 
@@ -176,7 +166,6 @@
                             senha?</a>
                         </div>
 
-
                         <!-- Mensagem de senha incorreta -->
                         <div id="alerta" style="display:none;">
                           <div
@@ -189,104 +178,98 @@
                         <!-- Mensagem de senha imcompleta-->
                         <div id="alerta2" style="display:none;">
                           <div
-                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
-                              <div class="text-danger">"A senha deve ter pelo menos 8 caracteres e incluir uma letra maiúscula,
-                                uma letra minúscula, um número e um caractere especial</div>
+                            class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                            <div class="text-danger">"A senha deve ter pelo menos 8 caracteres e incluir uma letra
+                              maiúscula,
+                              uma letra minúscula, um número e um caractere especial</div>
                           </div>
                         </div>
                         <!-- Fim mensagem senha imcompleta -->
 
+                        <!-- Mensagem de Email ou Telefone imcompleto -->
+                        <div id="alerta_email_tel" style="display:none;">
+                          <div
+                            class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                            <div class="text-danger">Email ou Telefone obrigatório!</div>
+                          </div>
+                        </div>
+                        <!-- Fim mensagem incorreta Email ou Telefone-->
 
-                          <!-- Mensagem de Email ou Telefone imcompleto -->
-                          <div id="alerta_email_tel" style="display:none;">
-                            <div
-                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
-                              <div class="text-danger">Email ou Telefone obrigatório!</div>
+                        <!-- Mensagem de campo em branco senha -->
+                        <div id="senha_validate" style="display:none;">
+                          <div
+                            class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                            <div class="text-danger">Senha obrigatória!</div>
+                          </div>
+                        </div>
+                        <!-- Fim mensagem campo em branco senha -->
+
+                        <!-- Mensagem de Numero ou Email Invalidos-->
+                        <div id="numero_email" style="display:none;">
+                          <div
+                            class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                            <div class="text-danger">Precisa ser um número de telefone ou email</div>
+                          </div>
+                        </div>
+                        <!-- Fim de Numero ou Email Invalidos -->
+
+                        <!-- Mensagem de Codigo Invalidos-->
+                        <div id="codigo_invalido" style="display:none;">
+                          <div
+                            class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                            <div class="text-danger">Código inválido</div>
+                          </div>
+                        </div>
+                        <!-- Fim Mensagem de Codigo Invalidos -->
+
+                        <!-- Mensagem de Codigo -->
+                        <div id="msgEnv" style="display:none;">
+                          <div class="alert border-0 bg-light-success alert-dismissible fade show">
+                            <div class="text-success">Enviamos seu código de acesso!</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                        </div>
+                        <!-- Fim mensagem codigo -->
+
+                        <!-- Botao de Entrar inicial -->
+                        <div id="entrar">
+                          <div class="col-12">
+                            <div class="d-grid">
+                              <button id="enviar" class="btn btn-primary radius-30"> Entrar</button>
                             </div>
                           </div>
-                          <!-- Fim mensagem incorreta Email ou Telefone-->
+                        </div>
+                        <!-- Fim botao Entrar -->
 
-                          <!-- Mensagem de campo em branco senha -->
-                          <div id="senha_validate" style="display:none;">
-                            <div
-                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
-                              <div class="text-danger">Senha obrigatória!</div>
+                        <!-- Botao que permite o Acesso ao sistema -->
+                        <div id="acessar-div" style="display: none;">
+                          <div class="col-12">
+                            <div class="d-grid">
+                              <button id="acessar" class="btn btn-primary radius-30"> Entrar</button>
                             </div>
                           </div>
-                          <!-- Fim mensagem campo em branco senha -->
+                        </div>
+                        <!-- Fim botao Acessar -->
 
-                          <!-- Mensagem de Numero ou Email Invalidos-->
-                          <div id="numero_email" style="display:none;">
-                            <div
-                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
-                              <div class="text-danger">Precisa ser um número de telefone ou email</div>
+                        <!-- Botao que envia o DDI Escolhido -->
+                        <div id="ddi-div" style="display: none;">
+                          <div class="col-12">
+                            <div class="d-grid">
+                              <button id="entrar_ddi" class="btn btn-primary radius-30"> Entrar</button>
                             </div>
                           </div>
-                            <!-- Fim de Numero ou Email Invalidos -->
+                        </div>
+                        <!-- Fim botao DDI-->
 
-                            <!-- Mensagem de Codigo Invalidos-->
-                            <div id="codigo_invalido" style="display:none;">
-                              <div
-                              class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
-                              <div class="text-danger">Código inválido</div>
-                              </div>
+                        <!-- Botao confirmar codigo -->
+                        <div id="btn-confirmar" style="display:none">
+                          <div class="col-12">
+                            <div class="d-grid">
+                              <button id="confirmar" class="btn btn-primary radius-30"> Confirmar</button>
                             </div>
-                            <!-- Fim Mensagem de Codigo Invalidos -->
-
-
-                            <!-- Mensagem de Codigo -->
-                            <div id="msgEnv" style="display:none;">
-                              <div class="alert border-0 bg-light-success alert-dismissible fade show">
-                                  <div class="text-success">Enviamos seu código de acesso!</div>
-                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>
-                            </div>
-                            <!-- Fim mensagem codigo -->
-
-
-                            <!-- Botao de Entrar inicial -->
-                            <div id="entrar">
-                              <div class="col-12">
-                                <div class="d-grid">
-                                  <button id="enviar" class="btn btn-primary radius-30"> Entrar</button>
-                                </div>
-                              </div>
-                              </div>
-                            <!-- Fim botao Entrar -->
-
-
-
-                            <!-- Botao que permite o Acesso ao sistema -->
-                            <div id="acessar-div" style="display: none;">
-                              <div class="col-12">
-                                <div class="d-grid">
-                                  <button id="acessar" class="btn btn-primary radius-30"> Entrar</button>
-                                </div>
-                              </div>
-                              </div>
-                              <!-- Fim botao Acessar -->
-
-                             <!-- Botao que envia o DDI Escolhido -->
-                              <div id="ddi-div" style="display: none;">
-                              <div class="col-12">
-                                <div class="d-grid">
-                                  <button id="entrar_ddi" class="btn btn-primary radius-30"> Entrar</button>
-                                </div>
-                              </div>
-                              </div>
-                              <!-- Fim botao DDI-->
-
-
-                              <!-- Botao confirmar codigo -->
-                              <div id="btn-confirmar" style="display:none">
-                              <div class="col-12">
-                                <div class="d-grid">
-                                  <button id="confirmar" class="btn btn-primary radius-30"> Confirmar</button>
-                                </div>
-                              </div>
-                              </div>
-                              <!-- Fim bota confirmar codigo -->
-
+                          </div>
+                        </div>
+                        <!-- Fim bota confirmar codigo -->
 
                         <div class="col-12">
                           <p class="mb-0">Não tem conta? <a href="authentication-signup.html"> Cadastre-se agora</a></p>
@@ -300,8 +283,6 @@
             </div>
             <!-- Fim Painel de Login -->
 
-                      
-
           </div>
         </div>
       </div>
@@ -309,80 +290,22 @@
 
     </main>
 
-
   <!--end page main-->
 
   </div>
   <!--end wrapper-->
 
-
-
 </body>
 
-<script>
 
-  $(document).ready(function(){
-    $.ajax({
-  
-  url: "https://restcountries.com/v3.1/all",
-  type: 'GET',
+<!--plugins-->
+<script src="assets/js/jquery.min.js"></script>
+<!--Loading Modal-->
+<script src="pluginLoading/js/jquery.loadingModal.js"></script>
+<script src="assets/js/pace.min.js"></script>
 
-  success: function(data){
-
-      for(var i=0; i< data.length; i++){
-
-          console.log(data[i]);
-          console.log(data[i].idd.root+data[i].idd.suffixes);
-
-
-          var select = document.getElementById("select");
-
-          const option = document.createElement("option");
-
-          option.setAttribute('data-img-src',data[i].flags.png);
-
-          option.innerText = data[i].cca3+" "+data[i].idd.root+data[i].idd.suffixes;
-
-          select.appendChild(option);
-                
-      }
-  
-       
-      $(".my-select").chosen();
-
-      // $("#mostrar").click(function (e){
-      //     e.preventDefault();
-
-      //   var  val =  $("#select").val();
-      //   novo = val.toString();
-
-      //  //procura numero maiusculo e minusculo e espaco
-      //   n = novo.replace(/[a-zA-z]+\s+/,'');
-
-      //   console.log(n);
-
-        
-
-      // });
-
-   
-
-  }
-
-});
-
-  });
-
-</script>
-
- 
- 
-
-  
-  <!--plugins-->
-  <script src="assets/js/jquery.min.js"></script>
-   <!--Loading Modal-->
-   <script src="pluginLoading/js/jquery.loadingModal.js"></script>
-  <script src="assets/js/pace.min.js"></script>
+<!-- jQuery plugin Chosen-->
+<script src="pais/js/chosen.jquery.js"></script>
+<script src="pais/js/ImageSelect.jquery.js"></script>
 
 </html>
