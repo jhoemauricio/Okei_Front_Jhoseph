@@ -101,30 +101,30 @@
                         <!-- DDI país -->
                         <div class="col-12" id="pais-ddi" style="display:none;position:relative;">
                          
-                            <select id="select">
+                            <select id="select" style="position: absolute;">
                             </select>
                           
                         </div>
 
                         <script>
 
-                          // $("#pais-ddi").click(function(){
-                            
-                            
-                          //   var div = document.getElementById("pais-ddi");
-                          //   div.style.height = "300px";
+                          //div recebe true
+                          var div = true;
+                            //aumentar e diminuir div DDI país
+                              $("#pais-ddi").click(function(){
 
-                           
-                          //  $("#select").click(function(){
-                          //   var div = document.getElementById("pais-ddi");
-                          //   div.style.height = "0px";
+                                if(div){
+                                  //div recebe false
+                                  div = false;
+                                  $(this).css('height','125px');
 
+                                }else{
+                                  div = true;
+                                  $(this).css('height','auto');
+                                }
 
-                          //  });
+                              });
 
-                          // });
-
-                    
                         </script>
                         
                         <!--Codigo de Acesso-->

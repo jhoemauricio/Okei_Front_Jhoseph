@@ -27,11 +27,11 @@ $(document).ready(function(){
       $("#select").chosen(
 
         {
+          
           width: "100%",
-        
           no_results_text: "DDI de País não encontrado",
-          disable_search: false,
-          max_shown_results : 5
+          disable_search: false
+
         }
 
       );
