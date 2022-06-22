@@ -17,7 +17,7 @@ $(document).ready(function(){
         const option = document.createElement("option");
 
         option.setAttribute('data-img-src', data[i].flags.png);
-
+        // data[i].cca3 sigla de inicio pais ex: BRA
         option.innerText = data[i].cca3 + " " + data[i].idd.root + data[i].idd.suffixes;
 
         select.appendChild(option);
