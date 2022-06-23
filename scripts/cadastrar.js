@@ -1,6 +1,6 @@
 var hostTreinando = "https://api.okei.online/treinando";
 
-$(document).ready(function(){
+function cadastrar(){
 
    
     var dados = {
@@ -10,34 +10,32 @@ $(document).ready(function(){
         sexo : $("#sexo").val(),
         pais : localStorage.getItem("pais"),
         data_nascimento : $("#data_nascimento").val(),
-        nif_cpf: $("#cpf").val(),
-        rg_passaporte: $("#rg_passaporte").val(),
+        nif: $("#cpf").val(),
+        rg_numero: $("#rg_passaporte").val(),
         validade : $("#validade").val(),
-        fone_contato : $("#fone_contato").val(),
+        numero_telefone : $("#fone_contato").val(),
         email : $("#email").val(),
         senha : $("#senha").val(),
         conf_senha: $("#conf_senha").val(),
       
-        endereco = {
-            andar: "",
-            cdg_postal: "69086020",
-            concelho: "",
-            distrito: "AM",
-            freguesia: "São José Operário",
-            lado: "",
-            localidade: "Manaus",
-            morada: "Rua Rio Napuiau",
-            numero_porta: "325"
+        endereco : {
+          
+            cdg_postal: $("#cep").val(),
+            concelho: $("#uf").val(),
+            distrito: $("#cidade").val(),
+            freguesia: $("#bairro").val(),
+            localidade: $("#complemento").val(),
+            morada: $("#endereco").val(),
+            numero_porta: $("#numero").val()
         },
 
-    }
+        contato : {
 
-    var contato = {
-        codigo : ,
-        numero_telefone: 
-    }
+            codigo : $("#codigo").val(),
+            numero_telefone: $("#fone_contato").val()
 
- 
+        }
+}
 
     dados = JSON.stringify(dados);
 
@@ -56,8 +54,7 @@ $(document).ready(function(){
         success: function(dados){
 
             console.log(dados);
-
-
+            alert('salvou');
 
         },
         
@@ -68,4 +65,4 @@ $(document).ready(function(){
 
     });
 
-});
+}

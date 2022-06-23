@@ -1,17 +1,16 @@
+
 function consultaCep() {
 
-    //Url consulta de Cep
-    var hostCep = "https://api.okei.online/enderecos";
+       //Url consulta de Cep
+       var hostCep = "https://api.okei.online/enderecos";
 
-    cep = $("#cep").val();
+       cep = $("#cep").val();
+   
+       //País do user
+       var pais = localStorage.getItem("pais");
 
-    //País do user
-    var pais = localStorage.getItem("pais");
 
-    if(pais == "BRA"){
-
-        pais = "BR";
-
+    if(pais == "BR"){
 
 
         var dados_consulta_cep = '{"pais": "' + pais + '","cdg_postal": "' + cep + '"}';
@@ -57,7 +56,6 @@ function consultaCep() {
     
                     }, 2500);
     
-                  
     
                     localStorage.setItem("endereco", dados.Logradouro);
                     localStorage.setItem("bairro", dados.Bairro);
@@ -71,6 +69,8 @@ function consultaCep() {
                     document.getElementById("uf").value = localStorage.getItem("uf");
     
                 }
+
+                
     
             },
     
@@ -81,7 +81,7 @@ function consultaCep() {
         });
     
 
-    } 
+    }
     
     if(pais == "PT"){
 
@@ -101,80 +101,47 @@ function consultaCep() {
     
             data: dados_consulta_cep,
             success: function (dados) {
-    
-                // console.log(dados);
 
-                var d = JSON.stringify(dados);
 
-                console.log(d);
-    
-                // if (dados === "O CEP informado não é válido") {
-                //     //funcao de loading
-                //     loadingCep();
-    
                
-                  
-                //     document.getElementById("endereco").value = '';
-                //     document.getElementById("bairro").value = '';
-                //     document.getElementById("cidade").value = '';
-                //     document.getElementById("uf").value = '';
+               
+              
+                console.log(dados);
 
-    
-                // } else {
+                loadingCep();
 
+                for(i =0; i< dados.length; i++){
 
-                //    Object.keys(dados).forEach(function(){
-                    
-                //     console.log(dados[0].Concelho);
-                //    });
-                    
-                   
-
-
-
-
-
-
-
-
-
-                    // //funcao de loading
-                    // loadingCep();
-                  
-                    // localStorage.setItem("morada", dados.Morada);
-                    // localStorage.setItem("concelho", dados.Concelho);
-                    // localStorage.setItem("distrito", dados.Distrito);
-                    // localStorage.setItem("freguesia", dados.Freguesia);
-                    // localStorage.setItem("localidade", dados.Localidade);
-    
-                    // //Resultado de consulta ao Cep
-                    // document.getElementById("endereco").value = localStorage.getItem("morada");
-                    // document.getElementById("uf").value = localStorage.getItem("concelho");
-                    // document.getElementById("cidade").value = localStorage.getItem("distrito");
-                    // document.getElementById("bairro").value = localStorage.getItem("freguesia");
-                    // document.getElementById("complemento").value = localStorage.getItem("localidade");
                 
-                    // console.log(dados.Freguesia);
-                
-
-
-    
+                    localStorage.setItem("morada", dados[i].Morada);
+                    localStorage.setItem("concelho", dados[i].Concelho);
+                    localStorage.setItem("distrito", dados[i].Distrito);
+                    localStorage.setItem("freguesia", dados[i].Freguesia);
+                    localStorage.setItem("localidade", dados[i].Localidade);
+                    
                 }
+
+                    document.getElementById("endereco").value = localStorage.getItem("morada");
+                    document.getElementById("uf").value = localStorage.getItem("concelho");
+                    document.getElementById("cidade").value = localStorage.getItem("distrito");
+                    document.getElementById("bairro").value = localStorage.getItem("freguesia");
+                    document.getElementById("complemento").value = localStorage.getItem("localidade");
+
+
+                },
     
-            // },
     
         }).fail(function (jqXHR, errorThrown) {
     
             console.log(jqXHR.status);
     
-        });
-    
-
-    
-    
-    
+        });   
+        
+      
     
     }
+
+   
 
 
 }

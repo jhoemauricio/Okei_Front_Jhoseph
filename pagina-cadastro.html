@@ -42,6 +42,8 @@
   <link href="assets/css/pace.min.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
+  <script src="scripts/cadastrar.js"></script>
+  <script src="scripts/enviarCodigo.js"></script>
   <script src="scripts/loadingPages.js"></script>
   <script src="scripts/pais.js"></script>
   <script src="scripts/buscaCep.js"></script>
@@ -146,8 +148,8 @@
                           class="fadeIn animated bx bx-male"></i></span>
 
                       <select id="sexo" class="form-control">
-                        <option selected>Masculino</option>
-                        <option>Feminino</option>
+                        <option selected>m</option>
+                        <option>f</option>
                       </select>
                     </div>
 
@@ -203,10 +205,6 @@
                             }
                            
 
-                         
-                          
-
-                            
                            
                            
                             console.log(pais);
@@ -349,9 +347,35 @@
 
                   <div class="col-6">
 
-
+                 	<!-- Button trigger modal -->
+										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();">Finalizar cadastro</button>
+										<!-- Modal -->
+										<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Confirme seu telemóvel</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+                            O código de verificação foi enviado para seu telemóvel
+                            <div class="col-6">
+                              <label class="form-label">TEMPO</label>
+                              <input id="codigo" type="nuber" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
+                            </div>
+                          </div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+														<button type="button" class="btn btn-primary" onclick="cadastrar();">Confirmar</button>
+                            <button type="button" class="btn" style="background-color: #17a2b8;color:white;"> Reenviar Codigo</button>
+													</div>
+												</div>
+											</div>
+										</div>
 
                   </div>
+
+        
 
                 </div>
 
@@ -361,7 +385,7 @@
                 <div class="col-12">
                   <button type="button" class="btn btn-secondary previous"><i class="lni lni-chevron-left"></i></button>
                   <button type="button" class="btn btn-primary next"><i class="lni lni-chevron-right"></i></button>
-                  <button type="button" class="btn btn-success submit"><i class="lni lni-checkmark"></i></button>
+                  <!-- <button type="button" class="btn btn-success submit"><i class="lni lni-checkmark"></i></button> -->
 
                 </div>
 
@@ -371,6 +395,13 @@
 
 
             </div>
+
+
+
+
+
+
+
 
     </main>
 
