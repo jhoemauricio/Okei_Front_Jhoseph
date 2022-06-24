@@ -2,6 +2,7 @@ var hostTreinando = "https://api.okei.online/treinando";
 
 function cadastrar(){
 
+    
    
     var dados = {
 
@@ -13,7 +14,6 @@ function cadastrar(){
         nif: $("#cpf").val(),
         rg_numero: $("#rg_passaporte").val(),
         validade : $("#validade").val(),
-        numero_telefone : $("#fone_contato").val(),
         email : $("#email").val(),
         senha : $("#senha").val(),
         conf_senha: $("#conf_senha").val(),
