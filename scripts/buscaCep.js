@@ -7,14 +7,14 @@ function consultaCep() {
        cep = $("#cep").val();
    
        //País do user
-       var pais = localStorage.getItem("pais");
+      //var pais = localStorage.getItem("pais");
 
+    //Apenas teste pais vindo do formulario
+ pais = $("#pais").val();
 
     if(pais == "BR"){
 
-
         var dados_consulta_cep = '{"pais": "' + pais + '","cdg_postal": "' + cep + '"}';
-
 
         $.ajax({
             url: hostCep,
@@ -35,11 +35,11 @@ function consultaCep() {
                     //funcao de loading
                     loadingCep();
     
-                    setTimeout(function() {
+                    // setTimeout(function() {
     
-                        cepInvalido();
+                    //     cepInvalido();
     
-                    }, 2500);
+                    // }, 2500);
     
                     document.getElementById("endereco").value = '';
                     document.getElementById("bairro").value = '';
@@ -50,11 +50,11 @@ function consultaCep() {
                     // funcao de loading
                     loadingCep();
                     //tempo para exibir a mensagem de cepValido
-                    setTimeout(function() {
+                    // setTimeout(function() {
     
-                        cepValido();
+                    //     cepValido();
     
-                    }, 2500);
+                    // }, 2500);
     
     
                     localStorage.setItem("endereco", dados.Logradouro);
