@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pais</title>
+    <link rel="stylesheet" href="build/css/countrySelect.css">
+    	<!-- Load jQuery from CDN so can run demo immediately -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<script src="build/js/countrySelect.js"></script>
+</head>
+<body>
+
+    <input id="country_selector" type="text">
+
+    <script>
+        	$("#country_selector").countrySelect({
+				 defaultCountry: "br",
+				//  onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+				//  responsiveDropdown: true,
+				// preferredCountries: ['ca', 'gb', 'us']
+			});
+    </script>
+    
+</body>
+</html>
