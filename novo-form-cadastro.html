@@ -25,19 +25,25 @@
   <link rel="stylesheet" type="text/css" href="pluginStep/css/multi-form.css">
   <!-- loader-->
 	<link href="assets/css/pace.min.css" rel="stylesheet" />
-
+ 
 
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
+
+ 
     <!--Select Pais-->
     <script src="pluginFlagPais/build/js/countrySelect.js"></script>
    <!-- Plugin intTelInput -->
    <script src="pluginIntTel/build/js/intlTelInput.js"></script>
 
 
-  <script src="scripts/cadastrar.js"></script>
-  <script src="scripts/loadingPages.js"></script>
-  <script src="scripts/buscaCep.js"></script>
+   <script src="scripts/cadastrar.js"></script>
+   
+   <script src="scripts/loadingPages.js"></script>
+   <script src="scripts/buscaCep.js"></script>
+
+
+ 
   
  
   <title>Página de Cadastro</title>
@@ -89,7 +95,6 @@
                 <!-- <div class="col-12 col-xl-6 order-xl-2" style="background-color: blue;"> -->
                   <div class="card-body p-4 p-sm-5">
                     <h5 class="card-title">Criar conta</h5>
-                
                      <form class="form-body" id="form">
 
                       <div class="tab">
@@ -112,18 +117,36 @@
                             </div>
                           </div>
 
-                            <div class="col-5 col-md-2 col-xl-4" >
+                            <div class="col-12 col-md-6 col-xl-4 col-sm-6" >
                             <label class="form-label">País</label>
                             <div class="ms-auto position-relative">
-                              <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-been-here"></i></div>
+                              <!-- <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-been-here"></i></div> -->
                               <!-- <input id="pais" type="text" class="form-control radius-30 ps-5" placeholder=""> -->
-                              <input id="country_selector" type="text" class="form-control radius-30 ps-5">
+                              <input id="country_selector" type="text" class="form-control radius-30 ps-5" onclick="mudarLabel();">
                             </div>
                             </div>
-                        
+
+                            <script>
+
+                              function mudarLabel(){
+                                 
+                                      if($("#country_selector").val() != "Brazil (Brasil)"){
+
+                                      document.getElementById("label-cpf").innerText = "Contribuinte/NIF/VAT NUMBER";
+                                      document.getElementById("label-rg").innerText = "Passaporte/BI/CC";
+
+                                      }else{
+                                        document.getElementById("label-cpf").innerText = "CPF";
+                                        document.getElementById("label-rg").innerText = "Rg/Passaporte";
+                                      }
+                              }
+                           
+                            </script>
+
+                         
 
                           <div class="col-12 col-md-8 col-lg-4" >
-                            <label class="form-label">CPF</label>
+                            <label class="form-label" id="label-cpf">CPF</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-user"></i></div>
                               <input type="text" class="form-control radius-30 ps-5" id="cpf" placeholder="00000000000">
@@ -131,7 +154,7 @@
                           </div>          
 
                           <div class="col-12 col-md-6">
-                            <label class="form-label">Rg/Passaporte</label>
+                            <label class="form-label" id="label-rg">Rg/Passaporte</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-plane"></i></div>
                               <input type="text" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº">
@@ -207,7 +230,7 @@
                                 <input type="number" class="form-control radius-30 ps-5" placeholder="Buscar cep" id="cep">
                                 <div class="input-group-prepend">
                                   <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon1" onclick="consultaCep();"><i class="lni lni-search"></i></button>
+                                    id="button-addon1" onclick="consultarCep();"><i class="lni lni-search"></i></button>
                                 </div>
                                 </div>
                               </div>
@@ -317,21 +340,23 @@
   <!--end wrapper-->
 
 
-
-
   <script>
     $("#country_selector").countrySelect({
   defaultCountry: "br",
   //  onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-  //  responsiveDropdown: true,
+      // responsiveDropdown: true,
   // preferredCountries: ['ca', 'gb', 'us']
   });
   </script>
 
 
+ 
+
+
 
   <!-- Bootstrap bundle JS -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
+  
 
   <!--plugins-->
   <script src="assets/js/jquery.min.js"></script>
@@ -345,7 +370,6 @@
   <script type="text/javascript" src="pluginStep/js/multi-form.js"></script>
  
 
- 
 
 
 
@@ -403,8 +427,10 @@
 
 
 
-
-
 </body>
+
+
+
+
 
 </html>

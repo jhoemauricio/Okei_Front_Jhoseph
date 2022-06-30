@@ -1,5 +1,7 @@
 
-function consultaCep() {
+function consultarCep() {
+
+
 
        //Url consulta de Cep
        var hostCep = "https://api.okei.online/enderecos";
@@ -10,7 +12,30 @@ function consultaCep() {
       //var pais = localStorage.getItem("pais");
 
     //Apenas teste pais vindo do formulario
- pais = $("#pais").val();
+//   pais = $("#pais").val();
+
+var pais_sel = $("#country_selector").val();
+
+if(pais_sel === "Brazil (Brasil)"){
+    var pais = "BR";
+
+}
+if(pais_sel === "Portugal"){
+    var pais = "PT";
+
+}
+// var pais_sel = $("#country_selector").val();
+
+// console.log(pais_sel);
+
+// if(pais_sel === "Brazil (Brasil)"){
+//     const pais = "BR";
+// }
+
+// if(pais_sel === "Portugal"){
+//     pais = "PT";
+
+// }
 
     if(pais == "BR"){
 
