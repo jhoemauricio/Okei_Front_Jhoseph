@@ -122,28 +122,78 @@
                             <div class="ms-auto position-relative">
                               <!-- <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-been-here"></i></div> -->
                               <!-- <input id="pais" type="text" class="form-control radius-30 ps-5" placeholder=""> -->
-                              <input id="country_selector" type="text" class="form-control radius-30 ps-5" onclick="mudarLabel();">
+                              <input id="country_selector" type="text" class="form-control radius-30 ps-5">
                             </div>
                             </div>
 
                             <script>
 
-                              function mudarLabel(){
+
+                              //-----------Label de CPF, RG mudam se for diferente do BRASIL-----------
+
+                                $("#country_selector").on('change',function(){
+
+                                    if($("#country_selector").val() != "Brazil (Brasil)"){
+
+                                          document.getElementById("label-cpf").innerText = "Contribuinte/NIF/VAT NUMBER";
+                                          document.getElementById("label-rg").innerText = "Passaporte/BI/CC";
+                                    }
+
+                                    if($("#country_selector").val() == "Brazil (Brasil)"){
+
+                                          document.getElementById("label-cpf").innerText = "CPF";
+                                          document.getElementById("label-rg").innerText = "Rg/Passaporte";
+
+                                    }
+
+                              });
+
+                              // ----------------Seleciona Pais do usuario--------------------
+
+                              //dispara quando usuario altera a opcao selecionada
+                                $("#country_selector").on('change',function(){
+
+
+                                   console.log($("#country_selector").val());
+                                    
+                                    var nomePais =  $("#country_selector").val();
+
+                                     localStorage.setItem("paisUser",nomePais);
+
+                                    paisUser();
                                  
-                                      if($("#country_selector").val() != "Brazil (Brasil)"){
+                                });
 
-                                      document.getElementById("label-cpf").innerText = "Contribuinte/NIF/VAT NUMBER";
-                                      document.getElementById("label-rg").innerText = "Passaporte/BI/CC";
+                                //Para acessar o objeto country
+                                var myData = $("#country_selector").countrySelect("getSelectedCountryData");
+                                var myData = $.fn.countrySelect.getCountryData();
 
-                                      }else{
-                                        document.getElementById("label-cpf").innerText = "CPF";
-                                        document.getElementById("label-rg").innerText = "Rg/Passaporte";
-                                      }
-                              }
+                                function paisUser(){
+
+
+                                        Object.keys(myData).forEach(function(item){
+
+                                              if((localStorage.getItem("paisUser")) === (myData[item].name)){
+
+                                                  //console.log(myData[item].iso2);
+                                                  //acessa propriedade do objeto iso2 ex: BR, AG
+                                                  pais = myData[item].iso2;
+
+                                                  //converte para maiusculo
+                                                  pais = pais.toUpperCase();
+
+                                                  console.log(pais);
+                                                  localStorage.setItem("pais",pais);
+
+
+                                              }
+
+                                        });
+                                }
+
+                                
                            
                             </script>
-
-                         
 
                           <div class="col-12 col-md-8 col-lg-4" >
                             <label class="form-label" id="label-cpf">CPF</label>
@@ -242,7 +292,7 @@
                                 <label class="form-label">Endereço/Morada</label>
                                   <div class="ms-auto position-relative">
                                     <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-home"></i></div>
-                                  <input id="endereco" type="text" class="form-control radius-30 ps-5"  disabled>
+                                  <input id="endereco" type="text" class="form-control radius-30 ps-5">
                                 </div>
                               </div>
           
@@ -258,15 +308,15 @@
           
                               <div class="col-12">
                                 <label class="form-label">Bairro/Freguesia</label>
-                                <input id="bairro" type="text" class="form-control radius-30 ps-5"  disabled>
+                                <input id="bairro" type="text" class="form-control radius-30 ps-5">
                               </div>
                               <div class="col-12">
                                 <label class="form-label">Cidade/Distrito</label>
-                                <input  id="cidade" type="text" class="form-control radius-30 ps-5"  disabled>
+                                <input  id="cidade" type="text" class="form-control radius-30 ps-5">
                               </div>
                               <div class="col-12">
                                 <label class="form-label">UF/Concelho</label>
-                                <input id="uf" type="text" class="form-control radius-30 ps-5"  disabled>
+                                <input id="uf" type="text" class="form-control radius-30 ps-5">
                               </div>
                             </div>
                             
@@ -340,13 +390,18 @@
   <!--end wrapper-->
 
 
+  <!--PLugin de País-->
   <script>
+
+    // Plugin de País
     $("#country_selector").countrySelect({
-  defaultCountry: "br",
-  //  onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-      // responsiveDropdown: true,
-  // preferredCountries: ['ca', 'gb', 'us']
-  });
+      //   defaultCountry: 'br',
+      // // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      // // responsiveDropdown: true,
+      // preferredCountries: ['ca', 'gb', 'us']
+
+    });
+
   </script>
 
 
