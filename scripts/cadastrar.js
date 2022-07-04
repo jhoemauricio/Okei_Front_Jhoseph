@@ -2,8 +2,7 @@ var hostTreinando = "https://api.okei.online/treinando";
 
 function cadastrar(){
 
-    
-   
+
     var dados = {
 
         nome : $("#nome").val(),
@@ -32,7 +31,7 @@ function cadastrar(){
         contato : {
 
             codigo : $("#codigo").val(),
-            numero_telefone: $("#fone_contato").val()
+            numero_telefone: $("#phone").val()
 
         }
 }
@@ -53,8 +52,10 @@ function cadastrar(){
 
         success: function(dados){
 
+            esconder();
             console.log(dados);
-            alert('salvou');
+           
+          
 
         },
         
@@ -62,7 +63,12 @@ function cadastrar(){
     }).fail(function(jqXHR, errorThrown){
 
         console.log(jqXHR.status);
-
+ 
+    
     });
 
 }
+
+
+
+

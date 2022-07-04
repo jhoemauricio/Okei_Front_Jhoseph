@@ -38,7 +38,7 @@
 
 
    <script src="scripts/cadastrar.js"></script>
-   
+   <script src="scripts/enviarCodigo.js"></script>
    <script src="scripts/loadingPages.js"></script>
    <script src="scripts/buscaCep.js"></script>
 
@@ -94,7 +94,9 @@
 
                 <!-- <div class="col-12 col-xl-6 order-xl-2" style="background-color: blue;"> -->
                   <div class="card-body p-4 p-sm-5">
+                    <div id="conta">
                     <h5 class="card-title">Criar conta</h5>
+                    </div>
                      <form class="form-body" id="form">
 
                       <div class="tab">
@@ -324,39 +326,89 @@
                       </div>
 
                       <div class="tab">
+                      
+                        <div id="ultimoStep">
+                            <p class="card-text mb-4">Torne-se um membro Okei!</p>
 
-                        <p class="card-text mb-4">Torne-se um membro Okei!</p>
 
-
-                          <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Finalizar cadastro</button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Confirme seu telemóvel</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    O código de verificação foi enviado para seu telemóvel
-                                    <div class="col-6">
-                                      <label class="form-label">TEMPO</label>
-                                      <input id="codigo" type="nuber" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
+                              <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();">Finalizar cadastro</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirme seu telemóvel</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        O código de verificação foi enviado para seu telemóvel
+                                        <div class="col-6">
+                                          <label class="form-label">TEMPO</label>
+                                          <input id="codigo" type="nuber" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
+                                        </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="cadastrar();esconderStep();">Confirmar</button>
+                                        <button type="button" class="btn" style="background-color: #17a2b8;color:white;" data-bs-dismiss="modal" onclick="esconder();">Reenviar Codigo</button>
+                                      </div>
                                     </div>
                                   </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" onclick="cadastrar();">Confirmar</button>
-                                    <button type="button" class="btn" style="background-color: #17a2b8;color:white;">Reenviar Codigo</button>
+                                </div>
+                          </div>
+
+                        <div id="ultimoStep2" style="display:none;">
+                            <div class="row g-2 col-md-12" >
+                              <div class="col-12 col-md-6">
+                                <div class="ms-auto position-relative">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <h4>Parabéns! cadastro concluído com sucesso!</h4>
+                                    <p>Em breve você terá acesso ao Portal OKEI,
+                                      nele você poderá acompanhar seus pontos no Clube OKEI,
+                                      poderá se candidatar em nossos treinamentos e muito mais!</p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
+                        </div>
 
+                        <script>
+
+                          function esconderStep(){
+
+                            $("#ultimoStep").hide();
+                            $("#conta").hide();
+                            $("#ultimoStep2").show();
+
+                                    var dataAtual = new Date();
+                                    dataAtual = JSON.stringify(dataAtual);
+
+                                    var data = dataAtual.replace(" ",'');
+                                
+                                    var dataAno = data.split('-');
+                                    dataFor = dataAno[0].replace('"',"");
+                                  // console.log(dataFor);
+
+                                    var data_nascimento= $("#data_nascimento").val();
+                                    var data_nascimento = data_nascimento.split('-');
+                                    var idadeUsuario =  dataFor - data_nascimento[0];
+
+                                    if(idadeUsuario>=5){
+
+                                      console.log(idadeUsuario);
+
+
+                                    }else{
+                                      console.log('nao pode');
+                                    }
+                            }
+
+                        </script>
 
                       </div>
-
 
                       <div class="row">
                       <div class="col-2 mt-3 col-md-8">

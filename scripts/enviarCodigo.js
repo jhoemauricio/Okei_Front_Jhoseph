@@ -3,8 +3,11 @@ hostEnviaCod = "https://api.okei.online/enviar_codigo_v2";
 
 function enviarCodigo(){
 
-    var tel = "+55"+$("#fone_contato").val();
-    tel = JSON.stringify(tel);
+    telemovel = {
+        identificador : $("#phone").val()
+    }
+
+    tel = JSON.stringify(telemovel);
 
     $.ajax({
 
@@ -19,6 +22,7 @@ function enviarCodigo(){
 
         success: function(dados){
             console.log(dados);
+        
 
         }
 
