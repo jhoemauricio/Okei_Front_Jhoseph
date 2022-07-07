@@ -60,9 +60,33 @@ function habilitarBt(){
 
 //   }
 // }
+ 
+function validarSenha(){
 
-
-   
-
+  var senha = $("#senha").val();
+  var senha1 = JSON.stringify(senha);
 
  
+  // /[a-zA-Z0-9/\W|_/]/g;
+  var regex = /[a-z]/g;
+  var regex1 = /[A-Z]/g;
+  var regex2 = /[0-9]/g;
+ 
+ var s = senha1.match(regex);
+ var s1 = senha1.match(regex1);
+ var s2 = senha1.match(regex2);
+
+
+ if((s != null && s.length >=1) && (s1 != null && s1.length >=1) && (s2 != null && s2.length >=1)){
+  console.log('senha Forte');
+
+ }else{
+  console.log('nao é forte');
+ }
+
+
+
+}
+
+      
+
