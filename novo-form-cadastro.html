@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="pluginIntTel/build/css/intlTelInput.css">
 
   <!--Css plugin multiStepForm -->
-  <link rel="stylesheet" type="text/css" href="pluginStep/css/multi-form.css">
+  <!-- <link rel="stylesheet" type="text/css" href="pluginStep/css/multi-form.css"> -->
   <!-- loader-->
 	<link href="assets/css/pace.min.css" rel="stylesheet" />
  
@@ -36,7 +36,8 @@
    <!-- Plugin intTelInput -->
    <script src="pluginIntTel/build/js/intlTelInput.js"></script>
 
-
+   <!-- <script src="scripts/validacaoFormularioCadastro.js"></script> -->
+   <script src="scripts/checarIdentificador.js"></script>
    <script src="scripts/cadastrar.js"></script>
    <script src="scripts/enviarCodigo.js"></script>
    <script src="scripts/loadingPages.js"></script>
@@ -72,7 +73,7 @@
                 </ul>
                 <div class="d-flex ms-3 gap-3">
                   <a href="login.html" class="btn btn-primary btn-sm px-4 radius-30">Login</a>
-                  <a href="novo-form-cadastro.html" class="btn btn-white btn-sm px-4 radius-30">Register</a>
+                  <a href="novo-form-cadastro.html" class="btn btn-white btn-sm px-4 radius-30">Cadastrar</a>
                 </div>
               </div>
             </div>
@@ -94,20 +95,21 @@
 
                 <!-- <div class="col-12 col-xl-6 order-xl-2" style="background-color: blue;"> -->
                   <div class="card-body p-4 p-sm-5">
-                    <div id="conta">
+                    
                     <h5 class="card-title">Criar conta</h5>
-                    </div>
-                     <form class="form-body" id="form">
+                   
+                     <form class="form-body needs-validation" id="form" novalidate>
 
-                      <div class="tab">
-                        <p class="card-text mb-4">Seja um membro Okei em poucos passos!</p>
+                      <div id="tab1">
+                        <p class="card-text mb-4">Seja um membro Okei em poucos passos! <b>1/3</b></p>
                         <div class="row g-2 col-md-12">
 
                           <div class="col-12 col-md-12 col-lg-10">
                             <label class="form-label">Nome</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-person-circle"></i></div>
-                              <input type="text" class="form-control radius-30 ps-5" id="nome" placeholder="Nome completo">
+                              <input type="text" class="form-control radius-30 ps-5" id="nome" placeholder="Nome completo"  required>
+                             
                             </div>
                           </div>
 
@@ -115,7 +117,7 @@
                             <label class="form-label">Nascimento</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-calendar"></i></div>
-                              <input type="date" class="form-control radius-30 ps-5" id="data_nascimento" >
+                              <input type="date" class="form-control radius-30 ps-5" id="data_nascimento">
                             </div>
                           </div>
 
@@ -124,12 +126,11 @@
                             <div class="ms-auto position-relative">
                               <!-- <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-been-here"></i></div> -->
                               <!-- <input id="pais" type="text" class="form-control radius-30 ps-5" placeholder=""> -->
-                              <input id="country_selector" type="text" class="form-control radius-30 ps-5">
+                              <input id="country_selector" type="text" class="form-control radius-30 ps-5" required>
                             </div>
                             </div>
 
                             <script>
-
 
                               //-----------Label de CPF, RG mudam se for diferente do BRASIL-----------
 
@@ -139,6 +140,7 @@
 
                                           document.getElementById("label-cpf").innerText = "Contribuinte/NIF/VAT NUMBER";
                                           document.getElementById("label-rg").innerText = "Passaporte/BI/CC";
+
                                     }
 
                                     if($("#country_selector").val() == "Brazil (Brasil)"){
@@ -155,14 +157,11 @@
                               //dispara quando usuario altera a opcao selecionada
                                 $("#country_selector").on('change',function(){
 
-
                                    console.log($("#country_selector").val());
-                                    
-                                    var nomePais =  $("#country_selector").val();
+                                   var nomePais =  $("#country_selector").val();
+                                   localStorage.setItem("paisUser",nomePais);
+                                   paisUser();
 
-                                     localStorage.setItem("paisUser",nomePais);
-
-                                    paisUser();
                                  
                                 });
 
@@ -172,13 +171,12 @@
 
                                 function paisUser(){
 
-
                                         Object.keys(myData).forEach(function(item){
-
                                               if((localStorage.getItem("paisUser")) === (myData[item].name)){
 
                                                   //console.log(myData[item].iso2);
                                                   //acessa propriedade do objeto iso2 ex: BR, AG
+
                                                   pais = myData[item].iso2;
 
                                                   //converte para maiusculo
@@ -187,9 +185,7 @@
                                                   console.log(pais);
                                                   localStorage.setItem("pais",pais);
 
-
                                               }
-
                                         });
                                 }
 
@@ -201,7 +197,7 @@
                             <label class="form-label" id="label-cpf">CPF</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-user"></i></div>
-                              <input type="text" class="form-control radius-30 ps-5" id="cpf" placeholder="00000000000">
+                              <input type="text" class="form-control radius-30 ps-5" id="cpf" placeholder="00000000000" minlength="11" maxlength="11" required>
                             </div>
                           </div>          
 
@@ -209,21 +205,23 @@
                             <label class="form-label" id="label-rg">Rg/Passaporte</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-plane"></i></div>
-                              <input type="text" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº">
+                              <input type="text" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" minlength="12" maxlength="12" required>
                             </div>
                           </div>
+                          
                           <div class="col-12 col-md-4">
                             <label class="form-label">Validade</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-calendar"></i></div>
-                              <input type="date" class="form-control radius-30 ps-5" id="validade">
+                              <input type="date" class="form-control radius-30 ps-5" id="validade" required>
                             </div>
                           </div>
+
                           <div class="col-12 col-md-4">
                             <label class="form-label">Telefone</label>
                             <div class="ms-auto position-relative">
                               <!-- <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-mobile-alt"></i></div> -->
-                              <input type="tel" class="form-control radius-30 ps-5" id="phone">
+                              <input type="tel" class="form-control radius-30 ps-5" id="phone"  required>
                             </div>
                           </div>
 
@@ -231,7 +229,7 @@
                             <label for="inputEmailAddress" class="form-label">Email</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-mail-send"></i></div>
-                              <input type="email" class="form-control radius-30 ps-5" id="email" placeholder="Email">
+                              <input type="email" class="form-control radius-30 ps-5" id="email" placeholder="Email" required>
                             </div>
                           </div>
 
@@ -239,7 +237,7 @@
                             <label class="form-label">Sexo</label>
                             <div class="ms-auto position-relative"></div>
                             <div class="input-group">
-                              <select id="sexo" class="form-control radius-30 ps-3" aria-label="Default select example">
+                              <select id="sexo" class="form-control radius-30 ps-3" aria-label="Default select example"  required>
                                 <option value="m">Masculino</option>
                                 <option value="f">Feminino</option>
                               </select>
@@ -250,7 +248,7 @@
                             <label class="form-label">Senha</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-lock-alt"></i></div>
-                              <input type="password" class="form-control radius-30 ps-5" id="senha" placeholder="Password">
+                              <input type="password" class="form-control radius-30 ps-5" id="senha" placeholder="Password"  minlength="6" required>
                             </div>
                           </div>
                                
@@ -258,31 +256,34 @@
                             <label class="form-label">Confirmação de senha</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-lock-alt"></i></div>
-                              <input type="password" class="form-control radius-30 ps-5" id="conf_senha" placeholder="Password">
+                              <input type="password" class="form-control radius-30 ps-5" id="conf_senha" placeholder="Password"  minlength="6" required>
                             </div>
+                          </div>
+
+                          <div id="botao" class="col-12 col-md-10">
+                            <button id="botaoIr" class="btn btn-primary" onclick="identificador();">Proximo</button>
+                          
                           </div>
                     
                         </div>
-                       
+                 
                       </div>
 
-                      <div class="tab">
+                      <div id="tab2" >
 
-                        <p class="card-text mb-4">Estamos quase lá!</p>
-                       
+                        <p class="card-text mb-4">Estamos quase lá! <b>2/3</b></p>
+
                           <div class="row g-2 col-md-12" >
 
                             <div class="col-12 col-md-6">
 
-
-                              
                               <label class="form-label">Cep</label>
                               <div class="ms-auto position-relative">
                                 <div class="input-group mb-3">
-                                <input type="number" class="form-control radius-30 ps-5" placeholder="Buscar cep" id="cep">
+                                <input type="number" class="form-control radius-30 ps-5" placeholder="Buscar cep" id="cep"  required>
                                 <div class="input-group-prepend">
                                   <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon1" onclick="consultarCep();"><i class="lni lni-search"></i></button>
+                                    id="button-addon1" onclick="consultarCep();" ><i class="lni lni-search"></i></button>
                                 </div>
                                 </div>
                               </div>
@@ -291,140 +292,156 @@
                             <div id="enderecoConteudo">
 
                               <div class="col-12">
+
                                 <label class="form-label">Endereço/Morada</label>
                                   <div class="ms-auto position-relative">
                                     <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-home"></i></div>
-                                  <input id="endereco" type="text" class="form-control radius-30 ps-5">
+                                  <input type="text" id="endereco" type="text" class="form-control radius-30 ps-5"  required>
                                 </div>
                               </div>
-          
+
                               <div class="col-6 col-lg-2 col-md-2">
                                 <label class="form-label">Numero</label>
-                                <input id="numero" type="number" class="form-control radius-30 ps-5" >
+                                <input type="number" id="numero" type="number" class="form-control radius-30 ps-5"  required>
                               </div>
-          
+
                               <div class="col-12">
                                 <label class="form-label">Complemento/localidade</label>
-                                <input id="complemento" type="text" class="form-control radius-30 ps-5" >
+                                <input type="text" id="complemento" type="text" class="form-control radius-30 ps-5" >
                               </div>
           
                               <div class="col-12">
                                 <label class="form-label">Bairro/Freguesia</label>
-                                <input id="bairro" type="text" class="form-control radius-30 ps-5">
+                                <input type="text" id="bairro" type="text" class="form-control radius-30 ps-5"  required>
                               </div>
+
                               <div class="col-12">
                                 <label class="form-label">Cidade/Distrito</label>
-                                <input  id="cidade" type="text" class="form-control radius-30 ps-5">
+                                <input type="text" id="cidade" type="text" class="form-control radius-30 ps-5" required>
                               </div>
+
                               <div class="col-12">
                                 <label class="form-label">UF/Concelho</label>
-                                <input id="uf" type="text" class="form-control radius-30 ps-5">
+                                <input type="text" id="uf" type="text" class="form-control radius-30 ps-5" minlength="2" maxlength="2" required>
                               </div>
+
+                           
+                        
                             </div>
-                            
+
+                            <div class="col-12 col-md-10">
+                              <button class="btn btn-primary" onclick="irUltimo();">Proximo</button>
+                              <button class="btn btn-warning" onclick="voltar();">Voltar</button>
+                            </div>
+
                           </div>
+
                       </div>
 
-                      <div class="tab">
+                      <div id="tab3">
+                        <p class="card-text mb-4">Pronto! finalize seu cadastro</p>
+
+                        
+                          <!-- <div id="ultimoStep"> -->
+                              <!-- <p class="card-text mb-4">Torne-se um membro Okei!</p> -->
+                                <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();">Finalizar</button>
+             
+
+                              <!-- Modal -->
+                               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Confirme seu telemóvel</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      O código de verificação foi enviado para seu telemóvel
+                                      <div class="col-6">
+                                        <label class="form-label">TEMPO</label>
+                                        <input id="codigo" type="nuber" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="enviarCodigo();">Confirmar</button>
+                                      <button type="button" class="btn" style="background-color: #17a2b8;color:white;" data-bs-dismiss="modal" onclick="enviarCodigo();">Reenviar código</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+                            <!-- </div> -->
+
+                            <!-- <div id="ultimoStep2" style="display:none;">  -->
+                              <div class="row g-2 col-md-12" >
+                                <div class="col-12 col-md-6">
+                                  <div class="ms-auto position-relative">
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                          <h4 style="color:#1c65ee">Parabéns! cadastro concluído com sucesso</h4>
+                                          <p style="text-align: justify;">Você agora é um membro OKEI! em breve terá acesso ao nosso Portal,
+                                            nele poderá acompanhar teus pontos no Clube OKEI,
+                                            poderá se candidatar em nossos treinamentos e muito mais!<a href="login.html">Acesse o portal</a></p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <!-- </div> -->
                       
-                        <div id="ultimoStep">
-                            <p class="card-text mb-4">Torne-se um membro Okei!</p>
-
-
-                              <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();">Finalizar cadastro</button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Confirme seu telemóvel</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                        O código de verificação foi enviado para seu telemóvel
-                                        <div class="col-6">
-                                          <label class="form-label">TEMPO</label>
-                                          <input id="codigo" type="nuber" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
-                                        </div>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="cadastrar();esconderStep();">Confirmar</button>
-                                        <button type="button" class="btn" style="background-color: #17a2b8;color:white;" data-bs-dismiss="modal" onclick="esconder();">Reenviar Codigo</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                          </div>
-
-                        <div id="ultimoStep2" style="display:none;">
-                            <div class="row g-2 col-md-12" >
-                              <div class="col-12 col-md-6">
-                                <div class="ms-auto position-relative">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    <h4>Parabéns! cadastro concluído com sucesso!</h4>
-                                    <p>Em breve você terá acesso ao Portal OKEI,
-                                      nele você poderá acompanhar seus pontos no Clube OKEI,
-                                      poderá se candidatar em nossos treinamentos e muito mais!</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-
-                        <script>
-
-                          function esconderStep(){
-
-                            $("#ultimoStep").hide();
-                            $("#conta").hide();
-                            $("#ultimoStep2").show();
-
-                                    var dataAtual = new Date();
-                                    dataAtual = JSON.stringify(dataAtual);
-
-                                    var data = dataAtual.replace(" ",'');
-                                
-                                    var dataAno = data.split('-');
-                                    dataFor = dataAno[0].replace('"',"");
-                                  // console.log(dataFor);
-
-                                    var data_nascimento= $("#data_nascimento").val();
-                                    var data_nascimento = data_nascimento.split('-');
-                                    var idadeUsuario =  dataFor - data_nascimento[0];
-
-                                    if(idadeUsuario>=5){
-
-                                      console.log(idadeUsuario);
-
-
-                                    }else{
-                                      console.log('nao pode');
-                                    }
-                            }
-
-                        </script>
-
                       </div>
-
-                      <div class="row">
-                      <div class="col-2 mt-3 col-md-8">
-                          <button type="button" class="col-md-4 btn btn-secondary previous"><i class="lni lni-chevron-left"></i></button>
-                          <button type="button" class="col-md-4 btn btn-primary next"><i class="lni lni-chevron-right"></i></button>
-                      </div>
-                      </div>
-                          
                       </form>
                     </div>
+
+                    <script>
+                         
+                      //---------------------   Botoes ir e voltar ---------------------
+                   
+                      // document.getElementById("nome").addEventListener("input", function() {
+                      //     if((this.value) == '') {
+                      //       document.getElementById("botaoIr").disabled = true;
+                           
+                      //     } else {
+                           
+                      //       document.getElementById("botaoIr").disabled = false;
+                      //     }
+                      //   });
+
+                  
+
+
+                      // function ir(){
+
+                      //  document.querySelector('#tab1').style.display = "none";
+                      //  document.querySelector('#tab2').style.display = "block";
+
+                      // }
+
+                      // function voltar(){
+                      //   $("#tab2").hide();
+                      //   $("#tab1").show();
+                      // }
+
+                      // function irUltimo(){
+                     
+                      //   $("#tab2").hide();
+                      //   $("#tab3").show();
+                      // }
+
+                    
+                    
+                    </script>
+
+                                        
+         
+
                    
                  <!-- </div> -->
                 </div>
-                <div class="col-12 col-xl-4 order-xl-2" >
-                  <img src="assets/images/error/auth-img-7.png" class="img-fluid" alt=""> 
-                </div> 
+                  <div class="col-12 col-xl-4 order-xl-2">
+                    <img src="assets/images/error/auth-img-7.png" class="img-fluid" alt=""> 
+                  </div> 
                 </div>
               </div>
             </div>
@@ -457,10 +474,6 @@
   </script>
 
 
- 
-
-
-
   <!-- Bootstrap bundle JS -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   
@@ -474,14 +487,10 @@
   <script src="pluginLoading/js/jquery.loadingModal.js"></script>
 
   <!-- script multiStepForm -->
-  <script type="text/javascript" src="pluginStep/js/multi-form.js"></script>
+  <!-- <script type="text/javascript" src="pluginStep/js/multi-form.js"></script> -->
  
-
-
-
-
  <!-- MultStepForm -->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
 
     $(document).ready(function () {
       $("#form").multiStepForm(
@@ -495,7 +504,7 @@
     });
 
 
-  </script>
+  </script> -->
 
 <!-- intTelInput Plugin -->
 <script>
@@ -526,6 +535,34 @@
       });
   
     </script>
+
+    <script>
+              // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          'use strict'
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.querySelectorAll('.needs-validation')
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('click', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+        })()
+
+
+    </script>
+
+
+
 
 
 

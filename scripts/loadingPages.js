@@ -41,7 +41,7 @@
     function loadingCep(){
 
             //texto e tipo da animação
-            $("#body").loadingModal({ text: 'Buscando Cep...', animation: 'chasingDots' });
+            $("#body").loadingModal({ text: 'Estamos buscando o Cep...', animation: 'chasingDots' });
     
             setTimeout(function() {
                 //destroy o loading após 2500 milisegundos
