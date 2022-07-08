@@ -6,6 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+
+   <!--Notificaçoes-->
+   <link rel="stylesheet" href="assets/plugins/notifications/css/lobibox.min.css" />
+   <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+   <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+   <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
   <!-- Bootstrap CSS -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/css/bootstrap-extended.css" rel="stylesheet" />
@@ -153,7 +159,6 @@
                               });
 
                               // ----------------Seleciona Pais do usuario--------------------
-
                               //dispara quando usuario altera a opcao selecionada
                                 $("#country_selector").on('change',function(){
 
@@ -168,9 +173,7 @@
                                 //Para acessar o objeto country
                                 var myData = $("#country_selector").countrySelect("getSelectedCountryData");
                                 var myData = $.fn.countrySelect.getCountryData();
-
                                 function paisUser(){
-
                                         Object.keys(myData).forEach(function(item){
                                               if((localStorage.getItem("paisUser")) === (myData[item].name)){
 
@@ -221,7 +224,7 @@
                             <label class="form-label">Telefone</label>
                             <div class="ms-auto position-relative">
                               <!-- <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-mobile-alt"></i></div> -->
-                              <input type="tel" class="form-control radius-30 ps-5" id="phone"  required>
+                              <input type="tel" class="form-control radius-30 ps-5" id="phone" required>
                             </div>
                           </div>
 
@@ -248,21 +251,29 @@
                             <label class="form-label">Senha</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-lock-alt"></i></div>
-                              <input type="password" class="form-control radius-30 ps-5" id="senha" placeholder="Password"  minlength="6" required>
+                              <input type="password" class="form-control radius-30 ps-5" id="senha" placeholder="Password" required>
                             </div>
                           </div>
+                          
+                          <!-- 
+                          <style>
+                            #senha:focus {
+                            border-color: #fa0202;
+                            box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgb(248, 134, 146);
+                            }
+                          </style>
+                        -->
                                
                           <div class="col-12 col-md-10">
                             <label class="form-label">Confirmação de senha</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-lock-alt"></i></div>
-                              <input type="password" class="form-control radius-30 ps-5" id="conf_senha" placeholder="Password"  minlength="6" required>
+                              <input type="password" class="form-control radius-30 ps-5" id="conf_senha" placeholder="Password"  required>
                             </div>
                           </div>
 
                           <div id="botao" class="col-12 col-md-10">
-                            <button id="botaoIr" type="button" class="btn btn-primary" onclick="validarSenha();">Proximo</button>
-                          
+                            <button id="botaoIr" type="button" class="btn btn-primary" onclick="validarSenha();identificador();senhaIguais();">Proximo</button>
                           </div>
                     
                         </div>
@@ -325,8 +336,6 @@
                                 <input type="text" id="uf" type="text" class="form-control radius-30 ps-5" minlength="2" maxlength="2" required>
                               </div>
 
-                           
-                        
                             </div>
 
                             <div class="col-12 col-md-10">
@@ -472,6 +481,16 @@
     });
 
   </script>
+
+
+
+
+<!--notification js -->
+<script src="assets/plugins/notifications/js/lobibox.min.js"></script>
+<script src="assets/plugins/notifications/js/notifications.min.js"></script>
+<script src="assets/plugins/notifications/js/notification-custom-script.js"></script>
+<script src="assets/js/pace.min.js"></script>
+
 
 
   <!-- Bootstrap bundle JS -->

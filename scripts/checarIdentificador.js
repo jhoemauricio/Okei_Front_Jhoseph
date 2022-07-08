@@ -1,8 +1,6 @@
 function identificador(){
 
-
-
-    if($("#phone").val() != ''){
+    if(($("#phone").val() != '')){
 
        var ident = $("#phone").val();
 
@@ -23,12 +21,15 @@ function identificador(){
     dados = JSON.stringify(dados);
 
     $.ajax({
+
         url: "https://api.okei.online/checar_identificador",
         type: 'POST',
         data: dados,
 
         success: function(dados){
+
             console.log(dados);
+            numeroOuEmailJaCadastrado();
 
         },
 
@@ -38,4 +39,35 @@ function identificador(){
         console.log(jqXHR.status);
 
     });
+}
+
+
+function numeroOuEmailJaCadastrado(){
+
+    if($("#phone").val() != ''){
+
+            Lobibox.notify('warning', {
+            pauseDelayOnHover: true,
+            icon: '',
+            continueDelayOnInactiveTab: false,
+            position: 'bottom right',
+            size: 'mini',
+            msg: 'Numero já cadastrado'
+    
+        });
+
+    }
+
+    if($("#email").val() != ''){
+
+        Lobibox.notify('warning', {
+        pauseDelayOnHover: true,
+        icon: '',
+        continueDelayOnInactiveTab: false,
+        position: 'bottom right',
+        size: 'mini',
+        msg: 'Email já cadastrado'
+            
+        });
+    }
 }

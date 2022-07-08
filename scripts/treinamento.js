@@ -1,11 +1,8 @@
 function carregar(pagina){
 
-    $("#perfil-usuario-conteudo").hide();
-
-      $("#mostrar-pagina").fadeIn('slow');
-
+     $("#perfil-usuario-conteudo").hide();
+     $("#mostrar-pagina").fadeIn('slow');
      $("#mostrar-pagina").load(pagina);
-
 
     var n = 1;
     var qtd = 1100;

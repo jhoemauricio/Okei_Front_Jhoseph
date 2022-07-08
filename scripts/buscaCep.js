@@ -1,8 +1,6 @@
 
 function consultarCep() {
 
-
-
        //Url consulta de Cep
        var hostCep = "https://api.okei.online/enderecos";
 
@@ -55,7 +53,6 @@ function consultarCep() {
     
                     // }, 2500);
     
-    
                     localStorage.setItem("endereco", dados.Logradouro);
                     localStorage.setItem("bairro", dados.Bairro);
                     localStorage.setItem("cidade", dados.Localidade);
@@ -84,7 +81,6 @@ function consultarCep() {
     
     if(pais == "PT"){
 
-
         var dados_consulta_cep = '{"pais": "' + pais + '","cdg_postal": "' + cep + '"}';
 
 
@@ -100,17 +96,12 @@ function consultarCep() {
     
             data: dados_consulta_cep,
             success: function (dados) {
-
-
-               
-               
               
                 console.log(dados);
 
                 loadingCep();
 
                 for(i =0; i< dados.length; i++){
-
                 
                     localStorage.setItem("morada", dados[i].Morada);
                     localStorage.setItem("concelho", dados[i].Concelho);
@@ -119,30 +110,22 @@ function consultarCep() {
                     localStorage.setItem("localidade", dados[i].Localidade);
                     
                 }
-
                     document.getElementById("endereco").value = localStorage.getItem("morada");
                     document.getElementById("uf").value = localStorage.getItem("concelho");
                     document.getElementById("cidade").value = localStorage.getItem("distrito");
                     document.getElementById("bairro").value = localStorage.getItem("freguesia");
                     document.getElementById("complemento").value = localStorage.getItem("localidade");
 
-
                 },
-    
     
         }).fail(function (jqXHR, errorThrown) {
     
             console.log(jqXHR.status);
     
         });   
-        
-      
     
     }
-
    
-
-
 }
 
 
