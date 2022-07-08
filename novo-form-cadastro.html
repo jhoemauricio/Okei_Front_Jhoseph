@@ -273,14 +273,34 @@
                           </div>
 
                           <div id="botao" class="col-12 col-md-10">
-                            <button id="botaoIr" type="button" class="btn btn-primary" onclick="validarSenha();identificador();senhaIguais();">Proximo</button>
+                            <button id="botaoIr" type="button" class="btn btn-primary" onclick="validarSenha();identificador();senhaIguais();ir();">Proximo</button>
                           </div>
                     
                         </div>
                  
                       </div>
 
-                      <div id="tab2" >
+                      <script>
+
+                        function ir(){
+
+                          $("#tab1").hide();
+                          $("#tab2").show();
+
+                        }
+
+                        function irUltimo(){
+                          $("#tab2").hide();
+                          $("#tab3").show();
+                        }
+
+                        function voltar(){
+                          $("#tab2").hide();
+                          $("#tab1").show();
+                        }
+                      </script>
+
+                      <div id="tab2" style="display: none;">
 
                         <p class="card-text mb-4">Estamos quase lá! <b>2/3</b></p>
 
@@ -347,7 +367,7 @@
 
                       </div>
 
-                      <div id="tab3">
+                      <div id="tab3" style="display: none;">
                         <p class="card-text mb-4">Pronto! finalize seu cadastro</p>
 
                         
@@ -374,7 +394,7 @@
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="enviarCodigo();">Confirmar</button>
+                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="enviarCodigo();conf();">Confirmar</button>
                                       <button type="button" class="btn" style="background-color: #17a2b8;color:white;" data-bs-dismiss="modal" onclick="enviarCodigo();">Reenviar código</button>
                                     </div>
                                   </div>
@@ -382,24 +402,33 @@
                               </div> 
                             <!-- </div> -->
 
-                            <!-- <div id="ultimoStep2" style="display:none;">  -->
-                              <div class="row g-2 col-md-12" >
-                                <div class="col-12 col-md-6">
-                                  <div class="ms-auto position-relative">
-                                    <div class="input-group mb-3">
-                                      <div class="input-group-prepend">
-                                          <h4 style="color:#1c65ee">Parabéns! cadastro concluído com sucesso</h4>
-                                          <p style="text-align: justify;">Você agora é um membro OKEI! em breve terá acesso ao nosso Portal,
-                                            nele poderá acompanhar teus pontos no Clube OKEI,
-                                            poderá se candidatar em nossos treinamentos e muito mais!<a href="login.html">Acesse o portal</a></p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <!-- </div> -->
+                          
                       
                       </div>
+                      <div id="ultimoStep2" style="display:none;"> 
+                        <div class="row g-2 col-md-12" >
+                          <div class="col-12 col-md-6">
+                            <div class="ms-auto position-relative">
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <h4 style="color:#1c65ee">Parabéns! cadastro concluído com sucesso</h4>
+                                    <p style="text-align: justify;">Você agora é um membro OKEI! em breve terá acesso ao nosso Portal,
+                                      nele poderá acompanhar teus pontos no Clube OKEI,
+                                      poderá se candidatar em nossos treinamentos e muito mais!<a href="login.html"> Acesse o portal</a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <script>
+                        function conf(){
+                          $("#tab3").hide();
+                          $("#ultimoStep2").show();
+
+                        }
+                      </script>
                       </form>
                     </div>
 
@@ -461,7 +490,7 @@
        <!--end page main-->
 
        <footer class="bg-white border-top p-3 text-center fixed-bottom">
-        <p class="mb-0">Copyright © 2021. All right reserved.</p>
+        <p class="mb-0">Copyright © 2022. All right reserved.</p>
       </footer>
 
   </div>
