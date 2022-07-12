@@ -24,42 +24,7 @@ function validarDataNasc(){
 
 }
 
-function habilitarBt(){
 
-  const nome = document.querySelector('#nome').value;
-  const nascimento = document.querySelector('#data_nascimento').value;
-  const pais = document.querySelector('#country_selector').value;
-  const cpf = document.querySelector('#cpf').value;
-  const rg_pass = document.querySelector('#rg_passaporte').value;
-  const validade = document.querySelector('#validade').value;
-  const tel = document.querySelector('#phone').value;
-  const email = document.querySelector('#email').value;
-  const sexo = document.querySelector('#sexo').value;
-  const senha = document.querySelector('#senha').value;
-  const senha_conf = document.querySelector('#conf_senha').value;
-
-  if((nome != '') && (nascimento != '') && (pais != '') && (cpf != '') && (rg_pass != '') && (validade != '') && (tel != '') && (email != '') && (sexo != '') && (senha != '') && (senha_conf != '')){
-    
-    document.querySelector('#botaoIr').disabled = false;
-
-  }
-
-}
-
-// function habilitarBtEnd(){
-
-//   const cep = document.querySelector('#cep').value;
-//   const numero = document.querySelector('#numero').value;
-//   const bairro = document.querySelector('#bairro').value;
-//   const cidade = document.querySelector('#cidade').value;
-//   const uf = document.querySelector('#uf').value;
-
-//   if((numero != '') && (bairro != '') && (cidade != '') && (uf != '') && (cep != '')){
-
-//     document.querySelector('#botaoIrUltimo').disabled = false;
-
-//   }
-// }
  
 function validarSenha(){
 
@@ -78,19 +43,6 @@ function validarSenha(){
 
  if((s != null && s.length >=1 && senha.length >=6 && email != '') && (s1 != null && s1.length >=1 && senha.length >=6 && email != '') && (s2 != null && s2.length >=1 && senha.length >=6 && email != '')){
     console.log('senha Forte');
-
-    // $("#senha").css('border-color','#7eca54');
-    // $("#senha").css('box-shadow','inset 0 1px 1px rgb(220,245,222), 0 0 8px rgb(220,245,222)');
-
-    // $("#senha").css('border-color','#28a745');
-    // $("#senha").css('focus');
-    // $("#senha").css('box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25)');
-
-
-  //   focus {
-  //     border-color: #28a745;
-  //     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-  // } 
 
  }else{
   
@@ -149,6 +101,92 @@ function senhaIguais(){
 
 }
 
+//Válida CPF
 function validarCpf(){
+
+  //Se o país selecionado for BRASIL
+  if($("#country_selector").val() == "Brazil (Brasil)"){
+
+    var cpf = document.querySelector('#cpf').value;
+
+    var i;
+    s = cpf;
+    var cpf = s.substr(0,9);
+    var dv = s.substr(9,2);
+    var d1 = 0;
+    var v = false;
+ 
+    for (i = 0; i < 9; i++){
+        d1 += cpf.charAt(i)*(10-i);
+    }
+    if (d1 == 0){
+        // alert("CPF Inválido");
+
+          Lobibox.notify('warning', {
+          pauseDelayOnHover: true,
+          icon: '',
+          continueDelayOnInactiveTab: false,
+          position: 'bottom right',
+          size: 'mini',
+          msg: 'CPF inválido'
   
+      });
+
+        v = true;
+        return false;
+    }
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9) d1 = 0;
+    if (dv.charAt(0) != d1){
+
+      Lobibox.notify('warning', {
+        pauseDelayOnHover: true,
+        icon: '',
+        continueDelayOnInactiveTab: false,
+        position: 'bottom right',
+        size: 'mini',
+        msg: 'CPF inválido'
+
+    });
+
+        v = true;
+        return false;
+    }
+ 
+    d1 *= 2;
+    for (i = 0; i < 9; i++){
+        d1 += cpf.charAt(i)*(11-i);
+    }
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9) d1 = 0;
+    if (dv.charAt(1) != d1){
+        // alert("CPF Inválido")
+        
+        Lobibox.notify('warning', {
+          pauseDelayOnHover: true,
+          icon: '',
+          continueDelayOnInactiveTab: false,
+          position: 'bottom right',
+          size: 'mini',
+          msg: 'CPF inválido'
+  
+      });
+        v = true;
+        return false;
+    }
+    if (!v) {
+        // alert(cpf + "CPF Válido");
+        
+      //   Lobibox.notify('success', {
+      //     pauseDelayOnHover: true,
+      //     icon: '',
+      //     continueDelayOnInactiveTab: false,
+      //     position: 'bottom right',
+      //     size: 'mini',
+      //     msg: 'CPF válido'
+  
+      // });
+    }
+  }
+
 }
