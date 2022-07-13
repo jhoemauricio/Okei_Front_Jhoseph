@@ -30,8 +30,9 @@ function identificador(){
 
     }).fail(function(jqXHR, errorThrown){
 
-        console.log(jqXHR.status);
-
+        // console.log(jqXHR.status);
+        // validarDataNasc();
+    
     });
     
     
@@ -41,7 +42,6 @@ function identificador(){
     if($("#email").val() != ''){
 
         var ident = $("#email").val();
-
             
        dados = {
 
@@ -64,15 +64,17 @@ function identificador(){
 
         },
 
-
     }).fail(function(jqXHR, errorThrown){
 
-        console.log(jqXHR.status);
-
+        // console.log(jqXHR.status);
+        // validarDataNasc();
+       
+        
     });
 
     }
 
+   
     
 }
 
@@ -93,8 +95,9 @@ function emailJaCadastrado(){
                 msg: 'O '+identi+' já possui cadastro'
         
             });
+
         }
-    }
+}
 
 function telJaCadastrado(){
 

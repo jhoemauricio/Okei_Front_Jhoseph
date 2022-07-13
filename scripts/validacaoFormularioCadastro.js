@@ -21,7 +21,6 @@ function validarDataNasc(){
     }else{
        
       //  console.log('nao pode se inscrever data'+$("#data_nascimento").val());
-
       Lobibox.notify('warning', {
         pauseDelayOnHover: true,
         icon: '',
