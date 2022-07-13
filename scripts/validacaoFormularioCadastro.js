@@ -15,11 +15,22 @@ function validarDataNasc(){
 
     if(idadeUsuario>=5){
 
-      console.log(idadeUsuario);
+      // console.log(idadeUsuario);
+      validarSenha();
 
     }else{
        
-       console.log('nao pode se inscrever data'+$("#data_nascimento").val());
+      //  console.log('nao pode se inscrever data'+$("#data_nascimento").val());
+
+      Lobibox.notify('warning', {
+        pauseDelayOnHover: true,
+        icon: '',
+        continueDelayOnInactiveTab: false,
+        position: 'bottom right',
+        size: 'mini',
+        msg: 'Ainda não possui idade mínima'
+
+    });
     }
 
 }
@@ -30,6 +41,7 @@ function validarSenha(){
 
   var email = $("#email").val();
   var senha = $("#senha").val();
+  var conf_senh = $("#conf_senha").val();
   var senha1 = JSON.stringify(senha);
  
   // /[a-zA-Z0-9/\W|_/]/g;
@@ -41,8 +53,14 @@ function validarSenha(){
  var s1 = senha1.match(regex1);
  var s2 = senha1.match(regex2);
 
- if((s != null && s.length >=1 && senha.length >=6 && email != '') && (s1 != null && s1.length >=1 && senha.length >=6 && email != '') && (s2 != null && s2.length >=1 && senha.length >=6 && email != '')){
-    console.log('senha Forte');
+ if((s != null && s.length >=1 && senha.length >=6 && email != '') && (s1 != null && s1.length >=1 && senha.length >=6 && email != '') && (s2 != null && s2.length >=1 && senha.length >=6 && email != '') && (senha == conf_senh)){
+    // console.log('senha Forte');
+
+    // Se a senha for validada entao permite ir pra o proxima tab
+    var tab1 = document.querySelector('#tab1');
+    var tab2 = document.querySelector('#tab2');
+    tab1.style.display = 'none';
+    tab2.style.display = 'block';
 
  }else{
   
@@ -54,11 +72,10 @@ function validarSenha(){
 
 function msgSenhaErro(){
 
-  if((($("#senha").val() != '') && $("#email").val() != '')){
+  if((($("#senha").val() != '') && $("#email").val() != '') && ($("#senha").val() == $("#conf_senha").val())){
 
     // $("#senha").css('border-color',' #fa0202');
     // $("#senha").css('box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgb(248, 134, 146);');
-  
 
     Lobibox.notify('warning', {
           pauseDelayOnHover: true,

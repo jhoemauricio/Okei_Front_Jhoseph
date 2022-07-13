@@ -30,7 +30,17 @@ function consultarCep() {
     
                 if (dados === "O CEP informado não é válido") {
                     //funcao de loading
-                    loadingCep();
+                    // loadingCep();
+
+                    Lobibox.notify('warning', {
+                        pauseDelayOnHover: true,
+                        icon: '',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        size: 'mini',
+                        msg: 'O CEP informado não é válido'
+                
+                    });
     
                     // setTimeout(function() {
     

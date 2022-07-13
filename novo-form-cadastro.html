@@ -273,8 +273,8 @@
                           </div>
 
                           <div id="botao" class="col-12 col-md-10">
-                            <button id="botaoIr" type="button" class="btn btn-primary" onclick="validarSenha();identificador();senhaIguais();validarCpf();ir();">Proximo</button>
-                          </div>
+                            <button id="botaoIr" type="button" class="btn btn-outline-primary" onclick="identificador();senhaIguais();validarCpf();ir();">Proximo</button>
+                          </div> 
                     
                         </div>
                  
@@ -340,8 +340,8 @@
                             <!-- </div> -->
 
                             <div class="col-12 col-md-10">
-                              <button type="button" class="btn btn-primary" onclick="irUltimo();">Proximo</button>
-                              <button type="button" class="btn btn-warning" onclick="voltar();">Voltar</button>
+                              <button type="button" class="btn btn-outline-primary" onclick="irUltimo();">Proximo</button>
+                              <button type="button" class="btn btn-outline-secondary" onclick="voltar();">Voltar</button>
                             </div>
 
                           </div>
@@ -552,14 +552,6 @@
 
 
 
-
-
-
-
-
-
-
-
 </body>
 <script>
 
@@ -586,11 +578,9 @@
     }
 
     else {
-     
-      var tab1 = document.querySelector('#tab1');
-      var tab2 = document.querySelector('#tab2');
-      tab1.style.display = 'none';
-      tab2.style.display = 'block';
+
+      validarDataNasc();
+      
     }
   }
 
