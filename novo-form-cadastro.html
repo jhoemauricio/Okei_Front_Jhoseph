@@ -200,7 +200,7 @@
                             <label class="form-label" id="label-cpf">CPF</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-user"></i></div>
-                              <input type="text" class="form-control radius-30 ps-5" id="cpf" placeholder="00000000000" minlength="11" maxlength="11" required>
+                              <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==11) return false;" class="form-control radius-30 ps-5" id="cpf" placeholder="00000000000" minlength="11" maxlength="11" required>
                             </div>
                           </div>          
 
@@ -208,7 +208,7 @@
                             <label class="form-label" id="label-rg">Rg/Passaporte</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-plane"></i></div>
-                              <input type="text" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" maxlength="12" required>
+                              <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" max="12" required>
                             </div>
                           </div>
                           
@@ -224,7 +224,7 @@
                             <label class="form-label">Telefone</label>
                             <div class="ms-auto position-relative">
                               <!-- <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-mobile-alt"></i></div> -->
-                              <input type="tel" class="form-control radius-30 ps-5" id="phone" required>
+                              <input  type="tel" class="form-control radius-30 ps-5" id="phone" required>
                             </div>
                           </div>
 
@@ -273,7 +273,7 @@
                           </div>
 
                           <div id="botao" class="col-12 col-md-10">
-                            <button id="botaoIr" type="button" class="btn btn-outline-primary" onclick="identificador();senhaIguais();validarCpf();ir();">Proximo</button>
+                            <button id="botaoIr" type="button" class="btn btn-outline-primary" onclick="senhaIguais();validarCpf();ir();">Proximo</button>
                           </div> 
                     
                         </div>
@@ -355,7 +355,7 @@
                           <!-- <div id="ultimoStep"> -->
                               <!-- <p class="card-text mb-4">Torne-se um membro Okei!</p> -->
                                 <!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();">Finalizar</button>
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();relogio();">Finalizar</button>
              
 
                               <!-- Modal -->
@@ -367,23 +367,26 @@
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      O código de verificação foi enviado para seu telemóvel
+                                      <label id="msg">O código de verificação foi enviado para seu telemóvel</label>
                                       <div class="col-6">
-                                        <label class="form-label">TEMPO</label>
+                                        <label class="form-label"><i class="lni lni-timer"></i><b><span id="spanRelogio"></span></b></label>
                                         <input id="codigo" type="nuber" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
                                       </div>
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="enviarCodigo();conf();">Confirmar</button>
-                                      <button type="button" class="btn" style="background-color: #17a2b8;color:white;" data-bs-dismiss="modal" onclick="enviarCodigo();">Reenviar código</button>
+                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="enviarCodigo();conf();cadastrar();">Confirmar</button>
+                                      <button type="button" class="btn"  style="background-color: #17a2b8;color:white;" onclick="enviarCodigo();reenviarCodMsg();">Reenviar código</button>
                                     </div>
                                   </div>
                                 </div>
                               </div> 
+                              <script>
+                                function reenviarCodMsg(){
+                                  document.getElementById("msg").innerText = "Um novo Código foi enviado...";
+                                }
+                              </script>
                             <!-- </div> -->
-
-                          
                       
                       </div>
                       <div id="ultimoStep2" style="display:none;"> 
@@ -578,6 +581,7 @@
     }
 
     else {
+
      identificador();
       // validarDataNasc();
       // validarSenha();
@@ -587,7 +591,6 @@
   function irUltimo(){
 
     const form = document.querySelector('#form');
-
     var cep = document.querySelector('#cep').value;
     var endereco = document.querySelector('#endereco').value;
     var numero = document.querySelector('#numero').value;
@@ -622,6 +625,32 @@
     // $("#tab2").hide();
     // $("#tab1").show();
   }
+</script>
+
+<script>
+  	var min, seg;		min = 4;		seg = 1		
+	function relogio(){			
+		if((min > 0) || (seg > 0)){				
+			if(seg == 0){					
+				seg = 59;					
+				min = min - 1	
+			}				
+			else{					
+				seg = seg - 1;				
+			}				
+			if(min.toString().length == 1){					
+				min = "0" + min;				
+			}				
+			if(seg.toString().length == 1){					
+				seg = "0" + seg;				
+			}				
+			document.getElementById('spanRelogio').innerHTML = min + ":" + seg;				
+			setTimeout('relogio()', 1000);			
+		}			
+		else{				
+			document.getElementById('spanRelogio').innerHTML = "00:00";			
+		}		
+	}	
 </script>
 
 
