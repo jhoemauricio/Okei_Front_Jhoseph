@@ -16,7 +16,10 @@ function validarDataNasc(){
     if(idadeUsuario>=5){
 
       // console.log(idadeUsuario);
-      validarSenha();
+      // validarSenha();
+
+      //Retorna True se estiver certo
+      return true;
 
     }else{
        
@@ -56,20 +59,22 @@ function validarSenha(){
     // console.log('senha Forte');
 
     // Se a senha for validada entao permite ir pra o proxima tab
-    var tab1 = document.querySelector('#tab1');
-    var tab2 = document.querySelector('#tab2');
-    tab1.style.display = 'none';
-    tab2.style.display = 'block';
+    // var tab1 = document.querySelector('#tab1');
+    // var tab2 = document.querySelector('#tab2');
+    // tab1.style.display = 'none';
+    // tab2.style.display = 'block';
+
+    return true;
 
  }else{
   
-    msgSenhaErro();
+    senhaInvalida();
 
  }
 
 }
 
-function msgSenhaErro(){
+function senhaInvalida(){
 
   if((($("#senha").val() != '') && $("#email").val() != '') && ($("#senha").val() == $("#conf_senha").val())){
 
@@ -87,6 +92,13 @@ function msgSenhaErro(){
       });
 
   }
+
+  if($("#senha").val() != $("#conf_senha").val() && $("#email").val() != ''){
+
+    msgSenhaIguais();
+
+  }
+
  
 }
 
@@ -107,15 +119,15 @@ function msgSenhaIguais(){
  
 }
 
-function senhaIguais(){
+// function senhaIguais(){
 
-  if($("#senha").val() != $("#conf_senha").val() && $("#email").val() != ''){
+//   if($("#senha").val() != $("#conf_senha").val() && $("#email").val() != ''){
 
-    msgSenhaIguais();
+//     msgSenhaIguais();
 
-  }
+//   }
 
-}
+// }
 
 //Válida CPF
 function validarCpf(){
@@ -191,6 +203,8 @@ function validarCpf(){
         return false;
     }
     if (!v) {
+
+      return cpfValido  = 'Cpf válido';
         // alert(cpf + "CPF Válido");
         
       //   Lobibox.notify('success', {

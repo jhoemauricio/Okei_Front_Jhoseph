@@ -1,47 +1,149 @@
-function identificador(){
+function ident(){
+
+       
 
     if($("#email").val() != ""){
 
-        var identificador = $("#email").val();
+    
 
+        var identificador = $("#email").val();
+    
+                var dados = {
+
+                identificador: identificador
+
+                }
+
+                dados = JSON.stringify(dados);
+
+                $.ajax({
+                url: "https://api.okei.online/checar_identificador",
+                type: 'POST',
+                data: dados,
+
+                success: function(dados, jqXHR){
+                    
+                    resultEmail = true;
+                    // console.log(jqXHR+' Email');
+                    emailJaCadastrado();
+
+                }
+
+
+                }).fail(function(jqXHR, errorThrow){
+
+                    resultEmail = false;
+                     mostrarTab2();
+
+                });
+                        
+    
     }
 
     if($("#phone").val() != ""){
 
-        var identificador = $("#phone").val();
 
-    }
-
-    var dados = {
-
-    identificador: identificador
-
-    }
-
-    var dados = JSON.stringify(dados);
-    $.ajax({
-    url: "https://api.okei.online/checar_identificador",
-    type: 'POST',
-    data: dados,
-
-    success: function(dados){
-        
-        telJaCadastrado();
-
-    }
-
-
-    }).fail(function(jqXHR, errorThrow){
-
-    // console.log(jqXHR.status);
+        var identificador1 = $("#phone").val();
     
-    validarDataNasc();
-    // $("#passo1").hide();
-    // $("#passo2").show();
+                var dados = {
 
-    });
+                identificador: identificador1
+
+                }
+
+                dados = JSON.stringify(dados);
+
+                $.ajax({
+                url: "https://api.okei.online/checar_identificador",
+                type: 'POST',
+                data: dados,
+
+                success: function(dados, jqXHR){
+
+                     resultTel = true;
+                    // console.log(jqXHR+' Telefone');
+                    telJaCadastrado();
+                    
+                }
+
+
+                }).fail(function(jqXHR, errorThrow){
+
+                    resultTel = false;
+                     mostrarTab2();
+
+                });
+            
+
+    }
+
 
 }
+
+function mostrarTab2(){
+
+    var valDataNasc = validarDataNasc();
+    var valSen = validarSenha();
+    var valCpf = validarCpf();
+
+        if((resultTel != true) && (resultEmail != true) && (valDataNasc == true) && (valSen == true) && (valCpf == 'Cpf válido')){
+
+            var tab1 = document.querySelector('#tab1');
+            var tab2 = document.querySelector('#tab2');
+            tab1.style.display = 'none';
+            tab2.style.display = 'block';
+
+        }
+}
+
+
+
+
+
+// function identificador(){
+
+//     if($("#email").val() != ""){
+
+//         var identificador = $("#email").val();
+
+//     }
+
+//     if($("#phone").val() != ""){
+
+//         var identificador = $("#phone").val();
+
+//     }
+
+//     var dados = {
+
+//     identificador: identificador
+
+//     }
+
+//     var dados = JSON.stringify(dados);
+//     $.ajax({
+//     url: "https://api.okei.online/checar_identificador",
+//     type: 'POST',
+//     data: dados,
+
+//     success: function(dados){
+        
+//         telJaCadastrado();
+
+//     }
+
+
+//     }).fail(function(jqXHR, errorThrow){
+
+//     // console.log(jqXHR.status);
+    
+//     // validarDataNasc();
+//     // $("#passo1").hide();
+//     // $("#passo2").show();
+
+//     });
+
+// }
 
 
 // function identificador(){

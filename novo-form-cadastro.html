@@ -278,7 +278,7 @@
                           </div>
 
                           <div id="botao" class="col-12 col-md-10">
-                            <button id="botaoIr" type="button" class="btn btn-outline-primary" onclick="senhaIguais();validarCpf();ir();">Proximo</button>
+                            <button id="botaoIr" type="button" class="btn btn-outline-primary" onclick="ir();">Proximo</button>
                           </div> 
                     
                         </div>
@@ -603,17 +603,27 @@
     var senha = document.querySelector('#senha').value;
     var conf_senha = document.querySelector('#conf_senha').value;
 
-    if((nome === "") || (cpf === "") || (nascimento === "") || (pais === "") || (passaporte === "") || (tel === "") || (email === "") || (sexo === "") || (senha === "") || (conf_senha === "")){
+        if((nome === "") || (cpf === "") || (nascimento === "") || (pais === "") || (passaporte === "") || (tel === "") || (email === "") || (sexo === "") || (senha === "") || (conf_senha === "")){
 
-      form.reportValidity();
-    }
+          form.reportValidity();
+        }
 
-    else {
+        else {
 
-     identificador();
-      // validarDataNasc();
-      // validarSenha();
-    }
+          ident();
+          // var valDataNasc = validarDataNasc();
+          // var valSen = validarSenha();
+          // var valCpf = validarCpf();
+
+          // if((ide != true) && (valDataNasc == true) && (valSen == true) && (valCpf == true)){
+              
+          //     var tab1 = document.querySelector('#tab1');
+          //     var tab2 = document.querySelector('#tab2');
+          //     tab1.style.display = 'none';
+          //     tab2.style.display = 'block';
+
+          // }
+        }
   }
 
   function irUltimo(){
