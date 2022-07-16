@@ -62,8 +62,13 @@ function cadastrar(){
 
     }).fail(function(jqXHR, errorThrown){
 
-        console.log(jqXHR.status);
- 
+        var erro = JSON.parse(jqXHR.responseText);
+        // console.log(erro);
+
+        Object.keys(erro).forEach(function(item){
+            console.log(erro[item]);
+
+        });
     
     });
 

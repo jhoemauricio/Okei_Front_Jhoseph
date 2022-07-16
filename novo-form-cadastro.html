@@ -173,6 +173,7 @@
                                 //Para acessar o objeto country
                                 var myData = $("#country_selector").countrySelect("getSelectedCountryData");
                                 var myData = $.fn.countrySelect.getCountryData();
+
                                 function paisUser(){
                                         Object.keys(myData).forEach(function(item){
                                               if((localStorage.getItem("paisUser")) === (myData[item].name)){
@@ -208,9 +209,13 @@
                             <label class="form-label" id="label-rg">Rg/Passaporte</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-plane"></i></div>
-                              <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" max="12" required>
-                            </div>
+                                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" maxlength="12" required>
+                              </div>
                           </div>
+                          <script>
+
+                            
+                          </script>
                           
                           <div class="col-12 col-md-4">
                             <label class="form-label">Validade</label>
@@ -370,12 +375,20 @@
                                       <label id="msg">O código de verificação foi enviado para seu telemóvel</label>
                                       <div class="col-6">
                                         <label class="form-label"><i class="lni lni-timer"></i><b><span id="spanRelogio"></span></b></label>
-                                        <input id="codigo" type="nuber" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
+                                        <input id="codigo" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" class="form-control radius-5 ps-3" maxlength="4" minlength="4" placeholder="insira seu codigo aqui">
                                       </div>
+
+                                      <div id="alerta" style="display:none;">
+                                        <div
+                                          class="alert border-0 border-danger border-start border-4 bg-light-danger alert-dismissible fade show">
+                                          <div class="text-danger">Codigo não informado</div>
+                                        </div>
+                                      </div>
+
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="enviarCodigo();conf();cadastrar();">Confirmar</button>
+                                      <button id="conf" type="button" class="btn btn-primary" onclick="enviarCodigo();confi();cadastrar();">Confirmar</button>
                                       <button type="button" class="btn"  style="background-color: #17a2b8;color:white;" onclick="enviarCodigo();reenviarCodMsg();">Reenviar código</button>
                                     </div>
                                   </div>
@@ -389,36 +402,49 @@
                             <!-- </div> -->
                       
                       </div>
-                      <div id="ultimoStep2" style="display:none;"> 
-                        <div class="row g-2 col-md-12" >
-                          <div class="col-12 col-md-6">
-                            <div class="ms-auto position-relative">
-                              <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <h4 style="color:#1c65ee">Parabéns! cadastro concluído com sucesso</h4>
-                                    <p style="text-align: justify;">Você agora é um membro OKEI! em breve terá acesso ao nosso Portal,
-                                      nele poderá acompanhar teus pontos no Clube OKEI,
-                                      poderá se candidatar em nossos treinamentos e muito mais!<a href="login.html"> Acesse o portal</a></p>
+                              <div id="ultimoStep2" style="display:none;"> 
+                                <div class="row g-2 col-md-12" >
+                                  <div class="col-12 col-md-6">
+                                    <div class="ms-auto position-relative">
+                                      <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <h4 style="color:#1c65ee">Parabéns! cadastro concluído com sucesso</h4>
+                                            <p style="text-align: justify;">Você agora é um membro OKEI! em breve terá acesso ao nosso Portal,
+                                              nele poderá acompanhar teus pontos no Clube OKEI,
+                                              poderá se candidatar em nossos treinamentos e muito mais!<a href="login.html"> Acesse o portal</a></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
                       <script>
-                        function conf(){
-                          $("#tab3").hide();
-                          $("#ultimoStep2").show();
 
+                        function confi(){
+
+                            if($("#codigo").val() == ""){
+
+                              $("#alerta").fadeIn('slow');
+                              setTimeout(function() {
+                                $("#alerta").fadeOut('slow');
+                              }, 1500);
+                       
+                              }else{
+
+                                $("#exampleModal").modal('hide');
+                                $("#tab3").hide();
+                                $("#ultimoStep2").show();
+
+                              }
                         }
+
                       </script>
+
                       </form>
                     </div>
                                         
-         
-
-                   
+                            
                  <!-- </div> -->
                 </div>
                   <div class="col-12 col-xl-4 order-xl-2">
@@ -503,6 +529,7 @@
 
   var input = document.querySelector("#phone");
        intlTelInput(input, {
+
         // allowDropdown: false,
         // autoHideDialCode: false,
         // autoPlaceholder: "off",
@@ -518,11 +545,14 @@
         //  hiddenInput: "full_number",
         // initialCountry: "auto",
         // localizedCountries: { 'de': 'Deutschland' },
+
          nationalMode: false,
+
         // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
         // placeholderNumberType: "MOBILE",
         // preferredCountries: ['cn', 'jp'],
         // separateDialCode: true,
+
         utilsScript: "pluginIntTel/build/js/utils.js",
       });
   
@@ -532,7 +562,6 @@
               // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
           'use strict'
-
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.querySelectorAll('.needs-validation')
 
@@ -549,7 +578,6 @@
               }, false)
             })
         })()
-
 
     </script>
 
