@@ -1,6 +1,6 @@
 function ident(){
 
-       
+    loadingAguarde();
 
     if($("#email").val() != ""){
 

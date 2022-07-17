@@ -30,7 +30,7 @@ function consultarCep() {
     
                 if (dados === "O CEP informado não é válido") {
                     //funcao de loading
-                    // loadingCep();
+                    loadingCepFormCadastro();
 
                     Lobibox.notify('warning', {
                         pauseDelayOnHover: true,
@@ -55,7 +55,7 @@ function consultarCep() {
     
                 } else {
                     // funcao de loading
-                    loadingCep();
+                    loadingCepFormCadastro();
                     //tempo para exibir a mensagem de cepValido
                     // setTimeout(function() {
     
@@ -81,8 +81,19 @@ function consultarCep() {
             },
     
         }).fail(function (jqXHR, errorThrown) {
+
+            loadingCepFormCadastro();
     
             console.log(jqXHR.status);
+            Lobibox.notify('warning', {
+                pauseDelayOnHover: true,
+                icon: '',
+                continueDelayOnInactiveTab: false,
+                position: 'bottom right',
+                size: 'mini',
+                msg: 'O CEP informado não é válido'
+        
+            });
     
         });
     
@@ -109,7 +120,7 @@ function consultarCep() {
               
                 console.log(dados);
 
-                loadingCep();
+                loadingCepFormCadastro();
 
                 for(i =0; i< dados.length; i++){
                 
@@ -131,11 +142,25 @@ function consultarCep() {
         }).fail(function (jqXHR, errorThrown) {
     
             console.log(jqXHR.status);
+            loadingCepFormCadastro();
     
         });   
     
     }
    
+}
+
+function loadingCepFormCadastro(){
+
+    //texto e tipo da animação
+    $("#body-form-cadastro").loadingModal({ text: 'Estamos buscando o Cep...', animation: 'chasingDots' });
+
+    setTimeout(function() {
+        //destroy o loading após 2500 milisegundos
+        $("#body-form-cadastro").loadingModal('destroy');
+        
+    }, 1700);
+
 }
 
 

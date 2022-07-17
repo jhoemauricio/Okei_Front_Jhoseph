@@ -8,7 +8,7 @@
 
     }
 
-
+   
  //-----------------------------Loading Perfil de Usuario ---------------------------
   
     //loading de atualizacao de dados usuario
@@ -89,3 +89,27 @@
         });
     }
 
+//--------------------LOADING DE ESPERA
+
+    function loadingAguarde(){
+
+        $("#body-form-cadastro").loadingModal({ text: 'Aguarde...', animation: 'wanderingCubes' });
+        setTimeout(function () {
+
+            $("#body-form-cadastro").loadingModal('destroy');
+
+        }, 1200);
+
+    }
+
+// --------- EFECTS LOADING --------------
+//rotatingPlane
+// wave
+// wanderingCubes
+// spinner
+// chasingDots
+// threeBounce
+// circle
+// cubeGrid
+// fadingCircle
+// foldingCube
