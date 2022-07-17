@@ -143,6 +143,15 @@ function consultarCep() {
     
             console.log(jqXHR.status);
             loadingCepFormCadastro();
+            Lobibox.notify('warning', {
+                pauseDelayOnHover: true,
+                icon: '',
+                continueDelayOnInactiveTab: false,
+                position: 'bottom right',
+                size: 'mini',
+                msg: 'O Codigo Postal informado não é válido'
+        
+            });
     
         });   
     

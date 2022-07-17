@@ -86,13 +86,20 @@ function mostrarTab2(){
     var valSen = validarSenha();
     var valCpf = validarCpf();
 
-        if((resultTel != true) && (resultEmail != true) && (valDataNasc == true) && (valSen == true) && (valCpf == 'Cpf válido')){
+        if((resultTel != true) && (resultEmail != true) && (valDataNasc == true) && (valSen == true) && (valCpf == 'Cpf válido') && (localStorage.getItem("pais") == "BR")){
 
             var tab1 = document.querySelector('#tab1');
             var tab2 = document.querySelector('#tab2');
             tab1.style.display = 'none';
             tab2.style.display = 'block';
 
+        }
+        if((resultTel != true) && (resultEmail != true) && (valDataNasc == true) && (valSen == true) && (localStorage.getItem("pais") != "BR")){
+            
+            var tab1 = document.querySelector('#tab1');
+            var tab2 = document.querySelector('#tab2');
+            tab1.style.display = 'none';
+            tab2.style.display = 'block';
         }
 }
 
