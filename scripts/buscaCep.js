@@ -157,6 +157,21 @@ function consultarCep() {
     
     }
    
+
+
+if((pais != "PT" && pais != "BR") || (pais == "")){
+
+    Lobibox.notify('warning', {
+        pauseDelayOnHover: true,
+        icon: '',
+        continueDelayOnInactiveTab: false,
+        position: 'bottom right',
+        size: 'mini',
+        msg: 'O Codigo Postal ou CEP informado não é válido'
+
+    });
+
+}
 }
 
 function loadingCepFormCadastro(){
