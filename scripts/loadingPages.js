@@ -94,7 +94,7 @@
     function loadingAguarde(){
 
         $("#body-form-cadastro").loadingModal({ text: 'Aguarde...', animation: 'wanderingCubes' });
-        setTimeout(function () {
+        setTimeout(function() {
 
             $("#body-form-cadastro").loadingModal('destroy');
 
