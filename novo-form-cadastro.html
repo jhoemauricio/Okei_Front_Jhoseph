@@ -142,6 +142,8 @@
 
                                 $("#country_selector").on('change',function(){
 
+                                    document.querySelector('#cpf').value = "";
+
                                     if($("#country_selector").val() != "Brazil (Brasil)"){
 
                                           document.getElementById("label-cpf").innerText = "Contribuinte/NIF/VAT NUMBER";
@@ -153,6 +155,7 @@
 
                                           document.getElementById("label-cpf").innerText = "CPF";
                                           document.getElementById("label-rg").innerText = "Rg/Passaporte";
+                                          
 
                                     }
 
@@ -167,6 +170,7 @@
                                    localStorage.setItem("paisUser",nomePais);
                                    paisUser();
 
+                                  
                                  
                                 });
 
@@ -175,6 +179,7 @@
                                 var myData = $.fn.countrySelect.getCountryData();
 
                                 function paisUser(){
+
                                         Object.keys(myData).forEach(function(item){
                                               if((localStorage.getItem("paisUser")) === (myData[item].name)){
 
@@ -190,11 +195,11 @@
                                                   localStorage.setItem("pais",pais);
 
                                               }
-                                        });
-                                }
 
-                                
-                           
+                                        });
+
+                                }
+                              
                             </script>
 
                           <div class="col-12 col-md-8 col-lg-4" >
@@ -212,8 +217,8 @@
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" maxlength="12" required>
                               </div>
                           </div>
-                          <script>
 
+                          <script>
                             
                           </script>
                           
@@ -354,13 +359,52 @@
                       </div>
 
                       <div id="tab3" style="display: none;">
+
+                        <p>Termo de Consentimento</p>
+
+                        <div id="check-box1">
+                            <p style="text-align: justify;"><input class="form-check-input" type="checkbox" value="" id="check1" onclick="check();"> Li e aceito os termos da Política de privacidade (OKEI)</p>
+                        </div>
+                        
+                        <div id="check-box2">
+                            <p style="text-align: justify;"><input class="form-check-input" type="checkbox" value="" id="check2" onclick="check();"> Autorizo a Roda dos Sonhos Unipessoal,Ltda. a contactar-me,
+                            designadamente, através de meios de comunicações eletrónicos
+                            (SMS/EMAIL/TELEFONE) para me informar de ofertas promocionais,
+                            outras ações de marketing e avisos em geral.</p>
+                        </div>
+                       
+
+
                         <p class="card-text mb-4">Pronto! finalize seu cadastro</p>
+                      
+                        
+                        <script>
+
+                          //seleciona os checks
+                          check1 = document.querySelector('#check1');
+                          check2 = document.querySelector('#check2');
+
+                          //Verifica se as opcoes estao marcadas entao habilita botao finalizar
+                          function check(){
+
+                            if(check1.checked && check2.checked){
+                              
+                              document.querySelector('#bt-finalizar').disabled = false;
+
+                            }else{
+
+                              document.querySelector('#bt-finalizar').disabled = true;
+
+                            }
+                          }
+                        
+                        </script>
 
                         
                           <!-- <div id="ultimoStep"> -->
                               <!-- <p class="card-text mb-4">Torne-se um membro Okei!</p> -->
                                 <!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();relogio();">Finalizar</button>
+                              <button id="bt-finalizar" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enviarCodigo();relogio();" disabled>Finalizar</button>
              
 
                               <!-- Modal -->
@@ -472,7 +516,7 @@
 
     // Plugin de País
     $("#country_selector").countrySelect({
-      //   defaultCountry: 'br',
+       defaultCountry: 'us',
       // // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
       // // responsiveDropdown: true,
       // preferredCountries: ['ca', 'gb', 'us']
