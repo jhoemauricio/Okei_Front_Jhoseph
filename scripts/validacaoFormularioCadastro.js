@@ -218,5 +218,81 @@ function validarCpf(){
       // });
     }
   }
+}
+
+
+// function validarRgBr(){
+
+//   var rg_pass = $("#rg_passaporte").val();
+
+//   if((rg_pass.length >= 6) || (rg_pass.length <= 12)){
+
+//     // console.log(rg_pass.length);
+
+//      return true;
+
+//   }else{
+
+//     Lobibox.notify('warning', {
+//       pauseDelayOnHover: true,
+//       icon: '',
+//       continueDelayOnInactiveTab: false,
+//       position: 'bottom right',
+//       size: 'mini',
+//       msg: 'RG Passaporte inválido'
+
+//   });
+
+//   }
+
+// }
+
+function validarRg(){
+
+  var rg_pass = $("#rg_passaporte").val();
+
+  if(localStorage.getItem("pais") == "BR"){
+
+    if((rg_pass.length >= 6) && (rg_pass.length <= 12)){
+  
+      return true;
+  
+    }else{
+  
+          Lobibox.notify('warning', {
+            pauseDelayOnHover: true,
+            icon: '',
+            continueDelayOnInactiveTab: false,
+            position: 'bottom right',
+            size: 'mini',
+            msg: 'RG Passaporte inválido'
+      
+        });
+ 
+    }
+
+  }
+
+  if(localStorage.getItem("pais") != "BR"){
+
+    if((rg_pass.length == 11) || (rg_pass.length == 12)){
+
+      return true;
+
+    }else{
+
+      Lobibox.notify('warning', {
+        pauseDelayOnHover: true,
+        icon: '',
+        continueDelayOnInactiveTab: false,
+        position: 'bottom right',
+        size: 'mini',
+        msg: 'RG Passaporte inválido'
+  
+    });
+
+    }
+
+  }
 
 }
