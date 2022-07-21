@@ -72,11 +72,9 @@ function ident(){
                     resultTel = false;
                      mostrarTab2();
 
-                });
-            
+                });      
 
     }
-
 
 }
 
@@ -84,35 +82,38 @@ function mostrarTab2(){
 
     var valDataNasc = validarDataNasc();
     var valSen = validarSenha();
-    var valCpf = validarCpf();
-    // var valRg = validarRgBr();
-    var valRg = validarRg();
+   
+    var valEmail = checkEmail();
+   
 
     if(localStorage.getItem("pais") == "BR"){
+
+        var valCpf = validarCpf();
+        var valRg = validarRgBrasil();
         
-        if(((resultTel != true) && (resultEmail != true)) && ((valDataNasc == true) && (valSen == true)) && ((valCpf == 'Cpf válido') && (valRg == true))){
+            if(((resultTel != true) && (resultEmail != true)) && ((valDataNasc == true) && (valSen == true)) && ((valCpf == 'Cpf válido') && (valRg == true) && (valEmail == true))){
 
-            var tab1 = document.querySelector('#tab1');
-            var tab2 = document.querySelector('#tab2');
-            tab1.style.display = 'none';
-            tab2.style.display = 'block';
+                var tab1 = document.querySelector('#tab1');
+                var tab2 = document.querySelector('#tab2');
+                tab1.style.display = 'none';
+                tab2.style.display = 'block';
 
+            }
+
+        } if(localStorage.getItem("pais") == "PT"){
+
+        var valRgPt = valPTPassaPorteCC();
+        var valNif = validaContribuinte();
+
+            if(((resultTel != true) && (resultEmail != true)) && ((valDataNasc == true) && (valSen == true)) && (valRgPt == true) && (valEmail == true) && (valNif == true)){
+
+                var tab1 = document.querySelector('#tab1');
+                var tab2 = document.querySelector('#tab2');
+                tab1.style.display = 'none';
+                tab2.style.display = 'block';
+
+            }
         }
-
-    }
-    
-    if(localStorage.getItem("pais") != "BR"){
-        
-        if(((resultTel != true) && (resultEmail != true)) && ((valDataNasc == true) && (valSen == true)) && (valRg == true)){
-
-            var tab1 = document.querySelector('#tab1');
-            var tab2 = document.querySelector('#tab2');
-            tab1.style.display = 'none';
-            tab2.style.display = 'block';
-
-        }
-    }
-   
 }
 
 // Notificacao de email ou telefone ja cadastrado
@@ -123,7 +124,6 @@ function emailJaCadastrado(){
     identi = $("#email").val();
            
             Lobibox.notify('warning', {
-
                 pauseDelayOnHover: true,
                 icon: '',
                 continueDelayOnInactiveTab: false,
@@ -132,7 +132,6 @@ function emailJaCadastrado(){
                 msg: 'O '+identi+' já possui cadastro'
         
             });
-
         }
 }
 

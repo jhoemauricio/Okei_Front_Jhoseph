@@ -114,7 +114,7 @@
                             <label class="form-label">Nome</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-person-circle"></i></div>
-                              <input type="text" onkeypress="return filtroLetras(event)" class="form-control radius-30 ps-5" id="nome" placeholder="Nome completo"  required>
+                              <input type="text" onkeypress="return filtroLetras(event)" class="form-control radius-30 ps-5" id="nome" placeholder="Nome completo"  value="aaaa aaaaaa" required>
                             </div>
                           </div>
 
@@ -206,7 +206,7 @@
                             <label class="form-label" id="label-cpf">CPF</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-user"></i></div>
-                              <input type="number" onkeypress='return filtroTeclas(event)' class="form-control radius-30 ps-5" id="cpf" placeholder="00000000000" minlength="11" maxlength="11" required>
+                              <input type="text" onkeypress='return filtroTeclas(event)' class="form-control radius-30 ps-5" id="cpf" placeholder="00000000000" minlength="11" maxlength="11" required>
                             </div>
                           </div>          
 
@@ -214,7 +214,7 @@
                             <label class="form-label" id="label-rg">Rg/Passaporte</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-plane"></i></div>
-                                <input type="number" onkeypress='return filtroTeclas(event)' class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" maxlength="12" required>
+                                <input type="text"  class="form-control radius-30 ps-5" id="rg_passaporte" placeholder="nº" maxlength="12" required>
                             </div>
                           </div>
 
@@ -227,7 +227,6 @@
                                 function filtroLetras(evt) {
                                     if(!/[a-záéíóúàèìòùãõâêîôûäëïöüç ]/i.test(evt.key)) return false;
                                 }
-
                                
                           </script>
                           
@@ -251,7 +250,8 @@
                             <label for="inputEmailAddress" class="form-label">Email</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="fadeIn animated bx bx-mail-send"></i></div>
-                              <input type="email" class="form-control radius-30 ps-5" id="email" placeholder="Email" required>
+                              <input type="email" class="form-control radius-30 ps-5" id="email" placeholder="example@email.com" value="exemplo@gmail.com" required>
+                             
                             </div>
                           </div>
 
@@ -270,7 +270,7 @@
                             <label class="form-label">Senha</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-lock-alt"></i></div>
-                              <input type="password" class="form-control radius-30 ps-5" id="senha" placeholder="Password" required>
+                              <input type="password" class="form-control radius-30 ps-5" id="senha" placeholder="Password" value="Abcd123" required>
                             </div>
                           </div>
                           
@@ -287,7 +287,7 @@
                             <label class="form-label">Confirmação de senha</label>
                             <div class="ms-auto position-relative">
                               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="lni lni-lock-alt"></i></div>
-                              <input type="password" class="form-control radius-30 ps-5" id="conf_senha" placeholder="Password"  required>
+                              <input type="password" class="form-control radius-30 ps-5" id="conf_senha" placeholder="Password" value="Abcd123" required>
                             </div>
                           </div>
 
