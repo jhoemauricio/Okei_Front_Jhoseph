@@ -66,14 +66,12 @@ function ident(){
                     
                 }
 
-
                 }).fail(function(jqXHR, errorThrow){
 
                     resultTel = false;
                      mostrarTab2();
 
-                });      
-
+                });                   
     }
 
 }
@@ -82,10 +80,8 @@ function mostrarTab2(){
 
     var valDataNasc = validarDataNasc();
     var valSen = validarSenha();
-   
     var valEmail = checkEmail();
    
-
     if(localStorage.getItem("pais") == "BR"){
 
         var valCpf = validarCpf();
@@ -100,7 +96,7 @@ function mostrarTab2(){
 
             }
 
-        } if(localStorage.getItem("pais") == "PT"){
+        }else if(localStorage.getItem("pais") == "PT"){
 
         var valRgPt = valPTPassaPorteCC();
         var valNif = validaContribuinte();
@@ -113,6 +109,18 @@ function mostrarTab2(){
                 tab2.style.display = 'block';
 
             }
+        }else if(((localStorage.getItem("pais") != "PT") && (localStorage.getItem("pais") != "BR"))){
+
+            var valPass = valPassaPort();
+            var valNif = validaContribuinte();
+
+                if((resultTel != true) && (resultEmail != true) && (valDataNasc == true) && (valSen == true) && (valPass == true) && (valNif == true)){
+
+                    var tab1 = document.querySelector('#tab1');
+                    var tab2 = document.querySelector('#tab2');
+                    tab1.style.display = 'none';
+                    tab2.style.display = 'block';
+                }
         }
 }
 
