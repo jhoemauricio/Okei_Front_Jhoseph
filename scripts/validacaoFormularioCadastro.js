@@ -276,7 +276,9 @@ function valPTPassaPorteCC(){
           
           return true;
 
-      }else{
+      }
+      
+      if(!pass && !cc && input.length != 11 && input.length != 12 && pais == "PT"){
 
             Lobibox.notify('warning', {
               pauseDelayOnHover: true,
@@ -298,7 +300,7 @@ function validarRgBrasil(){
   var pais = localStorage.getItem("pais");
   var input = document.querySelector('#rg_passaporte').value;
 
-
+   
         numero = /^([A-Z]{2})(\d{6})$/;
         //converete para string
          str = input.toString();
@@ -310,26 +312,22 @@ function validarRgBrasil(){
 
         rg = str.match(numRg);
 
-        if(((pais == "BR") && (input.length >= 6) && (input.length <=12) && rg)){
+        if(pais == "BR" && rg ){
 
           console.log("RG BRASIL");
           return true;
-          // var div = document.querySelector('#div');
-          // var p = document.createElement('p');
-          // p.innerText = "RG brasil"
-          // div.appendChild(p);
+       
 
-        }else if(pais == "BR" && input.length == 8 && pass){
+        }else
+        
+        if(pais == "BR" && input.length == 8 && pass){
 
           console.log("PASSAPORTE BRASIL");
-          // var div = document.querySelector('#div');
-          // var p = document.createElement('p');
-          // p.innerText = "PASSAPORTE BRASIL"
-          // div.appendChild(p);
-
           return true;
 
-        }else{
+        }
+        
+        if((pais == "BR") && !rg && !pass){
 
           Lobibox.notify('warning', {
             pauseDelayOnHover: true,
@@ -343,58 +341,11 @@ function validarRgBrasil(){
 
         }
 
+
+
 }
 
-
-//------------------------------------------------------- Validar PASSAPORTE/BI/CC OUTRO PAIS ----------------------------------
-
-
-function valPassaPort(){
-  
-  var pais = localStorage.getItem("pais");
-
-  var input = document.querySelector('#rg_passaporte').value;
-
-          //converete para string
-          str = input.toString();
-          //Validar passaporte
-          numero = /^([A-Z]{2})(\d{6})$/;
-         
-          //procura pelo Validar passaporte
-          pass = str.match(numero);
-
-          //validar Cartão Cidadão Portugal
-          numLetra = /^(\d{9}[A-Z]{2}\d{1}||\d{8}[A-Z]{2}\d{1})$/;
-
-          cc = str.match(numLetra);
-             
-      if(pass && input.length == 8 && pais != "PT" && pais != "BR"){
-
-          console.log("Tem 2 letras e 6 numeros é PASSAPORTE");
-        
-          return true;
-
-      }else if((input.length == 11 || input.length == 12) && cc && (pais != "BR" && pais != "PT")){
-          
-          console.log("9 digitos, 2 letras, 1 digito ou 8 digitos, 2 digitos, 1 digito CC");
-       
-          return true;
-
-      }else{
-
-            Lobibox.notify('warning', {
-              pauseDelayOnHover: true,
-              icon: '',
-              continueDelayOnInactiveTab: false,
-              position: 'bottom right',
-              size: 'mini',
-              msg: 'Nº '
-        
-          });
-      }
-}
-
-         
+     
       
 //------------------------------------------------------- Validação NIF -------------------------------------------
 
